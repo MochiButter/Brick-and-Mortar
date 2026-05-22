@@ -43,6 +43,13 @@ loom {
     }
 }
 
+fabricApi {
+    configureDataGeneration {
+        client = true
+        outputDirectory = project(":common").file("src/generated/resources")
+    }
+}
+
 publishMods {
     file = tasks.named("remapJar").flatMap { it.archiveFile }
 }

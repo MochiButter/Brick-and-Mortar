@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "brick_and_mortar:block/kiln_front_on_soul",
+    "side": "brick_and_mortar:block/kiln_side_on_soul",
+    "top": "brick_and_mortar:block/kiln_top_on_soul"
+  }
+}

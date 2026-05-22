@@ -1,0 +1,388 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_on",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_on_soul",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open_on",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open_on_soul",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_on",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_on_soul",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open_on",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open_on_soul",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_on",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_on_soul",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open_on",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open_on_soul",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_on",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_on_soul",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open_on",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_open_on_soul",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open": "true",
+        "soul": "true"
+      }
+    }
+  ]
+}

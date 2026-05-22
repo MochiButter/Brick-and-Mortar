@@ -1,5 +1,14 @@
 package com.evandev.brick_and_mortar.platform.services;
 
+import com.evandev.brick_and_mortar.platform.registry.RegistrationProvider;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+
 import java.nio.file.Path;
 
 public interface IPlatformHelper {
@@ -44,7 +53,17 @@ public interface IPlatformHelper {
 
     /**
      * Checks if the code is running on the physical client.
+     *
      * @return True if on the client, false if on a dedicated server.
      */
     boolean isPhysicalClient();
+
+    <T> RegistrationProvider<T> createRegistrationProvider(ResourceKey<? extends Registry<T>> registry, String modId);
+
+    <T extends BlockEntity> BlockEntityType<T> createBlockEntityType(BlockEntityFactory<T> factory, Block... blocks);
+
+    @FunctionalInterface
+    interface BlockEntityFactory<T extends BlockEntity> {
+        T create(BlockPos pos, BlockState state);
+    }
 }
