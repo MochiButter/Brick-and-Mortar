@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "${description}",
+  "authors": [
+    "${mod_author}"
+  ],
+  "contact": {
+    "homepage": "https://github.com/evanbones/Brick-and-Mortar",
+    "sources": "https://github.com/evanbones/Brick-and-Mortar"
+  },
+  "license": "${license}",
+  "icon": "${mod_id}.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.evandev.brick_and_mortar.BrickandMortar"
+    ],
+    "client": [
+      "com.evandev.brick_and_mortar.client.BrickandMortarClient"
+    ],
+    "modmenu": [
+      "com.evandev.brick_and_mortar.compat.ModMenuIntegration"
+    ],
+    "fabric-datagen": [
+      "com.evandev.brick_and_mortar.datagen.TemplateDataGenerator"
+    ]
+  },
+  "mixins": [
+    "${mod_id}.mixins.json",
+    "${mod_id}.fabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}",
+    "java": ">=21"
+  }
+}
