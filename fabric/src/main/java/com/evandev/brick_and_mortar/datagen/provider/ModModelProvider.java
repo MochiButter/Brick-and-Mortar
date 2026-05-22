@@ -40,49 +40,53 @@ public class ModModelProvider extends FabricModelProvider {
                 for (boolean soul : new boolean[]{false, true}) {
                     for (boolean frontOpen : new boolean[]{false, true}) {
                         for (boolean leftOpen : new boolean[]{false, true}) {
-                            for (boolean rightOpen : new boolean[]{false, true}) {
+                            for (boolean backOpen : new boolean[]{false, true}) {
+                                for (boolean rightOpen : new boolean[]{false, true}) {
 
-                                String frontTex = getTexture("kiln_front", frontOpen, lit, soul);
-                                String leftTex = getTexture("kiln_side", leftOpen, lit, soul);
-                                String rightTex = getTexture("kiln_side", rightOpen, lit, soul);
-                                String topTex = getTexture("kiln_top", false, lit, soul);
-                                String backTex = "kiln_side";
+                                    String frontTex = getTexture("kiln_front", frontOpen, lit, soul);
+                                    String leftTex = getTexture("kiln_side", leftOpen, lit, soul);
+                                    String backTex = getTexture("kiln_side", backOpen, lit, soul);
+                                    String rightTex = getTexture("kiln_side", rightOpen, lit, soul);
+                                    String topTex = getTexture("kiln_top", false, lit, soul);
 
-                                String modelName = "kiln";
-                                if (frontOpen) modelName += "_f";
-                                if (leftOpen) modelName += "_l";
-                                if (rightOpen) modelName += "_r";
-                                if (lit) {
-                                    modelName += "_on";
-                                    if (soul) modelName += "_soul";
+                                    String modelName = "kiln";
+                                    if (frontOpen) modelName += "_f";
+                                    if (leftOpen) modelName += "_l";
+                                    if (backOpen) modelName += "_b";
+                                    if (rightOpen) modelName += "_r";
+                                    if (lit) {
+                                        modelName += "_on";
+                                        if (soul) modelName += "_soul";
+                                    }
+
+                                    ResourceLocation modelResLoc = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + modelName);
+                                    if (generatedModels.add(modelName)) {
+                                        TextureMapping mapping = new TextureMapping()
+                                                .put(TextureSlot.PARTICLE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + frontTex))
+                                                .put(TextureSlot.DOWN, ResourceLocation.withDefaultNamespace("block/bricks"))
+                                                .put(TextureSlot.UP, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + topTex))
+                                                .put(TextureSlot.NORTH, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + frontTex))
+                                                .put(TextureSlot.SOUTH, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + backTex))
+                                                .put(TextureSlot.EAST, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + leftTex))
+                                                .put(TextureSlot.WEST, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + rightTex));
+
+                                        ModelTemplates.CUBE.create(modelResLoc, mapping, gen.modelOutput);
+                                    }
+
+                                    multipart.with(
+                                            Condition.condition()
+                                                    .term(KilnBlock.FACING, dir)
+                                                    .term(KilnBlock.LIT, lit)
+                                                    .term(KilnBlock.SOUL, soul)
+                                                    .term(KilnBlock.OPEN_FRONT, frontOpen)
+                                                    .term(KilnBlock.OPEN_LEFT, leftOpen)
+                                                    .term(KilnBlock.OPEN_BACK, backOpen)
+                                                    .term(KilnBlock.OPEN_RIGHT, rightOpen),
+                                            Variant.variant()
+                                                    .with(VariantProperties.MODEL, modelResLoc)
+                                                    .with(VariantProperties.Y_ROT, yRot)
+                                    );
                                 }
-
-                                ResourceLocation modelResLoc = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + modelName);
-                                if (generatedModels.add(modelName)) {
-                                    TextureMapping mapping = new TextureMapping()
-                                            .put(TextureSlot.PARTICLE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + frontTex))
-                                            .put(TextureSlot.DOWN, ResourceLocation.withDefaultNamespace("block/bricks"))
-                                            .put(TextureSlot.UP, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + topTex))
-                                            .put(TextureSlot.NORTH, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + frontTex))
-                                            .put(TextureSlot.SOUTH, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + backTex))
-                                            .put(TextureSlot.WEST, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + leftTex))
-                                            .put(TextureSlot.EAST, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + rightTex));
-
-                                    ModelTemplates.CUBE.create(modelResLoc, mapping, gen.modelOutput);
-                                }
-
-                                multipart.with(
-                                        Condition.condition()
-                                                .term(KilnBlock.FACING, dir)
-                                                .term(KilnBlock.LIT, lit)
-                                                .term(KilnBlock.SOUL, soul)
-                                                .term(KilnBlock.OPEN_FRONT, frontOpen)
-                                                .term(KilnBlock.OPEN_LEFT, leftOpen)
-                                                .term(KilnBlock.OPEN_RIGHT, rightOpen),
-                                        Variant.variant()
-                                                .with(VariantProperties.MODEL, modelResLoc)
-                                                .with(VariantProperties.Y_ROT, yRot)
-                                );
                             }
                         }
                     }

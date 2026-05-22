@@ -18,7 +18,7 @@ public class KilnMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public KilnMenu(int containerId, Inventory playerInventory) {
-        this(containerId, playerInventory, new SimpleContainer(3), new SimpleContainerData(6)); // Increased to 6
+        this(containerId, playerInventory, new SimpleContainer(3), new SimpleContainerData(6));
     }
 
     public KilnMenu(int containerId, Inventory playerInventory, Container container, ContainerData data) {
@@ -45,13 +45,24 @@ public class KilnMenu extends AbstractContainerMenu {
         }
 
         this.addDataSlots(data);
+        this.container.startOpen(playerInventory.player);
+    }
+
+    public Container getContainer() {
+        return this.container;
+    }
+
+    @Override
+    public void removed(@NotNull Player player) {
+        super.removed(player);
+        this.container.stopOpen(player);
     }
 
     @Override
     public boolean clickMenuButton(@NotNull Player player, int id) {
         if (this.container instanceof KilnBlockEntity kiln) {
             if (id >= 0 && id <= 2) {
-                kiln.toggleDoor(id); // 0 = Front, 1 = Left, 2 = Right
+                kiln.toggleDoor(id); // 0 = Left, 1 = Back, 2 = Right
                 return true;
             }
         }
@@ -62,11 +73,11 @@ public class KilnMenu extends AbstractContainerMenu {
         return this.data.get(2) == 1;
     }
 
-    public boolean isFrontOpen() {
+    public boolean isLeftOpen() {
         return this.data.get(3) == 1;
     }
 
-    public boolean isLeftOpen() {
+    public boolean isBackOpen() {
         return this.data.get(4) == 1;
     }
 

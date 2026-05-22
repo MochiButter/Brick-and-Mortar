@@ -31,6 +31,7 @@ public class KilnBlock extends BaseEntityBlock {
     public static final BooleanProperty SOUL = BooleanProperty.create("soul");
     public static final BooleanProperty OPEN_FRONT = BooleanProperty.create("open_front");
     public static final BooleanProperty OPEN_LEFT = BooleanProperty.create("open_left");
+    public static final BooleanProperty OPEN_BACK = BooleanProperty.create("open_back");
     public static final BooleanProperty OPEN_RIGHT = BooleanProperty.create("open_right");
     public static final MapCodec<KilnBlock> CODEC = simpleCodec(KilnBlock::new);
 
@@ -42,6 +43,7 @@ public class KilnBlock extends BaseEntityBlock {
                 .setValue(SOUL, false)
                 .setValue(OPEN_FRONT, false)
                 .setValue(OPEN_LEFT, false)
+                .setValue(OPEN_BACK, false)
                 .setValue(OPEN_RIGHT, false));
     }
 
@@ -52,7 +54,7 @@ public class KilnBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, LIT, SOUL, OPEN_FRONT, OPEN_LEFT, OPEN_RIGHT);
+        builder.add(FACING, LIT, SOUL, OPEN_FRONT, OPEN_LEFT, OPEN_BACK, OPEN_RIGHT);
     }
 
     @Nullable
@@ -65,7 +67,7 @@ public class KilnBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if (level.isClientSide) return InteractionResult.SUCCESS;
 
         BlockEntity blockEntity = level.getBlockEntity(pos);

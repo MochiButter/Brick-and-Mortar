@@ -18,12 +18,36 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuProvider {
-    protected NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
+    private final ContainerOpenersCounter openersCounter = new ContainerOpenersCounter() {
+        @Override
+        protected void onOpen(Level level, @NotNull BlockPos pos, BlockState state) {
+            level.setBlock(pos, state.setValue(KilnBlock.OPEN_FRONT, true), 3);
+        }
 
+        @Override
+        protected void onClose(Level level, @NotNull BlockPos pos, BlockState state) {
+            level.setBlock(pos, state.setValue(KilnBlock.OPEN_FRONT, false), 3);
+        }
+
+        @Override
+        protected void openerCountChanged(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, int prev, int now) {
+        }
+
+        @Override
+        protected boolean isOwnContainer(Player player) {
+            if (player.containerMenu instanceof KilnMenu menu) {
+                return menu.getContainer() == KilnBlockEntity.this;
+            }
+            return false;
+        }
+    };
+
+    protected NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
     int progress = 0;
     int maxProgress = 200;
 
@@ -34,8 +58,8 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuPro
                 case 0 -> KilnBlockEntity.this.progress;
                 case 1 -> KilnBlockEntity.this.maxProgress;
                 case 2 -> getBlockState().getValue(KilnBlock.SOUL) ? 1 : 0;
-                case 3 -> getBlockState().getValue(KilnBlock.OPEN_FRONT) ? 1 : 0;
-                case 4 -> getBlockState().getValue(KilnBlock.OPEN_LEFT) ? 1 : 0;
+                case 3 -> getBlockState().getValue(KilnBlock.OPEN_LEFT) ? 1 : 0;
+                case 4 -> getBlockState().getValue(KilnBlock.OPEN_BACK) ? 1 : 0;
                 case 5 -> getBlockState().getValue(KilnBlock.OPEN_RIGHT) ? 1 : 0;
                 default -> 0;
             };
@@ -61,7 +85,7 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuPro
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, KilnBlockEntity entity) {
         // TODO: Full fuel consumption and recipe lookup
-
+        entity.openersCounter.recheckOpeners(level, pos, state);
         ItemStack input = entity.items.getFirst();
         if (!input.isEmpty()) {
             boolean isDoubleSpeed = input.is(Items.CLAY_BALL) || input.is(Items.COBBLESTONE);
@@ -86,9 +110,23 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuPro
     public void toggleDoor(int doorId) {
         if (level != null) {
             BlockState state = getBlockState();
-            if (doorId == 0) level.setBlock(getBlockPos(), state.cycle(KilnBlock.OPEN_FRONT), 3);
-            else if (doorId == 1) level.setBlock(getBlockPos(), state.cycle(KilnBlock.OPEN_LEFT), 3);
+            if (doorId == 0) level.setBlock(getBlockPos(), state.cycle(KilnBlock.OPEN_LEFT), 3);
+            else if (doorId == 1) level.setBlock(getBlockPos(), state.cycle(KilnBlock.OPEN_BACK), 3);
             else if (doorId == 2) level.setBlock(getBlockPos(), state.cycle(KilnBlock.OPEN_RIGHT), 3);
+        }
+    }
+
+    @Override
+    public void startOpen(@NotNull Player player) {
+        if (!this.remove && !player.isSpectator()) {
+            this.openersCounter.incrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
+        }
+    }
+
+    @Override
+    public void stopOpen(@NotNull Player player) {
+        if (!this.remove && !player.isSpectator()) {
+            this.openersCounter.decrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
         }
     }
 

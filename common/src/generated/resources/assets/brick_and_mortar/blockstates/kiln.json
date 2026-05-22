@@ -8,6 +8,7 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -22,6 +23,37 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -36,6 +68,7 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -50,6 +83,37 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -64,6 +128,7 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -78,6 +143,37 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -92,6 +188,7 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -106,6 +203,37 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",
@@ -120,6 +248,7 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -134,6 +263,37 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -148,6 +308,7 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -162,6 +323,37 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -176,6 +368,7 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -190,6 +383,37 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -204,6 +428,7 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -218,6 +443,37 @@
       "when": {
         "facing": "north",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",
@@ -232,6 +488,7 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -246,6 +503,37 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_on",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r_on",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -260,6 +548,7 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -274,6 +563,37 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_on",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r_on",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -288,6 +608,7 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -302,6 +623,37 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_on",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r_on",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -316,6 +668,7 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -330,6 +683,37 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_on",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r_on",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",
@@ -344,6 +728,7 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -358,6 +743,37 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_on_soul",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r_on_soul",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -372,6 +788,7 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -386,6 +803,37 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_on_soul",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r_on_soul",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -400,6 +848,7 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -414,6 +863,37 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_on_soul",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r_on_soul",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -428,6 +908,7 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -442,6 +923,37 @@
       "when": {
         "facing": "north",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_on_soul",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r_on_soul",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",
@@ -456,6 +968,7 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -470,6 +983,37 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -484,6 +1028,7 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -498,6 +1043,37 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -512,6 +1088,7 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -526,6 +1103,37 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -540,6 +1148,7 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -554,6 +1163,37 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",
@@ -568,6 +1208,7 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -582,6 +1223,37 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -596,6 +1268,7 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -610,6 +1283,37 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -624,6 +1328,7 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -638,6 +1343,37 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -652,6 +1388,7 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -666,6 +1403,37 @@
       "when": {
         "facing": "south",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",
@@ -680,6 +1448,7 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -694,6 +1463,37 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_on",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r_on",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -708,6 +1508,7 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -722,6 +1523,37 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_on",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r_on",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -736,6 +1568,7 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -750,6 +1583,37 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_on",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r_on",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -764,6 +1628,7 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -778,6 +1643,37 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_on",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r_on",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",
@@ -792,6 +1688,7 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -806,6 +1703,37 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_on_soul",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r_on_soul",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -820,6 +1748,7 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -834,6 +1763,37 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_on_soul",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r_on_soul",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -848,6 +1808,7 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -862,6 +1823,37 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_on_soul",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r_on_soul",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -876,6 +1868,7 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -890,6 +1883,37 @@
       "when": {
         "facing": "south",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_on_soul",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r_on_soul",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",
@@ -904,6 +1928,7 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -918,6 +1943,37 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -932,6 +1988,7 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -946,6 +2003,37 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -960,6 +2048,7 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -974,6 +2063,37 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -988,6 +2108,7 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -1002,6 +2123,37 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",
@@ -1016,6 +2168,7 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -1030,6 +2183,37 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -1044,6 +2228,7 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -1058,6 +2243,37 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -1072,6 +2288,7 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -1086,6 +2303,37 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -1100,6 +2348,7 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -1114,6 +2363,37 @@
       "when": {
         "facing": "west",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",
@@ -1128,6 +2408,7 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -1142,6 +2423,37 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_on",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r_on",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -1156,6 +2468,7 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -1170,6 +2483,37 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_on",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r_on",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -1184,6 +2528,7 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -1198,6 +2543,37 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_on",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r_on",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -1212,6 +2588,7 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -1226,6 +2603,37 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_on",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r_on",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",
@@ -1240,6 +2648,7 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -1254,6 +2663,37 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_on_soul",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r_on_soul",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -1268,6 +2708,7 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -1282,6 +2723,37 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_on_soul",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r_on_soul",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -1296,6 +2768,7 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -1310,6 +2783,37 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_on_soul",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r_on_soul",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -1324,6 +2828,7 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -1338,6 +2843,37 @@
       "when": {
         "facing": "west",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_on_soul",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r_on_soul",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",
@@ -1352,6 +2888,7 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -1366,6 +2903,37 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -1380,6 +2948,7 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -1394,6 +2963,37 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -1408,6 +3008,7 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -1422,6 +3023,37 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -1436,6 +3068,7 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -1450,6 +3083,37 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",
@@ -1464,6 +3128,7 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -1478,6 +3143,37 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -1492,6 +3188,7 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -1506,6 +3203,37 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -1520,6 +3248,7 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -1534,6 +3263,37 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -1548,6 +3308,7 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -1562,6 +3323,37 @@
       "when": {
         "facing": "east",
         "lit": "false",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "false",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",
@@ -1576,6 +3368,7 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -1590,6 +3383,37 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_on",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r_on",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -1604,6 +3428,7 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -1618,6 +3443,37 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_on",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r_on",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -1632,6 +3488,7 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -1646,6 +3503,37 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_on",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r_on",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -1660,6 +3548,7 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -1674,6 +3563,37 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_on",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r_on",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",
@@ -1688,6 +3608,7 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "false",
         "open_right": "false",
@@ -1702,6 +3623,37 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_on_soul",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_b_r_on_soul",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "false",
         "open_right": "true",
@@ -1716,6 +3668,7 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
         "open_front": "false",
         "open_left": "true",
         "open_right": "false",
@@ -1730,6 +3683,37 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_on_soul",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "false",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_l_b_r_on_soul",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "false",
         "open_left": "true",
         "open_right": "true",
@@ -1744,6 +3728,7 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "false",
         "open_right": "false",
@@ -1758,6 +3743,37 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_on_soul",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "false",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_b_r_on_soul",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "false",
         "open_right": "true",
@@ -1772,6 +3788,7 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
         "open_front": "true",
         "open_left": "true",
         "open_right": "false",
@@ -1786,6 +3803,37 @@
       "when": {
         "facing": "east",
         "lit": "true",
+        "open_back": "false",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "true",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_on_soul",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
+        "open_front": "true",
+        "open_left": "true",
+        "open_right": "false",
+        "soul": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "brick_and_mortar:block/kiln_f_l_b_r_on_soul",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lit": "true",
+        "open_back": "true",
         "open_front": "true",
         "open_left": "true",
         "open_right": "true",

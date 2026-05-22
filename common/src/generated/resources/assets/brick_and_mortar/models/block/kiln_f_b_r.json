@@ -2,11 +2,11 @@
   "parent": "minecraft:block/cube",
   "textures": {
     "down": "minecraft:block/bricks",
-    "east": "brick_and_mortar:block/kiln_side_open",
+    "east": "brick_and_mortar:block/kiln_side",
     "north": "brick_and_mortar:block/kiln_front_open",
     "particle": "brick_and_mortar:block/kiln_front_open",
-    "south": "brick_and_mortar:block/kiln_side",
+    "south": "brick_and_mortar:block/kiln_side_open",
     "up": "brick_and_mortar:block/kiln_top",
-    "west": "brick_and_mortar:block/kiln_side"
+    "west": "brick_and_mortar:block/kiln_side_open"
   }
 }
