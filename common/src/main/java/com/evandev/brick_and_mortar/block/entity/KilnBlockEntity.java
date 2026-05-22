@@ -1,15 +1,166 @@
 package com.evandev.brick_and_mortar.block.entity;
 
+import com.evandev.brick_and_mortar.block.KilnBlock;
+import com.evandev.brick_and_mortar.menu.KilnMenu;
 import com.evandev.brick_and_mortar.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
-public class KilnBlockEntity extends BlockEntity {
+public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuProvider {
+    protected NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
 
-    public KilnBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.KILN_BLOCK_ENTITY.get(), pos, blockState);
+    int progress = 0;
+    int maxProgress = 200;
+
+    protected final ContainerData dataAccess = new ContainerData() {
+        @Override
+        public int get(int index) {
+            return switch (index) {
+                case 0 -> KilnBlockEntity.this.progress;
+                case 1 -> KilnBlockEntity.this.maxProgress;
+                case 2 -> getBlockState().getValue(KilnBlock.SOUL) ? 1 : 0;
+                case 3 -> getBlockState().getValue(KilnBlock.OPEN_FRONT) ? 1 : 0;
+                case 4 -> getBlockState().getValue(KilnBlock.OPEN_LEFT) ? 1 : 0;
+                case 5 -> getBlockState().getValue(KilnBlock.OPEN_RIGHT) ? 1 : 0;
+                default -> 0;
+            };
+        }
+
+        @Override
+        public void set(int index, int value) {
+            switch (index) {
+                case 0 -> KilnBlockEntity.this.progress = value;
+                case 1 -> KilnBlockEntity.this.maxProgress = value;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 6;
+        }
+    };
+
+    public KilnBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.KILN_BLOCK_ENTITY.get(), pos, state);
     }
 
-    // TODO: container, fuel consumption, and double speed brick/stone smelting
+    public static void serverTick(Level level, BlockPos pos, BlockState state, KilnBlockEntity entity) {
+        // TODO: Full fuel consumption and recipe lookup
+
+        ItemStack input = entity.items.getFirst();
+        if (!input.isEmpty()) {
+            boolean isDoubleSpeed = input.is(Items.CLAY_BALL) || input.is(Items.COBBLESTONE);
+            entity.maxProgress = isDoubleSpeed ? 100 : 200;
+
+            entity.progress++;
+            if (entity.progress >= entity.maxProgress) {
+                entity.progress = 0;
+            }
+
+            if (!state.getValue(KilnBlock.LIT)) {
+                level.setBlock(pos, state.setValue(KilnBlock.LIT, true), 3);
+            }
+        } else {
+            entity.progress = 0;
+            if (state.getValue(KilnBlock.LIT)) {
+                level.setBlock(pos, state.setValue(KilnBlock.LIT, false), 3);
+            }
+        }
+    }
+
+    public void toggleDoor(int doorId) {
+        if (level != null) {
+            BlockState state = getBlockState();
+            if (doorId == 0) level.setBlock(getBlockPos(), state.cycle(KilnBlock.OPEN_FRONT), 3);
+            else if (doorId == 1) level.setBlock(getBlockPos(), state.cycle(KilnBlock.OPEN_LEFT), 3);
+            else if (doorId == 2) level.setBlock(getBlockPos(), state.cycle(KilnBlock.OPEN_RIGHT), 3);
+        }
+    }
+
+    @Override
+    protected @NotNull Component getDefaultName() {
+        return Component.translatable("container.kiln");
+    }
+
+    @Override
+    protected @NotNull AbstractContainerMenu createMenu(int id, @NotNull Inventory player) {
+        return new KilnMenu(id, player, this, this.dataAccess);
+    }
+
+    @Override
+    public int getContainerSize() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.stream().allMatch(ItemStack::isEmpty);
+    }
+
+    @Override
+    public @NotNull ItemStack getItem(int slot) {
+        return items.get(slot);
+    }
+
+    @Override
+    public @NotNull ItemStack removeItem(int slot, int amount) {
+        return ContainerHelper.removeItem(items, slot, amount);
+    }
+
+    @Override
+    public @NotNull ItemStack removeItemNoUpdate(int slot) {
+        return ContainerHelper.takeItem(items, slot);
+    }
+
+    @Override
+    public void setItem(int slot, @NotNull ItemStack stack) {
+        items.set(slot, stack);
+    }
+
+    @Override
+    public boolean stillValid(@NotNull Player player) {
+        return Container.stillValidBlockEntity(this, player);
+    }
+
+    @Override
+    public void clearContent() {
+        items.clear();
+    }
+
+    @Override
+    protected void loadAdditional(@NotNull CompoundTag tag, net.minecraft.core.HolderLookup.@NotNull Provider registries) {
+        super.loadAdditional(tag, registries);
+        ContainerHelper.loadAllItems(tag, this.items, registries);
+    }
+
+    @Override
+    protected void saveAdditional(@NotNull CompoundTag tag, net.minecraft.core.HolderLookup.@NotNull Provider registries) {
+        super.saveAdditional(tag, registries);
+        ContainerHelper.saveAllItems(tag, this.items, registries);
+    }
+
+    @Override
+    protected @NotNull NonNullList<ItemStack> getItems() {
+        return this.items;
+    }
+
+    @Override
+    protected void setItems(@NotNull NonNullList<ItemStack> items) {
+        this.items = items;
+    }
 }

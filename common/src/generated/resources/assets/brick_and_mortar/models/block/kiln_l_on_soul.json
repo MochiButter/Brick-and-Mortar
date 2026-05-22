@@ -7,6 +7,6 @@
     "particle": "brick_and_mortar:block/kiln_front_on_soul",
     "south": "brick_and_mortar:block/kiln_side",
     "up": "brick_and_mortar:block/kiln_top_on_soul",
-    "west": "brick_and_mortar:block/kiln_side_on_soul"
+    "west": "brick_and_mortar:block/kiln_side_open_on_soul"
   }
 }

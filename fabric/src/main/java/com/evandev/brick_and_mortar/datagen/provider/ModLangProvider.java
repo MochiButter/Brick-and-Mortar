@@ -16,6 +16,7 @@ public class ModLangProvider extends FabricLanguageProvider {
     @Override
     public void generateTranslations(HolderLookup.Provider registryLookup, TranslationBuilder translationBuilder) {
         translationBuilder.add(ModBlocks.KILN.get(), "Kiln");
+        translationBuilder.add("container.kiln", "Kiln");
 
         translationBuilder.add("config.brick_and_mortar.title", "Brick and Mortar Config");
         translationBuilder.add("config.brick_and_mortar.category.general", "General");

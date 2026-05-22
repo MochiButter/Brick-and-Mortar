@@ -3,8 +3,8 @@
   "textures": {
     "down": "minecraft:block/bricks",
     "east": "brick_and_mortar:block/kiln_side",
-    "north": "brick_and_mortar:block/kiln_front",
-    "particle": "brick_and_mortar:block/kiln_front",
+    "north": "brick_and_mortar:block/kiln_front_open",
+    "particle": "brick_and_mortar:block/kiln_front_open",
     "south": "brick_and_mortar:block/kiln_side",
     "up": "brick_and_mortar:block/kiln_top",
     "west": "brick_and_mortar:block/kiln_side"

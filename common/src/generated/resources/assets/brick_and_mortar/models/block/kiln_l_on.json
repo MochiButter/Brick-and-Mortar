@@ -7,6 +7,6 @@
     "particle": "brick_and_mortar:block/kiln_front_on",
     "south": "brick_and_mortar:block/kiln_side",
     "up": "brick_and_mortar:block/kiln_top_on",
-    "west": "brick_and_mortar:block/kiln_side_on"
+    "west": "brick_and_mortar:block/kiln_side_open_on"
   }
 }

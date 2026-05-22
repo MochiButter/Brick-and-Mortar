@@ -4,6 +4,8 @@ import com.evandev.brick_and_mortar.platform.registry.RegistrationProvider;
 import com.evandev.brick_and_mortar.platform.services.IPlatformHelper;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -11,6 +13,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.FMLPaths;
+import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 
 import java.nio.file.Path;
 
@@ -49,5 +52,10 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
     @Override
     public <T extends BlockEntity> BlockEntityType<T> createBlockEntityType(BlockEntityFactory<T> factory, Block... blocks) {
         return BlockEntityType.Builder.of(factory::create, blocks).build(null);
+    }
+
+    @Override
+    public <T extends AbstractContainerMenu> MenuType<T> createMenuType(MenuFactory<T> factory) {
+        return IMenuTypeExtension.create((id, inv, data) -> factory.create(id, inv));
     }
 }
