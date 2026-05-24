@@ -16,10 +16,22 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider arg) {
-        getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(ModBlocks.KILN.get());
+        getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.KILN.get());
+        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.KILN.get());
 
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
-                .add(ModBlocks.KILN.get());
+        var pickaxeTag = getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE);
+        var stairsTag = getOrCreateTagBuilder(BlockTags.STAIRS);
+        var slabsTag = getOrCreateTagBuilder(BlockTags.SLABS);
+        var wallsTag = getOrCreateTagBuilder(BlockTags.WALLS);
+
+        for (var blockObj : ModBlocks.ALL_DECORATIVE_BLOCKS) {
+            pickaxeTag.add(blockObj.get());
+        }
+
+        for (var family : ModBlocks.FAMILIES) {
+            stairsTag.add(family.stairs().get());
+            slabsTag.add(family.slab().get());
+            wallsTag.add(family.wall().get());
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.evandev.brick_and_mortar.datagen.provider;
 import com.evandev.brick_and_mortar.Constants;
 import com.evandev.brick_and_mortar.block.KilnBlock;
 import com.evandev.brick_and_mortar.registry.ModBlocks;
+import com.evandev.brick_and_mortar.registry.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.core.Direction;
@@ -12,13 +13,13 @@ import net.minecraft.data.models.blockstates.Condition;
 import net.minecraft.data.models.blockstates.MultiPartGenerator;
 import net.minecraft.data.models.blockstates.Variant;
 import net.minecraft.data.models.blockstates.VariantProperties;
+import net.minecraft.data.models.model.ModelLocationUtils;
 import net.minecraft.data.models.model.ModelTemplates;
 import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.data.models.model.TextureSlot;
 import net.minecraft.resources.ResourceLocation;
 
 public class ModModelProvider extends FabricModelProvider {
-
     public ModModelProvider(FabricDataOutput output) {
         super(output);
     }
@@ -42,13 +43,11 @@ public class ModModelProvider extends FabricModelProvider {
                         for (boolean leftOpen : new boolean[]{false, true}) {
                             for (boolean backOpen : new boolean[]{false, true}) {
                                 for (boolean rightOpen : new boolean[]{false, true}) {
-
                                     String frontTex = getTexture("kiln_front", frontOpen, lit, soul);
                                     String leftTex = getTexture("kiln_side", leftOpen, lit, soul);
                                     String backTex = getTexture("kiln_side", backOpen, lit, soul);
                                     String rightTex = getTexture("kiln_side", rightOpen, lit, soul);
                                     String topTex = getTexture("kiln_top", false, lit, soul);
-
                                     String modelName = "kiln";
                                     if (frontOpen) modelName += "_f";
                                     if (leftOpen) modelName += "_l";
@@ -60,6 +59,7 @@ public class ModModelProvider extends FabricModelProvider {
                                     }
 
                                     ResourceLocation modelResLoc = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + modelName);
+
                                     if (generatedModels.add(modelName)) {
                                         TextureMapping mapping = new TextureMapping()
                                                 .put(TextureSlot.PARTICLE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + frontTex))
@@ -69,7 +69,6 @@ public class ModModelProvider extends FabricModelProvider {
                                                 .put(TextureSlot.SOUTH, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + backTex))
                                                 .put(TextureSlot.EAST, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + leftTex))
                                                 .put(TextureSlot.WEST, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + rightTex));
-
                                         ModelTemplates.CUBE.create(modelResLoc, mapping, gen.modelOutput);
                                     }
 
@@ -96,6 +95,28 @@ public class ModModelProvider extends FabricModelProvider {
 
         gen.blockStateOutput.accept(multipart);
         gen.delegateItemModel(ModBlocks.KILN.get(), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/kiln"));
+
+        for (var family : ModBlocks.FAMILIES) {
+            ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bricks/" + family.base().getId().getPath());
+            TextureMapping mapping = TextureMapping.cube(textureLoc);
+
+            gen.createTrivialBlock(family.base().get(), mapping, ModelTemplates.CUBE_ALL);
+
+            ResourceLocation stairsBase = ModelTemplates.STAIRS_STRAIGHT.create(family.stairs().get(), mapping, gen.modelOutput);
+            ResourceLocation stairsInner = ModelTemplates.STAIRS_INNER.createWithSuffix(family.stairs().get(), "_inner", mapping, gen.modelOutput);
+            ResourceLocation stairsOuter = ModelTemplates.STAIRS_OUTER.createWithSuffix(family.stairs().get(), "_outer", mapping, gen.modelOutput);
+            gen.blockStateOutput.accept(BlockModelGenerators.createStairs(family.stairs().get(), stairsInner, stairsBase, stairsOuter));
+
+            ResourceLocation slabBase = ModelTemplates.SLAB_BOTTOM.create(family.slab().get(), mapping, gen.modelOutput);
+            ResourceLocation slabTop = ModelTemplates.SLAB_TOP.createWithSuffix(family.slab().get(), "_top", mapping, gen.modelOutput);
+            gen.blockStateOutput.accept(BlockModelGenerators.createSlab(family.slab().get(), slabBase, slabTop, ModelLocationUtils.getModelLocation(family.base().get())));
+
+            ResourceLocation wallPost = ModelTemplates.WALL_POST.createWithSuffix(family.wall().get(), "_post", mapping, gen.modelOutput);
+            ResourceLocation wallSide = ModelTemplates.WALL_LOW_SIDE.createWithSuffix(family.wall().get(), "_side", mapping, gen.modelOutput);
+            ResourceLocation wallSideTall = ModelTemplates.WALL_TALL_SIDE.createWithSuffix(family.wall().get(), "_side_tall", mapping, gen.modelOutput);
+            gen.blockStateOutput.accept(BlockModelGenerators.createWall(family.wall().get(), wallPost, wallSide, wallSideTall));
+            gen.delegateItemModel(family.wall().get(), ModelTemplates.WALL_INVENTORY.createWithSuffix(family.wall().get(), "_inventory", mapping, gen.modelOutput));
+        }
     }
 
     private String getTexture(String base, boolean open, boolean lit, boolean soul) {
@@ -110,5 +131,8 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
+        for (var itemObj : ModItems.ALL_BRICK_ITEMS) {
+            itemModelGenerator.generateFlatItem(itemObj.get(), ModelTemplates.FLAT_ITEM);
+        }
     }
 }

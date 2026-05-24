@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "brick_and_mortar:block/bricks/light_purpur_block"
+  }
+}

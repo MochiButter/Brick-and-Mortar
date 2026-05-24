@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "minecraft:brick"
+      "tag": "c:bricks"
     },
     "F": {
       "item": "minecraft:furnace"

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "brick_and_mortar:orange_bricks"
+  },
+  "result": {
+    "count": 2,
+    "id": "brick_and_mortar:orange_bricks_slab"
+  }
+}

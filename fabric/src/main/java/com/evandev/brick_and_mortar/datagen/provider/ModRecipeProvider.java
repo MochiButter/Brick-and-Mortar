@@ -1,13 +1,20 @@
 package com.evandev.brick_and_mortar.datagen.provider;
 
+import com.evandev.brick_and_mortar.Constants;
 import com.evandev.brick_and_mortar.registry.ModBlocks;
+import com.evandev.brick_and_mortar.registry.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.concurrent.CompletableFuture;
@@ -24,10 +31,81 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .pattern("BBB")
                 .pattern("BFB")
                 .pattern("BIB")
-                .define('B', Items.BRICK)
+                .define('B', ModItemTagProvider.C_BRICKS)
                 .define('I', Items.IRON_INGOT)
                 .define('F', Blocks.FURNACE)
-                .unlockedBy("has_brick", has(Items.BRICK))
+                .unlockedBy("has_brick", has(ModItemTagProvider.C_BRICKS))
+                .save(exporter);
+
+        addTileRecipe(exporter, ModBlocks.BLACK_BRICKS.base().get(), ModBlocks.BLACK_TILES.base().get());
+        addTileRecipe(exporter, ModBlocks.BLUE_BRICKS.base().get(), ModBlocks.BLUE_TILES.base().get());
+        addTileRecipe(exporter, ModBlocks.BROWN_BRICKS.base().get(), ModBlocks.BROWN_TILES.base().get());
+        addTileRecipe(exporter, ModBlocks.CREAM_BRICKS.base().get(), ModBlocks.CREAM_TILES.base().get());
+        addTileRecipe(exporter, ModBlocks.GRAY_BRICKS.base().get(), ModBlocks.GRAY_TILES.base().get());
+        addTileRecipe(exporter, ModBlocks.ORANGE_BRICKS.base().get(), ModBlocks.ORANGE_TILES.base().get());
+        addTileRecipe(exporter, ModBlocks.TAN_BRICKS.base().get(), ModBlocks.TAN_TILES.base().get());
+        addTileRecipe(exporter, ModBlocks.CHARRED_NETHER_BRICKS.base().get(), ModBlocks.CHARRED_NETHER_TILES.base().get());
+        addTileRecipe(exporter, ModBlocks.CHARRED_SOUL_NETHER_BRICKS.base().get(), ModBlocks.CHARRED_SOUL_NETHER_TILES.base().get());
+        addTileRecipe(exporter, ModBlocks.LIGHT_NETHER_BRICKS.base().get(), ModBlocks.LIGHT_NETHER_TILES.base().get());
+        addTileRecipe(exporter, ModBlocks.LIGHT_SOUL_NETHER_BRICKS.base().get(), ModBlocks.LIGHT_SOUL_NETHER_TILES.base().get());
+        addTileRecipe(exporter, ModBlocks.RAW_NETHER_BRICKS.base().get(), ModBlocks.RAW_NETHER_TILES.base().get());
+        addTileRecipe(exporter, ModBlocks.RAW_SOUL_NETHER_BRICKS.base().get(), ModBlocks.RAW_SOUL_NETHER_TILES.base().get());
+        addTileRecipe(exporter, ModBlocks.SOUL_NETHER_BRICKS.base().get(), ModBlocks.SOUL_NETHER_TILES.base().get());
+
+        addTileRecipe(exporter, Blocks.BRICKS, ModBlocks.RED_TILES.base().get());
+        addTileRecipe(exporter, Blocks.NETHER_BRICKS, ModBlocks.NETHER_TILES.base().get());
+
+        addBlockRecipe(exporter, ModItems.CLINKER_BRICK.get(), ModBlocks.BLACK_BRICKS.base().get());
+        addBlockRecipe(exporter, ModItems.BLUE_BRICK.get(), ModBlocks.BLUE_BRICKS.base().get());
+        addBlockRecipe(exporter, ModItems.BROWN_BRICK.get(), ModBlocks.BROWN_BRICKS.base().get());
+        addBlockRecipe(exporter, ModItems.CREAM_BRICK.get(), ModBlocks.CREAM_BRICKS.base().get());
+        addBlockRecipe(exporter, ModItems.GRAY_BRICK.get(), ModBlocks.GRAY_BRICKS.base().get());
+        addBlockRecipe(exporter, ModItems.ORANGE_BRICK.get(), ModBlocks.ORANGE_BRICKS.base().get());
+        addBlockRecipe(exporter, ModItems.TAN_BRICK.get(), ModBlocks.TAN_BRICKS.base().get());
+        addBlockRecipe(exporter, ModItems.CHARRED_NETHER_BRICK.get(), ModBlocks.CHARRED_NETHER_BRICKS.base().get());
+        addBlockRecipe(exporter, ModItems.CHARRED_SOUL_NETHER_BRICK.get(), ModBlocks.CHARRED_SOUL_NETHER_BRICKS.base().get());
+        addBlockRecipe(exporter, ModItems.LIGHT_NETHER_BRICK.get(), ModBlocks.LIGHT_NETHER_BRICKS.base().get());
+        addBlockRecipe(exporter, ModItems.LIGHT_SOUL_NETHER_BRICK.get(), ModBlocks.LIGHT_SOUL_NETHER_BRICKS.base().get());
+        addBlockRecipe(exporter, ModItems.RAW_NETHER_BRICK.get(), ModBlocks.RAW_NETHER_BRICKS.base().get());
+        addBlockRecipe(exporter, ModItems.RAW_SOUL_NETHER_BRICK.get(), ModBlocks.RAW_SOUL_NETHER_BRICKS.base().get());
+
+        for (var family : ModBlocks.FAMILIES) {
+            Block base = family.base().get();
+            Block stairs = family.stairs().get();
+            Block slab = family.slab().get();
+            Block wall = family.wall().get();
+
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, stairs, 4)
+                    .pattern("B  ").pattern("BB ").pattern("BBB").define('B', base).unlockedBy("has_base", has(base)).save(exporter);
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, slab, 6)
+                    .pattern("BBB").define('B', base).unlockedBy("has_base", has(base)).save(exporter);
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, wall, 6)
+                    .pattern("BBB").pattern("BBB").define('B', base).unlockedBy("has_base", has(base)).save(exporter);
+
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, stairs, 1)
+                    .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.stairs().getId().getPath() + "_stonecutting"));
+            SingleItemRecipeBuilder.stonecutting(net.minecraft.world.item.crafting.Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, slab, 2)
+                    .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.slab().getId().getPath() + "_stonecutting"));
+            SingleItemRecipeBuilder.stonecutting(net.minecraft.world.item.crafting.Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, wall, 1)
+                    .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.wall().getId().getPath() + "_stonecutting"));
+        }
+    }
+
+    private void addTileRecipe(RecipeOutput exporter, Block input, Block output) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4)
+                .pattern("BB")
+                .pattern("BB")
+                .define('B', input)
+                .unlockedBy("has_brick_block", has(input))
+                .save(exporter);
+    }
+
+    private void addBlockRecipe(RecipeOutput exporter, Item input, Block output) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 1)
+                .pattern("II")
+                .pattern("II")
+                .define('I', input)
+                .unlockedBy("has_brick_item", has(input))
                 .save(exporter);
     }
 }
