@@ -38,7 +38,7 @@ public class KilnScreen extends AbstractContainerScreen<KilnMenu> {
         int relY = (this.height - this.imageHeight) / 2;
 
         addDoorWidget(0, relX + 86, relY + 40, this.menu::isLeftOpen);
-        addDoorWidget(1, relX + 113, relY + 18, this.menu::isBackOpen);
+        addDoorWidget(1, relX + 113, relY + 14, this.menu::isBackOpen);
         addDoorWidget(2, relX + 140, relY + 40, this.menu::isRightOpen);
     }
 
