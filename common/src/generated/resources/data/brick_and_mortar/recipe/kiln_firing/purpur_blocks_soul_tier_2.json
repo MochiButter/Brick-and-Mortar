@@ -3,11 +3,11 @@
   "base_block": "minecraft:soul_sand",
   "experience": 0.1,
   "ingredient": {
-    "item": "minecraft:netherrack"
+    "item": "minecraft:chorus_fruit"
   },
   "required_doors": 2,
   "result": {
     "count": 1,
-    "id": "brick_and_mortar:soul_nether_brick"
+    "id": "brick_and_mortar:soul_popped_chorus"
   }
 }

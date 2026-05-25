@@ -66,19 +66,18 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 ModItems.CHARRED_SOUL_NETHER_BRICK.get()
         );
 
-        /*
-        addFiringSequence(exporter, "purpur_blocks", Items.POPPED_CHORUS_FRUIT, null,
-                ModItems.RAW_PURPUR_BRICK.get(),
-                ModItems.LIGHT_PURPUR_BRICK.get(),
-                ModItems.PURPUR_BRICK.get(),
-                ModItems.BURNT_PURPUR_BRICK.get()
+        addFiringSequence(exporter, "purpur_blocks", Items.CHORUS_FRUIT, null,
+                ModItems.RAW_POPPED_CHORUS.get(),
+                ModItems.LIGHT_POPPED_CHORUS.get(),
+                Items.POPPED_CHORUS_FRUIT,
+                ModItems.BURNT_POPPED_CHORUS.get()
         );
-        addFiringSequence(exporter, "purpur_blocks", Items.POPPED_CHORUS_FRUIT, Blocks.SOUL_SAND,
-                ModItems.RAW_SOUL_PURPUR_BRICK.get(),
-                ModItems.LIGHT_SOUL_PURPUR_BRICK.get(),
-                ModItems.SOUL_PURPUR_BRICK.get(),
-                ModItems.BURNT_SOUL_PURPUR_BRICK.get()
-        );*/
+        addFiringSequence(exporter, "purpur_blocks", Items.CHORUS_FRUIT, Blocks.SOUL_SAND,
+                ModItems.RAW_SOUL_POPPED_CHORUS.get(),
+                ModItems.LIGHT_SOUL_POPPED_CHORUS.get(),
+                ModItems.SOUL_POPPED_CHORUS.get(),
+                ModItems.BURNT_SOUL_POPPED_CHORUS.get()
+        );
 
         addTileRecipe(exporter, ModBlocks.BLACK_BRICKS.base().get(), ModBlocks.BLACK_TILES.base().get());
         addTileRecipe(exporter, ModBlocks.BLUE_BRICKS.base().get(), ModBlocks.BLUE_TILES.base().get());
@@ -112,6 +111,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         addBlockRecipe(exporter, ModItems.LIGHT_SOUL_NETHER_BRICK.get(), ModBlocks.LIGHT_SOUL_NETHER_BRICKS.base().get());
         addBlockRecipe(exporter, ModItems.RAW_NETHER_BRICK.get(), ModBlocks.RAW_NETHER_BRICKS.base().get());
         addBlockRecipe(exporter, ModItems.RAW_SOUL_NETHER_BRICK.get(), ModBlocks.RAW_SOUL_NETHER_BRICKS.base().get());
+
+        addBlockRecipe(exporter, ModItems.RAW_POPPED_CHORUS.get(), ModBlocks.RAW_PURPUR_BLOCK.base().get());
+        addBlockRecipe(exporter, ModItems.LIGHT_POPPED_CHORUS.get(), ModBlocks.LIGHT_PURPUR_BLOCK.base().get());
+        addBlockRecipe(exporter, ModItems.BURNT_POPPED_CHORUS.get(), ModBlocks.BURNT_PURPUR_BLOCK.base().get());
+        addBlockRecipe(exporter, ModItems.RAW_SOUL_POPPED_CHORUS.get(), ModBlocks.RAW_SOUL_PURPUR_BLOCK.base().get());
+        addBlockRecipe(exporter, ModItems.LIGHT_SOUL_POPPED_CHORUS.get(), ModBlocks.LIGHT_SOUL_PURPUR_BLOCK.base().get());
+        addBlockRecipe(exporter, ModItems.SOUL_POPPED_CHORUS.get(), ModBlocks.SOUL_PURPUR_BLOCK.base().get());
+        addBlockRecipe(exporter, ModItems.BURNT_SOUL_POPPED_CHORUS.get(), ModBlocks.BURNT_SOUL_PURPUR_BLOCK.base().get());
 
         for (var family : ModBlocks.FAMILIES) {
             Block base = family.base().get();

@@ -25,6 +25,10 @@ public class KilnScreen extends AbstractContainerScreen<KilnMenu> {
     private static final WidgetSprites OPEN_SOUL_SPRITES = new WidgetSprites(
             ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/door_open_soul"),
             ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/door_open_soul_highlighted"));
+    private static final ResourceLocation BURN_PROGRESS_SPRITE =
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/burn_progress");
+    private static final ResourceLocation LIT_PROGRESS_SPRITE =
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/lit_progress");
 
     public KilnScreen(KilnMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
@@ -67,9 +71,17 @@ public class KilnScreen extends AbstractContainerScreen<KilnMenu> {
     protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
+
         guiGraphics.blit(TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
 
+        if (this.menu.isLit()) {
+            int l = this.menu.getLitProgressScaled();
+            guiGraphics.blitSprite(LIT_PROGRESS_SPRITE, 14, 14, 0, 14 - l, x + 32, y + 36 + 14 - l, 14, l);
+        }
+
         int progress = this.menu.getProgressionScaled();
-        guiGraphics.blit(TEXTURE, x + 79, y + 34, 176, 14, progress + 1, 16);
+        if (progress > 0) {
+            guiGraphics.blitSprite(BURN_PROGRESS_SPRITE, 24, 16, 0, 0, x + 55, y + 34, progress, 16);
+        }
     }
 }

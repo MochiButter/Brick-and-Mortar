@@ -35,6 +35,7 @@ public class BrickandMortar {
 
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             ModItems.ALL_BRICK_ITEMS.forEach(item -> event.accept(item.get()));
+            ModItems.ALL_CHORUS_ITEMS.forEach(item -> event.accept(item.get()));
         }
     }
 }

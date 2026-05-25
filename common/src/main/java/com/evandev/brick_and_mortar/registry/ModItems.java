@@ -18,6 +18,7 @@ public class ModItems {
             new BlockItem(ModBlocks.KILN.get(), new Item.Properties()));
 
     public static final List<RegistryObject<Item>> ALL_BRICK_ITEMS = new ArrayList<>();
+    public static final List<RegistryObject<Item>> ALL_CHORUS_ITEMS = new ArrayList<>();
 
     public static final RegistryObject<Item> BLUE_BRICK = registerBrickItem("blue_brick");
     public static final RegistryObject<Item> BROWN_BRICK = registerBrickItem("brown_brick");
@@ -34,6 +35,14 @@ public class ModItems {
     public static final RegistryObject<Item> RAW_SOUL_NETHER_BRICK = registerBrickItem("raw_soul_nether_brick");
     public static final RegistryObject<Item> TAN_BRICK = registerBrickItem("tan_brick");
 
+    public static final RegistryObject<Item> RAW_POPPED_CHORUS = registerChorusItem("raw_popped_chorus");
+    public static final RegistryObject<Item> LIGHT_POPPED_CHORUS = registerChorusItem("light_popped_chorus");
+    public static final RegistryObject<Item> BURNT_POPPED_CHORUS = registerChorusItem("burnt_popped_chorus");
+    public static final RegistryObject<Item> RAW_SOUL_POPPED_CHORUS = registerChorusItem("raw_soul_popped_chorus");
+    public static final RegistryObject<Item> LIGHT_SOUL_POPPED_CHORUS = registerChorusItem("light_soul_popped_chorus");
+    public static final RegistryObject<Item> SOUL_POPPED_CHORUS = registerChorusItem("soul_popped_chorus");
+    public static final RegistryObject<Item> BURNT_SOUL_POPPED_CHORUS = registerChorusItem("burnt_soul_popped_chorus");
+
     public static void init() {
         for (RegistryObject<Block> blockObj : ModBlocks.ALL_DECORATIVE_BLOCKS) {
             ITEMS.register(blockObj.getId().getPath(), () -> new BlockItem(blockObj.get(), new Item.Properties()));
@@ -43,6 +52,12 @@ public class ModItems {
     private static RegistryObject<Item> registerBrickItem(String name) {
         RegistryObject<Item> item = ITEMS.register(name, () -> new Item(new Item.Properties()));
         ALL_BRICK_ITEMS.add(item);
+        return item;
+    }
+
+    private static RegistryObject<Item> registerChorusItem(String name) {
+        RegistryObject<Item> item = ITEMS.register(name, () -> new Item(new Item.Properties()));
+        ALL_CHORUS_ITEMS.add(item);
         return item;
     }
 }

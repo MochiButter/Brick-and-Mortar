@@ -2,11 +2,10 @@
   "type": "brick_and_mortar:kiln_firing",
   "experience": 0.1,
   "ingredient": {
-    "item": "minecraft:netherrack"
+    "item": "minecraft:chorus_fruit"
   },
-  "required_doors": 3,
   "result": {
     "count": 1,
-    "id": "brick_and_mortar:charred_nether_brick"
+    "id": "brick_and_mortar:raw_popped_chorus"
   }
 }

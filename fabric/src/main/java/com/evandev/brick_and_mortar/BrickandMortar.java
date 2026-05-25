@@ -22,6 +22,7 @@ public class BrickandMortar implements ModInitializer {
 
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS).register(content -> {
             ModItems.ALL_BRICK_ITEMS.forEach(item -> content.accept(item.get()));
+            ModItems.ALL_CHORUS_ITEMS.forEach(item -> content.accept(item.get()));
         });
     }
 }

@@ -21,16 +21,15 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
-public record KilnRecipe(Ingredient input, ItemStack output, int cookingTime,
+public record KilnRecipe(Ingredient input, ItemStack output, float experience, int cookingTime,
                          int requiredDoorsOpen, Optional<Block> baseBlock) implements Recipe<KilnRecipeInput> {
 
     @Override
     public boolean matches(KilnRecipeInput recipeInput, @NotNull Level level) {
         if (!input.test(recipeInput.item())) return false;
-
         if (baseBlock.isPresent() && !recipeInput.baseBlock().equals(baseBlock.get())) return false;
 
-        return true;
+        return recipeInput.openDoors() == requiredDoorsOpen;
     }
 
     @Override
@@ -62,6 +61,7 @@ public record KilnRecipe(Ingredient input, ItemStack output, int cookingTime,
         public static final MapCodec<KilnRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
                 Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(KilnRecipe::input),
                 ItemStack.CODEC.fieldOf("result").forGetter(KilnRecipe::output),
+                Codec.FLOAT.optionalFieldOf("experience", 0.0F).forGetter(KilnRecipe::experience),
                 Codec.INT.optionalFieldOf("cookingtime", 200).forGetter(KilnRecipe::cookingTime),
                 Codec.INT.optionalFieldOf("required_doors", 0).forGetter(KilnRecipe::requiredDoorsOpen),
                 BuiltInRegistries.BLOCK.byNameCodec().optionalFieldOf("base_block").forGetter(KilnRecipe::baseBlock)
@@ -70,6 +70,7 @@ public record KilnRecipe(Ingredient input, ItemStack output, int cookingTime,
         public static final StreamCodec<RegistryFriendlyByteBuf, KilnRecipe> STREAM_CODEC = StreamCodec.composite(
                 Ingredient.CONTENTS_STREAM_CODEC, KilnRecipe::input,
                 ItemStack.STREAM_CODEC, KilnRecipe::output,
+                ByteBufCodecs.FLOAT, KilnRecipe::experience,
                 ByteBufCodecs.INT, KilnRecipe::cookingTime,
                 ByteBufCodecs.INT, KilnRecipe::requiredDoorsOpen,
                 ByteBufCodecs.optional(ByteBufCodecs.registry(Registries.BLOCK)), KilnRecipe::baseBlock,

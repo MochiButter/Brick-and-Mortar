@@ -18,7 +18,7 @@ public class KilnMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public KilnMenu(int containerId, Inventory playerInventory) {
-        this(containerId, playerInventory, new SimpleContainer(3), new SimpleContainerData(6));
+        this(containerId, playerInventory, new SimpleContainer(3), new SimpleContainerData(8));
     }
 
     public KilnMenu(int containerId, Inventory playerInventory, Container container, ContainerData data) {
@@ -69,6 +69,23 @@ public class KilnMenu extends AbstractContainerMenu {
         return false;
     }
 
+    public int getProgressionScaled() {
+        int progress = this.data.get(0);
+        int maxProgress = this.data.get(1);
+        return maxProgress != 0 && progress != 0 ? progress * 24 / maxProgress : 0;
+    }
+
+    public int getLitProgressScaled() {
+        int litTime = this.data.get(6);
+        int litDuration = this.data.get(7);
+        if (litDuration == 0) litDuration = 200;
+        return litTime * 14 / litDuration;
+    }
+
+    public boolean isLit() {
+        return this.data.get(6) > 0;
+    }
+
     public boolean isSoul() {
         return this.data.get(2) == 1;
     }
@@ -85,15 +102,49 @@ public class KilnMenu extends AbstractContainerMenu {
         return this.data.get(5) == 1;
     }
 
-    public int getProgressionScaled() {
-        int progress = this.data.get(0);
-        int maxProgress = this.data.get(1);
-        return maxProgress != 0 && progress != 0 ? progress * 24 / maxProgress : 0;
-    }
-
     @Override
     public @NotNull ItemStack quickMoveStack(@NotNull Player player, int index) {
-        return ItemStack.EMPTY;
+        ItemStack itemStack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(index);
+
+        if (slot.hasItem()) {
+            ItemStack slotStack = slot.getItem();
+            itemStack = slotStack.copy();
+
+            if (index == 2) {
+                if (!this.moveItemStackTo(slotStack, 3, 39, true)) {
+                    return ItemStack.EMPTY;
+                }
+                slot.onQuickCraft(slotStack, itemStack);
+            } else if (index == 1 || index == 0) {
+                if (!this.moveItemStackTo(slotStack, 3, 39, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else {
+                // TODO: check if the item is valid fuel/input here
+                if (!this.moveItemStackTo(slotStack, 0, 1, false)) {
+                    if (!this.moveItemStackTo(slotStack, 1, 2, false)) {
+                        if (index >= 3 && index < 30) {
+                            if (!this.moveItemStackTo(slotStack, 30, 39, false)) return ItemStack.EMPTY;
+                        } else if (index >= 30 && index < 39 && !this.moveItemStackTo(slotStack, 3, 30, false)) {
+                            return ItemStack.EMPTY;
+                        }
+                    }
+                }
+            }
+
+            if (slotStack.isEmpty()) {
+                slot.setByPlayer(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
+
+            if (slotStack.getCount() == itemStack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+            slot.onTake(player, slotStack);
+        }
+        return itemStack;
     }
 
     @Override

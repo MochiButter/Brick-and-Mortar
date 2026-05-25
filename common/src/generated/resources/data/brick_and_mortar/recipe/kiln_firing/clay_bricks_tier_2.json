@@ -1,5 +1,6 @@
 {
   "type": "brick_and_mortar:kiln_firing",
+  "experience": 0.1,
   "ingredient": {
     "item": "minecraft:clay_ball"
   },

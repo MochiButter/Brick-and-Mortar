@@ -20,6 +20,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.state.BlockState;
@@ -53,6 +54,8 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuPro
     protected NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
     int progress = 0;
     int maxProgress = 200;
+    int litTime = 0;
+    int litDuration = 0;
 
     protected final ContainerData dataAccess = new ContainerData() {
         @Override
@@ -64,6 +67,8 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuPro
                 case 3 -> getBlockState().getValue(KilnBlock.OPEN_LEFT) ? 1 : 0;
                 case 4 -> getBlockState().getValue(KilnBlock.OPEN_BACK) ? 1 : 0;
                 case 5 -> getBlockState().getValue(KilnBlock.OPEN_RIGHT) ? 1 : 0;
+                case 6 -> KilnBlockEntity.this.litTime;
+                case 7 -> KilnBlockEntity.this.litDuration;
                 default -> 0;
             };
         }
@@ -73,12 +78,14 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuPro
             switch (index) {
                 case 0 -> KilnBlockEntity.this.progress = value;
                 case 1 -> KilnBlockEntity.this.maxProgress = value;
+                case 6 -> KilnBlockEntity.this.litTime = value;
+                case 7 -> KilnBlockEntity.this.litDuration = value;
             }
         }
 
         @Override
         public int getCount() {
-            return 6;
+            return 8;
         }
     };
 
@@ -89,61 +96,84 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuPro
     public static void serverTick(Level level, BlockPos pos, BlockState state, KilnBlockEntity entity) {
         entity.openersCounter.recheckOpeners(level, pos, state);
 
-        ItemStack inputStack = entity.items.getFirst();
-        if (inputStack.isEmpty()) {
-            entity.progress = 0;
-            if (state.getValue(KilnBlock.LIT)) {
-                level.setBlock(pos, state.setValue(KilnBlock.LIT, false), 3);
-            }
-            return;
+        boolean wasLit = entity.litTime > 0;
+        boolean changed = false;
+
+        if (entity.litTime > 0) {
+            entity.litTime--;
         }
 
+        ItemStack inputStack = entity.items.get(0);
+        ItemStack fuelStack = entity.items.get(1);
+
+        int openDoors = (state.getValue(KilnBlock.OPEN_LEFT) ? 1 : 0) +
+                (state.getValue(KilnBlock.OPEN_BACK) ? 1 : 0) +
+                (state.getValue(KilnBlock.OPEN_RIGHT) ? 1 : 0);
+
         Block baseBlock = level.getBlockState(pos.below()).getBlock();
-        KilnRecipeInput recipeInput = new KilnRecipeInput(inputStack, baseBlock);
+        KilnRecipeInput recipeInput = new KilnRecipeInput(inputStack, baseBlock, openDoors);
+        var recipeHolder = inputStack.isEmpty() ? null : level.getRecipeManager().getRecipeFor(ModRecipes.KILN_TYPE.get(), recipeInput, level).orElse(null);
+        KilnRecipe recipe = recipeHolder != null ? recipeHolder.value() : null;
 
-        var recipeHolder = level.getRecipeManager().getRecipeFor(ModRecipes.KILN_TYPE.get(), recipeInput, level).orElse(null);
+        boolean canCraft = false;
+        if (recipe != null) {
+            ItemStack resultStack = recipe.getResultItem(level.registryAccess());
+            ItemStack outputSlot = entity.items.get(2);
+            if (outputSlot.isEmpty() || (ItemStack.isSameItemSameComponents(outputSlot, resultStack) && outputSlot.getCount() + resultStack.getCount() <= outputSlot.getMaxStackSize())) {
+                canCraft = true;
+            }
+        }
 
-        if (recipeHolder != null) {
-            KilnRecipe recipe = recipeHolder.value();
+        if (entity.litTime == 0 && canCraft && !fuelStack.isEmpty()) {
+            entity.litDuration = entity.getBurnDuration(fuelStack);
+            entity.litTime = entity.litDuration;
 
-            int openDoors = (state.getValue(KilnBlock.OPEN_LEFT) ? 1 : 0) +
-                    (state.getValue(KilnBlock.OPEN_BACK) ? 1 : 0) +
-                    (state.getValue(KilnBlock.OPEN_RIGHT) ? 1 : 0) +
-                    (state.getValue(KilnBlock.OPEN_FRONT) ? 1 : 0);
-
-            if (openDoors >= recipe.requiredDoorsOpen()) {
-                ItemStack outputSlot = entity.items.get(2);
-                ItemStack resultStack = recipe.getResultItem(level.registryAccess());
-
-                if (outputSlot.isEmpty() || (ItemStack.isSameItemSameComponents(outputSlot, resultStack) && outputSlot.getCount() + resultStack.getCount() <= outputSlot.getMaxStackSize())) {
-                    entity.maxProgress = recipe.cookingTime();
-
-                    if (!state.getValue(KilnBlock.LIT)) {
-                        level.setBlock(pos, state.setValue(KilnBlock.LIT, true), 3);
+            if (entity.litTime > 0) {
+                changed = true;
+                if (fuelStack.getItem().hasCraftingRemainingItem()) {
+                    entity.items.set(1, new ItemStack(fuelStack.getItem().getCraftingRemainingItem()));
+                } else {
+                    fuelStack.shrink(1);
+                    if (fuelStack.isEmpty()) {
+                        entity.items.set(1, ItemStack.EMPTY);
                     }
-
-                    entity.progress++;
-                    if (entity.progress >= entity.maxProgress) {
-                        inputStack.shrink(1);
-
-                        if (outputSlot.isEmpty()) {
-                            entity.items.set(2, resultStack.copy());
-                        } else {
-                            outputSlot.grow(resultStack.getCount());
-                        }
-
-                        entity.progress = 0;
-                        entity.setChanged();
-                    }
-                    return;
                 }
             }
         }
 
-        entity.progress = 0;
-        if (state.getValue(KilnBlock.LIT)) {
-            level.setBlock(pos, state.setValue(KilnBlock.LIT, false), 3);
+        if (entity.litTime > 0 && canCraft) {
+            entity.maxProgress = recipe.cookingTime();
+            entity.progress++;
+            if (entity.progress >= entity.maxProgress) {
+                entity.progress = 0;
+                ItemStack resultStack = recipe.getResultItem(level.registryAccess());
+                ItemStack outputSlot = entity.items.get(2);
+
+                if (outputSlot.isEmpty()) {
+                    entity.items.set(2, resultStack.copy());
+                } else {
+                    outputSlot.grow(resultStack.getCount());
+                }
+                inputStack.shrink(1);
+                changed = true;
+            }
+        } else if (!canCraft) {
+            entity.progress = 0;
         }
+
+        if (wasLit != (entity.litTime > 0)) {
+            level.setBlock(pos, state.setValue(KilnBlock.LIT, entity.litTime > 0), 3);
+            changed = true;
+        }
+
+        if (changed) {
+            entity.setChanged();
+        }
+    }
+
+    private int getBurnDuration(ItemStack stack) {
+        if (stack.isEmpty()) return 0;
+        return AbstractFurnaceBlockEntity.getFuel().getOrDefault(stack.getItem(), 0);
     }
 
     public void toggleDoor(int doorId) {
@@ -223,12 +253,20 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuPro
     protected void loadAdditional(@NotNull CompoundTag tag, net.minecraft.core.HolderLookup.@NotNull Provider registries) {
         super.loadAdditional(tag, registries);
         ContainerHelper.loadAllItems(tag, this.items, registries);
+        this.progress = tag.getInt("CookTime");
+        this.maxProgress = tag.getInt("CookTimeTotal");
+        this.litTime = tag.getInt("BurnTime");
+        this.litDuration = tag.getInt("BurnDuration");
     }
 
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag, net.minecraft.core.HolderLookup.@NotNull Provider registries) {
         super.saveAdditional(tag, registries);
         ContainerHelper.saveAllItems(tag, this.items, registries);
+        tag.putInt("CookTime", this.progress);
+        tag.putInt("CookTimeTotal", this.maxProgress);
+        tag.putInt("BurnTime", this.litTime);
+        tag.putInt("BurnDuration", this.litDuration);
     }
 
     @Override

@@ -28,6 +28,7 @@ public class KilnRecipeBuilder implements RecipeBuilder {
     private Optional<Block> baseBlock = Optional.empty();
     @Nullable
     private String group;
+    private float experience = 0.1F;
 
     private KilnRecipeBuilder(Ingredient input, ItemStack output) {
         this.input = input;
@@ -44,6 +45,11 @@ public class KilnRecipeBuilder implements RecipeBuilder {
 
     public static KilnRecipeBuilder firing(Ingredient input, Block output) {
         return new KilnRecipeBuilder(input, new ItemStack(output.asItem()));
+    }
+
+    public KilnRecipeBuilder experience(float xp) {
+        this.experience = xp;
+        return this;
     }
 
     public KilnRecipeBuilder cookingTime(int time) {
@@ -87,7 +93,7 @@ public class KilnRecipeBuilder implements RecipeBuilder {
                 .requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(advancement::addCriterion);
 
-        KilnRecipe recipe = new KilnRecipe(this.input, this.output, this.cookingTime, this.requiredDoors, this.baseBlock);
+        KilnRecipe recipe = new KilnRecipe(this.input, this.output, this.experience, this.cookingTime, this.requiredDoors, this.baseBlock);
         output.accept(id, recipe, advancement.build(id.withPrefix("recipes/kiln_firing/")));
     }
 
