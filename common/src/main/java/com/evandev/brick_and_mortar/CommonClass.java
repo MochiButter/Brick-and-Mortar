@@ -1,10 +1,7 @@
 package com.evandev.brick_and_mortar;
 
 import com.evandev.brick_and_mortar.config.ModConfig;
-import com.evandev.brick_and_mortar.registry.ModBlockEntities;
-import com.evandev.brick_and_mortar.registry.ModBlocks;
-import com.evandev.brick_and_mortar.registry.ModItems;
-import com.evandev.brick_and_mortar.registry.ModMenus;
+import com.evandev.brick_and_mortar.registry.*;
 
 public class CommonClass {
 
@@ -15,5 +12,6 @@ public class CommonClass {
         ModItems.init();
         ModBlockEntities.init();
         ModMenus.init();
+        ModRecipes.init();
     }
 }

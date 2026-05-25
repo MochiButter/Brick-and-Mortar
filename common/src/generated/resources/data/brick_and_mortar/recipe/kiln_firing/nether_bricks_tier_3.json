@@ -1,0 +1,11 @@
+{
+  "type": "brick_and_mortar:kiln_firing",
+  "ingredient": {
+    "item": "minecraft:netherrack"
+  },
+  "required_doors": 3,
+  "result": {
+    "count": 1,
+    "id": "brick_and_mortar:charred_nether_brick"
+  }
+}

@@ -2,7 +2,10 @@ package com.evandev.brick_and_mortar.block.entity;
 
 import com.evandev.brick_and_mortar.block.KilnBlock;
 import com.evandev.brick_and_mortar.menu.KilnMenu;
+import com.evandev.brick_and_mortar.recipe.KilnRecipe;
+import com.evandev.brick_and_mortar.recipe.KilnRecipeInput;
 import com.evandev.brick_and_mortar.registry.ModBlockEntities;
+import com.evandev.brick_and_mortar.registry.ModRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -15,8 +18,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.state.BlockState;
@@ -84,26 +87,62 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuPro
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, KilnBlockEntity entity) {
-        // TODO: Full fuel consumption and recipe lookup
         entity.openersCounter.recheckOpeners(level, pos, state);
-        ItemStack input = entity.items.getFirst();
-        if (!input.isEmpty()) {
-            boolean isDoubleSpeed = input.is(Items.CLAY_BALL) || input.is(Items.COBBLESTONE);
-            entity.maxProgress = isDoubleSpeed ? 100 : 200;
 
-            entity.progress++;
-            if (entity.progress >= entity.maxProgress) {
-                entity.progress = 0;
-            }
-
-            if (!state.getValue(KilnBlock.LIT)) {
-                level.setBlock(pos, state.setValue(KilnBlock.LIT, true), 3);
-            }
-        } else {
+        ItemStack inputStack = entity.items.getFirst();
+        if (inputStack.isEmpty()) {
             entity.progress = 0;
             if (state.getValue(KilnBlock.LIT)) {
                 level.setBlock(pos, state.setValue(KilnBlock.LIT, false), 3);
             }
+            return;
+        }
+
+        Block baseBlock = level.getBlockState(pos.below()).getBlock();
+        KilnRecipeInput recipeInput = new KilnRecipeInput(inputStack, baseBlock);
+
+        var recipeHolder = level.getRecipeManager().getRecipeFor(ModRecipes.KILN_TYPE.get(), recipeInput, level).orElse(null);
+
+        if (recipeHolder != null) {
+            KilnRecipe recipe = recipeHolder.value();
+
+            int openDoors = (state.getValue(KilnBlock.OPEN_LEFT) ? 1 : 0) +
+                    (state.getValue(KilnBlock.OPEN_BACK) ? 1 : 0) +
+                    (state.getValue(KilnBlock.OPEN_RIGHT) ? 1 : 0) +
+                    (state.getValue(KilnBlock.OPEN_FRONT) ? 1 : 0);
+
+            if (openDoors >= recipe.requiredDoorsOpen()) {
+                ItemStack outputSlot = entity.items.get(2);
+                ItemStack resultStack = recipe.getResultItem(level.registryAccess());
+
+                if (outputSlot.isEmpty() || (ItemStack.isSameItemSameComponents(outputSlot, resultStack) && outputSlot.getCount() + resultStack.getCount() <= outputSlot.getMaxStackSize())) {
+                    entity.maxProgress = recipe.cookingTime();
+
+                    if (!state.getValue(KilnBlock.LIT)) {
+                        level.setBlock(pos, state.setValue(KilnBlock.LIT, true), 3);
+                    }
+
+                    entity.progress++;
+                    if (entity.progress >= entity.maxProgress) {
+                        inputStack.shrink(1);
+
+                        if (outputSlot.isEmpty()) {
+                            entity.items.set(2, resultStack.copy());
+                        } else {
+                            outputSlot.grow(resultStack.getCount());
+                        }
+
+                        entity.progress = 0;
+                        entity.setChanged();
+                    }
+                    return;
+                }
+            }
+        }
+
+        entity.progress = 0;
+        if (state.getValue(KilnBlock.LIT)) {
+            level.setBlock(pos, state.setValue(KilnBlock.LIT, false), 3);
         }
     }
 

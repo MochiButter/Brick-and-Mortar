@@ -1,0 +1,10 @@
+{
+  "type": "brick_and_mortar:kiln_firing",
+  "ingredient": {
+    "item": "minecraft:clay_ball"
+  },
+  "result": {
+    "count": 1,
+    "id": "brick_and_mortar:tan_brick"
+  }
+}

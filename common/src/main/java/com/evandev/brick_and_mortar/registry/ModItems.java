@@ -19,19 +19,20 @@ public class ModItems {
 
     public static final List<RegistryObject<Item>> ALL_BRICK_ITEMS = new ArrayList<>();
 
-    public static final RegistryObject<Item> BLUE_BRICK = registerItem("blue_brick");
-    public static final RegistryObject<Item> BROWN_BRICK = registerItem("brown_brick");
-    public static final RegistryObject<Item> CHARRED_NETHER_BRICK = registerItem("charred_nether_brick");
-    public static final RegistryObject<Item> CHARRED_SOUL_NETHER_BRICK = registerItem("charred_soul_nether_brick");
-    public static final RegistryObject<Item> CLINKER_BRICK = registerItem("clinker_brick");
-    public static final RegistryObject<Item> CREAM_BRICK = registerItem("cream_brick");
-    public static final RegistryObject<Item> GRAY_BRICK = registerItem("gray_brick");
-    public static final RegistryObject<Item> LIGHT_NETHER_BRICK = registerItem("light_nether_brick");
-    public static final RegistryObject<Item> LIGHT_SOUL_NETHER_BRICK = registerItem("light_soul_nether_brick");
-    public static final RegistryObject<Item> ORANGE_BRICK = registerItem("orange_brick");
-    public static final RegistryObject<Item> RAW_NETHER_BRICK = registerItem("raw_nether_brick");
-    public static final RegistryObject<Item> RAW_SOUL_NETHER_BRICK = registerItem("raw_soul_nether_brick");
-    public static final RegistryObject<Item> TAN_BRICK = registerItem("tan_brick");
+    public static final RegistryObject<Item> BLUE_BRICK = registerBrickItem("blue_brick");
+    public static final RegistryObject<Item> BROWN_BRICK = registerBrickItem("brown_brick");
+    public static final RegistryObject<Item> CHARRED_NETHER_BRICK = registerBrickItem("charred_nether_brick");
+    public static final RegistryObject<Item> CHARRED_SOUL_NETHER_BRICK = registerBrickItem("charred_soul_nether_brick");
+    public static final RegistryObject<Item> CLINKER_BRICK = registerBrickItem("clinker_brick");
+    public static final RegistryObject<Item> CREAM_BRICK = registerBrickItem("cream_brick");
+    public static final RegistryObject<Item> GRAY_BRICK = registerBrickItem("gray_brick");
+    public static final RegistryObject<Item> LIGHT_NETHER_BRICK = registerBrickItem("light_nether_brick");
+    public static final RegistryObject<Item> LIGHT_SOUL_NETHER_BRICK = registerBrickItem("light_soul_nether_brick");
+    public static final RegistryObject<Item> ORANGE_BRICK = registerBrickItem("orange_brick");
+    public static final RegistryObject<Item> SOUL_NETHER_BRICK = registerBrickItem("soul_nether_brick");
+    public static final RegistryObject<Item> RAW_NETHER_BRICK = registerBrickItem("raw_nether_brick");
+    public static final RegistryObject<Item> RAW_SOUL_NETHER_BRICK = registerBrickItem("raw_soul_nether_brick");
+    public static final RegistryObject<Item> TAN_BRICK = registerBrickItem("tan_brick");
 
     public static void init() {
         for (RegistryObject<Block> blockObj : ModBlocks.ALL_DECORATIVE_BLOCKS) {
@@ -39,7 +40,7 @@ public class ModItems {
         }
     }
 
-    private static RegistryObject<Item> registerItem(String name) {
+    private static RegistryObject<Item> registerBrickItem(String name) {
         RegistryObject<Item> item = ITEMS.register(name, () -> new Item(new Item.Properties()));
         ALL_BRICK_ITEMS.add(item);
         return item;

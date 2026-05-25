@@ -1,0 +1,12 @@
+{
+  "type": "brick_and_mortar:kiln_firing",
+  "base_block": "minecraft:soul_sand",
+  "ingredient": {
+    "item": "minecraft:netherrack"
+  },
+  "required_doors": 2,
+  "result": {
+    "count": 1,
+    "id": "brick_and_mortar:soul_nether_brick"
+  }
+}

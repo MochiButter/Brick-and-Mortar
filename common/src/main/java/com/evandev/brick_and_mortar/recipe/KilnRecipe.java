@@ -1,0 +1,89 @@
+package com.evandev.brick_and_mortar.recipe;
+
+import com.evandev.brick_and_mortar.registry.ModRecipes;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Optional;
+
+public record KilnRecipe(Ingredient input, ItemStack output, int cookingTime,
+                         int requiredDoorsOpen, Optional<Block> baseBlock) implements Recipe<KilnRecipeInput> {
+
+    @Override
+    public boolean matches(KilnRecipeInput recipeInput, @NotNull Level level) {
+        if (!input.test(recipeInput.item())) return false;
+
+        if (baseBlock.isPresent() && !recipeInput.baseBlock().equals(baseBlock.get())) return false;
+
+        return true;
+    }
+
+    @Override
+    public @NotNull ItemStack assemble(@NotNull KilnRecipeInput recipeInput, HolderLookup.@NotNull Provider lookupProvider) {
+        return output.copy();
+    }
+
+    @Override
+    public boolean canCraftInDimensions(int width, int height) {
+        return true;
+    }
+
+    @Override
+    public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider lookupProvider) {
+        return output;
+    }
+
+    @Override
+    public @NotNull RecipeSerializer<?> getSerializer() {
+        return ModRecipes.KILN_SERIALIZER.get();
+    }
+
+    @Override
+    public @NotNull RecipeType<?> getType() {
+        return ModRecipes.KILN_TYPE.get();
+    }
+
+    public static class Serializer implements RecipeSerializer<KilnRecipe> {
+        public static final MapCodec<KilnRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+                Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(KilnRecipe::input),
+                ItemStack.CODEC.fieldOf("result").forGetter(KilnRecipe::output),
+                Codec.INT.optionalFieldOf("cookingtime", 200).forGetter(KilnRecipe::cookingTime),
+                Codec.INT.optionalFieldOf("required_doors", 0).forGetter(KilnRecipe::requiredDoorsOpen),
+                BuiltInRegistries.BLOCK.byNameCodec().optionalFieldOf("base_block").forGetter(KilnRecipe::baseBlock)
+        ).apply(inst, KilnRecipe::new));
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, KilnRecipe> STREAM_CODEC = StreamCodec.composite(
+                Ingredient.CONTENTS_STREAM_CODEC, KilnRecipe::input,
+                ItemStack.STREAM_CODEC, KilnRecipe::output,
+                ByteBufCodecs.INT, KilnRecipe::cookingTime,
+                ByteBufCodecs.INT, KilnRecipe::requiredDoorsOpen,
+                ByteBufCodecs.optional(ByteBufCodecs.registry(Registries.BLOCK)), KilnRecipe::baseBlock,
+                KilnRecipe::new
+        );
+
+        @Override
+        public @NotNull MapCodec<KilnRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public @NotNull StreamCodec<RegistryFriendlyByteBuf, KilnRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
+    }
+}
