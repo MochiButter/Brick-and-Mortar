@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "brick_and_mortar:block/raw_soul_purpur_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "brick_and_mortar:block/raw_soul_purpur_pillar"
+    },
+    "axis=z": {
+      "model": "brick_and_mortar:block/raw_soul_purpur_pillar",
+      "x": 90
+    }
+  }
+}

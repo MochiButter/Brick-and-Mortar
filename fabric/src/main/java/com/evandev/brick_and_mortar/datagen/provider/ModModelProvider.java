@@ -111,11 +111,19 @@ public class ModModelProvider extends FabricModelProvider {
             ResourceLocation slabTop = ModelTemplates.SLAB_TOP.createWithSuffix(family.slab().get(), "_top", mapping, gen.modelOutput);
             gen.blockStateOutput.accept(BlockModelGenerators.createSlab(family.slab().get(), slabBase, slabTop, ModelLocationUtils.getModelLocation(family.base().get())));
 
-            ResourceLocation wallPost = ModelTemplates.WALL_POST.createWithSuffix(family.wall().get(), "_post", mapping, gen.modelOutput);
-            ResourceLocation wallSide = ModelTemplates.WALL_LOW_SIDE.createWithSuffix(family.wall().get(), "_side", mapping, gen.modelOutput);
-            ResourceLocation wallSideTall = ModelTemplates.WALL_TALL_SIDE.createWithSuffix(family.wall().get(), "_side_tall", mapping, gen.modelOutput);
-            gen.blockStateOutput.accept(BlockModelGenerators.createWall(family.wall().get(), wallPost, wallSide, wallSideTall));
-            gen.delegateItemModel(family.wall().get(), ModelTemplates.WALL_INVENTORY.createWithSuffix(family.wall().get(), "_inventory", mapping, gen.modelOutput));
+            if (family.wall() != null) {
+                ResourceLocation wallPost = ModelTemplates.WALL_POST.createWithSuffix(family.wall().get(), "_post", mapping, gen.modelOutput);
+                ResourceLocation wallSide = ModelTemplates.WALL_LOW_SIDE.createWithSuffix(family.wall().get(), "_side", mapping, gen.modelOutput);
+                ResourceLocation wallSideTall = ModelTemplates.WALL_TALL_SIDE.createWithSuffix(family.wall().get(), "_side_tall", mapping, gen.modelOutput);
+                gen.blockStateOutput.accept(BlockModelGenerators.createWall(family.wall().get(), wallPost, wallSide, wallSideTall));
+                gen.delegateItemModel(family.wall().get(), ModelTemplates.WALL_INVENTORY.createWithSuffix(family.wall().get(), "_inventory", mapping, gen.modelOutput));
+            }
+
+            if (family.pillar() != null) {
+                TextureMapping pillarMapping = TextureMapping.column(textureLoc, textureLoc);
+                ResourceLocation pillarModel = ModelTemplates.CUBE_COLUMN.create(family.pillar().get(), pillarMapping, gen.modelOutput);
+                gen.blockStateOutput.accept(BlockModelGenerators.createAxisAlignedPillarBlock(family.pillar().get(), pillarModel));
+            }
         }
     }
 

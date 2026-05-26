@@ -8,6 +8,7 @@ import com.evandev.brick_and_mortar.platform.registry.RegistryObject;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,18 +64,29 @@ public class ModBlocks {
 
     private static DecorativeFamily registerFamily(String name) {
         RegistryObject<Block> base = BLOCKS.register(name, () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)));
-        RegistryObject<Block> stairs = BLOCKS.register(name + "_stairs", () -> new ModStairBlock(Blocks.BRICKS.defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)));
+        String childName = name.replace("bricks", "brick").replace("tiles", "tile").replace("_block", "");
 
-        RegistryObject<Block> slab = BLOCKS.register(name + "_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)));
-        RegistryObject<Block> wall = BLOCKS.register(name + "_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)));
+        RegistryObject<Block> stairs = BLOCKS.register(childName + "_stairs", () -> new ModStairBlock(Blocks.BRICKS.defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)));
+        RegistryObject<Block> slab = BLOCKS.register(childName + "_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)));
 
-        DecorativeFamily family = new DecorativeFamily(base, stairs, slab, wall);
+        RegistryObject<Block> wall = null;
+        RegistryObject<Block> pillar = null;
+
+        if (!name.contains("purpur")) {
+            wall = BLOCKS.register(childName + "_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)));
+        } else {
+            pillar = BLOCKS.register(childName + "_pillar", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PURPUR_PILLAR)));
+        }
+
+        DecorativeFamily family = new DecorativeFamily(base, stairs, slab, wall, pillar);
         FAMILIES.add(family);
 
         ALL_DECORATIVE_BLOCKS.add(base);
         ALL_DECORATIVE_BLOCKS.add(stairs);
         ALL_DECORATIVE_BLOCKS.add(slab);
-        ALL_DECORATIVE_BLOCKS.add(wall);
+
+        if (wall != null) ALL_DECORATIVE_BLOCKS.add(wall);
+        if (pillar != null) ALL_DECORATIVE_BLOCKS.add(pillar);
 
         return family;
     }
@@ -83,6 +95,6 @@ public class ModBlocks {
     }
 
     public record DecorativeFamily(RegistryObject<Block> base, RegistryObject<Block> stairs, RegistryObject<Block> slab,
-                                   RegistryObject<Block> wall) {
+                                   @Nullable RegistryObject<Block> wall, @Nullable RegistryObject<Block> pillar) {
     }
 }

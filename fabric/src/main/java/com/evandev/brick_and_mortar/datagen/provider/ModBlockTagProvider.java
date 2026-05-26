@@ -31,7 +31,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         for (var family : ModBlocks.FAMILIES) {
             stairsTag.add(family.stairs().get());
             slabsTag.add(family.slab().get());
-            wallsTag.add(family.wall().get());
+            if (family.wall() != null) {
+                wallsTag.add(family.wall().get());
+            }
         }
     }
 }

@@ -124,21 +124,31 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             Block base = family.base().get();
             Block stairs = family.stairs().get();
             Block slab = family.slab().get();
-            Block wall = family.wall().get();
 
             ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, stairs, 4)
                     .pattern("B  ").pattern("BB ").pattern("BBB").define('B', base).unlockedBy("has_base", has(base)).save(exporter);
             ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, slab, 6)
                     .pattern("BBB").define('B', base).unlockedBy("has_base", has(base)).save(exporter);
-            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, wall, 6)
-                    .pattern("BBB").pattern("BBB").define('B', base).unlockedBy("has_base", has(base)).save(exporter);
 
             SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, stairs, 1)
                     .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.stairs().getId().getPath() + "_stonecutting"));
-            SingleItemRecipeBuilder.stonecutting(net.minecraft.world.item.crafting.Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, slab, 2)
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, slab, 2)
                     .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.slab().getId().getPath() + "_stonecutting"));
-            SingleItemRecipeBuilder.stonecutting(net.minecraft.world.item.crafting.Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, wall, 1)
-                    .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.wall().getId().getPath() + "_stonecutting"));
+
+
+            if (family.wall() != null) {
+                Block wall = family.wall().get();
+                SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, wall, 1)
+                        .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.wall().getId().getPath() + "_stonecutting"));
+                ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, wall, 6)
+                        .pattern("BBB").pattern("BBB").define('B', base).unlockedBy("has_base", has(base)).save(exporter);
+            }
+
+            if (family.pillar() != null) {
+                Block pillar = family.pillar().get();
+                SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, pillar, 1)
+                        .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.pillar().getId().getPath() + "_stonecutting"));
+            }
         }
     }
 

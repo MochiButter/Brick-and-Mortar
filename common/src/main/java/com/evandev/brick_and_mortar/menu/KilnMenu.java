@@ -11,6 +11,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import org.jetbrains.annotations.NotNull;
 
 public class KilnMenu extends AbstractContainerMenu {
@@ -121,14 +122,22 @@ public class KilnMenu extends AbstractContainerMenu {
                     return ItemStack.EMPTY;
                 }
             } else {
-                // TODO: check if the item is valid fuel/input here
-                if (!this.moveItemStackTo(slotStack, 0, 1, false)) {
-                    if (!this.moveItemStackTo(slotStack, 1, 2, false)) {
-                        if (index >= 3 && index < 30) {
-                            if (!this.moveItemStackTo(slotStack, 30, 39, false)) return ItemStack.EMPTY;
-                        } else if (index >= 30 && index < 39 && !this.moveItemStackTo(slotStack, 3, 30, false)) {
-                            return ItemStack.EMPTY;
-                        }
+                boolean isFuel = AbstractFurnaceBlockEntity.getFuel().containsKey(slotStack.getItem());
+                boolean moved = false;
+
+                if (isFuel) {
+                    moved = this.moveItemStackTo(slotStack, 1, 2, false);
+                }
+
+                if (!moved) {
+                    moved = this.moveItemStackTo(slotStack, 0, 1, false);
+                }
+
+                if (!moved) {
+                    if (index >= 3 && index < 30) {
+                        if (!this.moveItemStackTo(slotStack, 30, 39, false)) return ItemStack.EMPTY;
+                    } else if (index >= 30 && index < 39 && !this.moveItemStackTo(slotStack, 3, 30, false)) {
+                        return ItemStack.EMPTY;
                     }
                 }
             }
