@@ -2,6 +2,7 @@ package com.evandev.brick_and_mortar.menu;
 
 import com.evandev.brick_and_mortar.block.entity.KilnBlockEntity;
 import com.evandev.brick_and_mortar.registry.ModMenus;
+import com.evandev.brick_and_mortar.registry.ModRecipes;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -11,6 +12,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import org.jetbrains.annotations.NotNull;
 
@@ -129,7 +131,7 @@ public class KilnMenu extends AbstractContainerMenu {
                     moved = this.moveItemStackTo(slotStack, 1, 2, false);
                 }
 
-                if (!moved) {
+                if (!moved && this.hasRecipe(slotStack, player.level())) {
                     moved = this.moveItemStackTo(slotStack, 0, 1, false);
                 }
 
@@ -154,6 +156,11 @@ public class KilnMenu extends AbstractContainerMenu {
             slot.onTake(player, slotStack);
         }
         return itemStack;
+    }
+
+    private boolean hasRecipe(ItemStack stack, Level level) {
+        return level.getRecipeManager().getAllRecipesFor(ModRecipes.KILN_TYPE.get()).stream()
+                .anyMatch(recipeHolder -> recipeHolder.value().input().test(stack));
     }
 
     @Override
