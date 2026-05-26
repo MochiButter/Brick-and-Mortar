@@ -1,11 +1,11 @@
 {
   "type": "brick_and_mortar:kiln_firing",
-  "base_block": "minecraft:soul_sand",
   "experience": 0.1,
   "ingredient": {
     "item": "minecraft:clay_ball"
   },
   "required_doors": 2,
+  "requires_soul_base": true,
   "result": {
     "count": 1,
     "id": "brick_and_mortar:blue_brick"

@@ -34,45 +34,45 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .pattern("BBB")
                 .pattern("BFB")
                 .pattern("BIB")
-                .define('B', ModItemTagProvider.C_BRICKS)
+                .define('B', Items.BRICK)
                 .define('I', Items.IRON_INGOT)
                 .define('F', Blocks.FURNACE)
-                .unlockedBy("has_brick", has(ModItemTagProvider.C_BRICKS))
+                .unlockedBy("has_brick", has(Items.BRICK))
                 .save(exporter);
 
-        addFiringSequence(exporter, "clay_bricks", Items.CLAY_BALL, null,
+        addFiringSequence(exporter, "clay_bricks", Items.CLAY_BALL, false,
                 ModItems.TAN_BRICK.get(),
                 ModItems.ORANGE_BRICK.get(),
                 Items.BRICK,
                 ModItems.BROWN_BRICK.get()
         );
-        addFiringSequence(exporter, "clay_bricks", Items.CLAY_BALL, Blocks.SOUL_SAND,
+        addFiringSequence(exporter, "clay_bricks", Items.CLAY_BALL, true,
                 ModItems.CREAM_BRICK.get(),
                 ModItems.GRAY_BRICK.get(),
                 ModItems.BLUE_BRICK.get(),
                 ModItems.CLINKER_BRICK.get()
         );
 
-        addFiringSequence(exporter, "nether_bricks", Blocks.NETHERRACK, null,
+        addFiringSequence(exporter, "nether_bricks", Blocks.NETHERRACK, false,
                 ModItems.RAW_NETHER_BRICK.get(),
                 ModItems.LIGHT_NETHER_BRICK.get(),
                 Items.NETHER_BRICK,
                 ModItems.CHARRED_NETHER_BRICK.get()
         );
-        addFiringSequence(exporter, "nether_bricks", Blocks.NETHERRACK, Blocks.SOUL_SAND,
+        addFiringSequence(exporter, "nether_bricks", Blocks.NETHERRACK, true,
                 ModItems.RAW_SOUL_NETHER_BRICK.get(),
                 ModItems.LIGHT_SOUL_NETHER_BRICK.get(),
                 ModItems.SOUL_NETHER_BRICK.get(),
                 ModItems.CHARRED_SOUL_NETHER_BRICK.get()
         );
 
-        addFiringSequence(exporter, "purpur_blocks", Items.CHORUS_FRUIT, null,
+        addFiringSequence(exporter, "purpur_blocks", Items.CHORUS_FRUIT, false,
                 ModItems.RAW_POPPED_CHORUS.get(),
                 ModItems.LIGHT_POPPED_CHORUS.get(),
                 Items.POPPED_CHORUS_FRUIT,
                 ModItems.BURNT_POPPED_CHORUS.get()
         );
-        addFiringSequence(exporter, "purpur_blocks", Items.CHORUS_FRUIT, Blocks.SOUL_SAND,
+        addFiringSequence(exporter, "purpur_blocks", Items.CHORUS_FRUIT, true,
                 ModItems.RAW_SOUL_POPPED_CHORUS.get(),
                 ModItems.LIGHT_SOUL_POPPED_CHORUS.get(),
                 ModItems.SOUL_POPPED_CHORUS.get(),
@@ -124,42 +124,52 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             Block base = family.base().get();
             Block stairs = family.stairs().get();
             Block slab = family.slab().get();
-            Block wall = family.wall().get();
 
             ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, stairs, 4)
                     .pattern("B  ").pattern("BB ").pattern("BBB").define('B', base).unlockedBy("has_base", has(base)).save(exporter);
             ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, slab, 6)
                     .pattern("BBB").define('B', base).unlockedBy("has_base", has(base)).save(exporter);
-            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, wall, 6)
-                    .pattern("BBB").pattern("BBB").define('B', base).unlockedBy("has_base", has(base)).save(exporter);
 
             SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, stairs, 1)
                     .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.stairs().getId().getPath() + "_stonecutting"));
-            SingleItemRecipeBuilder.stonecutting(net.minecraft.world.item.crafting.Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, slab, 2)
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, slab, 2)
                     .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.slab().getId().getPath() + "_stonecutting"));
-            SingleItemRecipeBuilder.stonecutting(net.minecraft.world.item.crafting.Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, wall, 1)
-                    .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.wall().getId().getPath() + "_stonecutting"));
+
+
+            if (family.wall() != null) {
+                Block wall = family.wall().get();
+                SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, wall, 1)
+                        .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.wall().getId().getPath() + "_stonecutting"));
+                ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, wall, 6)
+                        .pattern("BBB").pattern("BBB").define('B', base).unlockedBy("has_base", has(base)).save(exporter);
+            }
+
+            if (family.pillar() != null) {
+                Block pillar = family.pillar().get();
+                SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, pillar, 1)
+                        .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.pillar().getId().getPath() + "_stonecutting"));
+            }
         }
     }
 
     /**
      * Helper method to generate a full progression tier of Kiln recipes
      */
-    private void addFiringSequence(RecipeOutput exporter, String sequenceName, ItemLike input, Block baseModifier, ItemLike... tiers) {
+    private void addFiringSequence(RecipeOutput exporter, String sequenceName, ItemLike input, boolean requiresSoulBase, ItemLike... tiers) {
         for (int doors = 0; doors < tiers.length; doors++) {
             ItemLike output = tiers[doors];
 
             if (output == null) continue;
 
-            if (baseModifier == null && input.asItem() == output.asItem()) continue;
+            if (!requiresSoulBase && input.asItem() == output.asItem()) continue;
 
             var builder = KilnRecipeBuilder.firing(Ingredient.of(input), new ItemStack(output))
                     .requiredDoors(doors)
                     .unlockedBy("has_input", has(input));
 
             String name = sequenceName;
-            if (baseModifier != null) {
-                builder.baseBlock(baseModifier);
+            if (requiresSoulBase) {
+                builder.requiresSoulBase();
                 name += "_soul";
             }
 

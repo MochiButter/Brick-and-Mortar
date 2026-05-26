@@ -21,7 +21,8 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
             dropSelf(family.base().get());
             dropSelf(family.stairs().get());
             add(family.slab().get(), this::createSlabItemTable);
-            dropSelf(family.wall().get());
+            if (family.wall() != null) dropSelf(family.wall().get());
+            if (family.pillar() != null) dropSelf(family.pillar().get());
         }
     }
 }

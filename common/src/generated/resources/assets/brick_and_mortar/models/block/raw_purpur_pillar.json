@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "brick_and_mortar:block/bricks/raw_purpur_block",
+    "side": "brick_and_mortar:block/bricks/raw_purpur_block"
+  }
+}

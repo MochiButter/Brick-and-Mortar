@@ -5,29 +5,28 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Optional;
-
 public record KilnRecipe(Ingredient input, ItemStack output, float experience, int cookingTime,
-                         int requiredDoorsOpen, Optional<Block> baseBlock) implements Recipe<KilnRecipeInput> {
+                         int requiredDoorsOpen, boolean requiresSoulBase) implements Recipe<KilnRecipeInput> {
 
     @Override
     public boolean matches(KilnRecipeInput recipeInput, @NotNull Level level) {
         if (!input.test(recipeInput.item())) return false;
-        if (baseBlock.isPresent() && !recipeInput.baseBlock().equals(baseBlock.get())) return false;
+
+        boolean inputIsSoul = recipeInput.baseBlock().defaultBlockState().is(BlockTags.SOUL_FIRE_BASE_BLOCKS);
+
+        if (requiresSoulBase != inputIsSoul) return false;
 
         return recipeInput.openDoors() == requiredDoorsOpen;
     }
@@ -64,7 +63,7 @@ public record KilnRecipe(Ingredient input, ItemStack output, float experience, i
                 Codec.FLOAT.optionalFieldOf("experience", 0.0F).forGetter(KilnRecipe::experience),
                 Codec.INT.optionalFieldOf("cookingtime", 200).forGetter(KilnRecipe::cookingTime),
                 Codec.INT.optionalFieldOf("required_doors", 0).forGetter(KilnRecipe::requiredDoorsOpen),
-                BuiltInRegistries.BLOCK.byNameCodec().optionalFieldOf("base_block").forGetter(KilnRecipe::baseBlock)
+                Codec.BOOL.optionalFieldOf("requires_soul_base", false).forGetter(KilnRecipe::requiresSoulBase)
         ).apply(inst, KilnRecipe::new));
 
         public static final StreamCodec<RegistryFriendlyByteBuf, KilnRecipe> STREAM_CODEC = StreamCodec.composite(
@@ -73,7 +72,7 @@ public record KilnRecipe(Ingredient input, ItemStack output, float experience, i
                 ByteBufCodecs.FLOAT, KilnRecipe::experience,
                 ByteBufCodecs.INT, KilnRecipe::cookingTime,
                 ByteBufCodecs.INT, KilnRecipe::requiredDoorsOpen,
-                ByteBufCodecs.optional(ByteBufCodecs.registry(Registries.BLOCK)), KilnRecipe::baseBlock,
+                ByteBufCodecs.BOOL, KilnRecipe::requiresSoulBase,
                 KilnRecipe::new
         );
 

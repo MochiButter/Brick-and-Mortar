@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "brick_and_mortar:block/light_soul_purpur_slab"
+    },
+    "type=double": {
+      "model": "brick_and_mortar:block/light_soul_purpur_block"
+    },
+    "type=top": {
+      "model": "brick_and_mortar:block/light_soul_purpur_slab_top_top"
+    }
+  }
+}

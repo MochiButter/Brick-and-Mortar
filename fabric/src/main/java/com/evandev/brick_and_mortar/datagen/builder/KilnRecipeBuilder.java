@@ -17,7 +17,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class KilnRecipeBuilder implements RecipeBuilder {
     private final Ingredient input;
@@ -25,9 +24,7 @@ public class KilnRecipeBuilder implements RecipeBuilder {
     private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
     private int cookingTime = 200;
     private int requiredDoors = 0;
-    private Optional<Block> baseBlock = Optional.empty();
-    @Nullable
-    private String group;
+    private boolean requiresSoulBase = false;
     private float experience = 0.1F;
 
     private KilnRecipeBuilder(Ingredient input, ItemStack output) {
@@ -62,8 +59,8 @@ public class KilnRecipeBuilder implements RecipeBuilder {
         return this;
     }
 
-    public KilnRecipeBuilder baseBlock(Block block) {
-        this.baseBlock = Optional.of(block);
+    public KilnRecipeBuilder requiresSoulBase() {
+        this.requiresSoulBase = true;
         return this;
     }
 
@@ -75,7 +72,6 @@ public class KilnRecipeBuilder implements RecipeBuilder {
 
     @Override
     public @NotNull KilnRecipeBuilder group(@Nullable String group) {
-        this.group = group;
         return this;
     }
 
@@ -93,7 +89,7 @@ public class KilnRecipeBuilder implements RecipeBuilder {
                 .requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(advancement::addCriterion);
 
-        KilnRecipe recipe = new KilnRecipe(this.input, this.output, this.experience, this.cookingTime, this.requiredDoors, this.baseBlock);
+        KilnRecipe recipe = new KilnRecipe(this.input, this.output, this.experience, this.cookingTime, this.requiredDoors, this.requiresSoulBase);
         output.accept(id, recipe, advancement.build(id.withPrefix("recipes/kiln_firing/")));
     }
 

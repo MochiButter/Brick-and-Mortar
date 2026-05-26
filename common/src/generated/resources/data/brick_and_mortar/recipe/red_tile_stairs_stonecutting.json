@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "brick_and_mortar:red_tiles"
+  },
+  "result": {
+    "count": 1,
+    "id": "brick_and_mortar:red_tile_stairs"
+  }
+}

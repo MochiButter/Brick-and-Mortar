@@ -12,7 +12,7 @@ public class ModRecipes {
     public static final RegistrationProvider<RecipeType<?>> RECIPE_TYPES = RegistrationProvider.get(Registries.RECIPE_TYPE, Constants.MOD_ID);
     public static final RegistrationProvider<RecipeSerializer<?>> RECIPE_SERIALIZERS = RegistrationProvider.get(Registries.RECIPE_SERIALIZER, Constants.MOD_ID);
 
-    public static final RegistryObject<RecipeType<KilnRecipe>> KILN_TYPE = RECIPE_TYPES.register("kiln_firing", () -> new RecipeType<KilnRecipe>() {
+    public static final RegistryObject<RecipeType<KilnRecipe>> KILN_TYPE = RECIPE_TYPES.register("kiln_firing", () -> new RecipeType<>() {
         @Override
         public String toString() {
             return "kiln_firing";
