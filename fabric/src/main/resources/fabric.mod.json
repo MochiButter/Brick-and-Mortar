@@ -26,6 +26,9 @@
     ],
     "fabric-datagen": [
       "com.evandev.brick_and_mortar.datagen.BrickAndMortarDataGenerator"
+    ],
+    "emi": [
+      "com.evandev.brick_and_mortar.client.integration.BMEmiPlugin"
     ]
   },
   "mixins": [

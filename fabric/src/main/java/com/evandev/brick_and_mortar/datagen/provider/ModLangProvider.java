@@ -22,6 +22,11 @@ public class ModLangProvider extends FabricLanguageProvider {
         translationBuilder.add("config.brick_and_mortar.title", "Brick and Mortar Config");
         translationBuilder.add("config.brick_and_mortar.category.general", "General");
 
+        translationBuilder.add("emi.category.brick_and_mortar.kiln_firing", "Kiln Firing");
+        translationBuilder.add("emi.brick_and_mortar.requires_soul", "Requires a Soul Fire base");
+        translationBuilder.add("emi.brick_and_mortar.doors_required", "Requires %s open door(s)");
+        translationBuilder.add("emi.brick_and_mortar.doors_closed", "Requires doors to be closed");
+
         for (var blockObj : ModBlocks.ALL_DECORATIVE_BLOCKS) {
             translationBuilder.add(blockObj.get(), formatName(blockObj.getId().getPath()));
         }
