@@ -34,45 +34,45 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .pattern("BBB")
                 .pattern("BFB")
                 .pattern("BIB")
-                .define('B', ModItemTagProvider.C_BRICKS)
+                .define('B', Items.BRICK)
                 .define('I', Items.IRON_INGOT)
                 .define('F', Blocks.FURNACE)
-                .unlockedBy("has_brick", has(ModItemTagProvider.C_BRICKS))
+                .unlockedBy("has_brick", has(Items.BRICK))
                 .save(exporter);
 
-        addFiringSequence(exporter, "clay_bricks", Items.CLAY_BALL, null,
+        addFiringSequence(exporter, "clay_bricks", Items.CLAY_BALL, false,
                 ModItems.TAN_BRICK.get(),
                 ModItems.ORANGE_BRICK.get(),
                 Items.BRICK,
                 ModItems.BROWN_BRICK.get()
         );
-        addFiringSequence(exporter, "clay_bricks", Items.CLAY_BALL, Blocks.SOUL_SAND,
+        addFiringSequence(exporter, "clay_bricks", Items.CLAY_BALL, true,
                 ModItems.CREAM_BRICK.get(),
                 ModItems.GRAY_BRICK.get(),
                 ModItems.BLUE_BRICK.get(),
                 ModItems.CLINKER_BRICK.get()
         );
 
-        addFiringSequence(exporter, "nether_bricks", Blocks.NETHERRACK, null,
+        addFiringSequence(exporter, "nether_bricks", Blocks.NETHERRACK, false,
                 ModItems.RAW_NETHER_BRICK.get(),
                 ModItems.LIGHT_NETHER_BRICK.get(),
                 Items.NETHER_BRICK,
                 ModItems.CHARRED_NETHER_BRICK.get()
         );
-        addFiringSequence(exporter, "nether_bricks", Blocks.NETHERRACK, Blocks.SOUL_SAND,
+        addFiringSequence(exporter, "nether_bricks", Blocks.NETHERRACK, true,
                 ModItems.RAW_SOUL_NETHER_BRICK.get(),
                 ModItems.LIGHT_SOUL_NETHER_BRICK.get(),
                 ModItems.SOUL_NETHER_BRICK.get(),
                 ModItems.CHARRED_SOUL_NETHER_BRICK.get()
         );
 
-        addFiringSequence(exporter, "purpur_blocks", Items.CHORUS_FRUIT, null,
+        addFiringSequence(exporter, "purpur_blocks", Items.CHORUS_FRUIT, false,
                 ModItems.RAW_POPPED_CHORUS.get(),
                 ModItems.LIGHT_POPPED_CHORUS.get(),
                 Items.POPPED_CHORUS_FRUIT,
                 ModItems.BURNT_POPPED_CHORUS.get()
         );
-        addFiringSequence(exporter, "purpur_blocks", Items.CHORUS_FRUIT, Blocks.SOUL_SAND,
+        addFiringSequence(exporter, "purpur_blocks", Items.CHORUS_FRUIT, true,
                 ModItems.RAW_SOUL_POPPED_CHORUS.get(),
                 ModItems.LIGHT_SOUL_POPPED_CHORUS.get(),
                 ModItems.SOUL_POPPED_CHORUS.get(),
@@ -155,21 +155,21 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     /**
      * Helper method to generate a full progression tier of Kiln recipes
      */
-    private void addFiringSequence(RecipeOutput exporter, String sequenceName, ItemLike input, Block baseModifier, ItemLike... tiers) {
+    private void addFiringSequence(RecipeOutput exporter, String sequenceName, ItemLike input, boolean requiresSoulBase, ItemLike... tiers) {
         for (int doors = 0; doors < tiers.length; doors++) {
             ItemLike output = tiers[doors];
 
             if (output == null) continue;
 
-            if (baseModifier == null && input.asItem() == output.asItem()) continue;
+            if (!requiresSoulBase && input.asItem() == output.asItem()) continue;
 
             var builder = KilnRecipeBuilder.firing(Ingredient.of(input), new ItemStack(output))
                     .requiredDoors(doors)
                     .unlockedBy("has_input", has(input));
 
             String name = sequenceName;
-            if (baseModifier != null) {
-                builder.baseBlock(baseModifier);
+            if (requiresSoulBase) {
+                builder.requiresSoulBase();
                 name += "_soul";
             }
 
