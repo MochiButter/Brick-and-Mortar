@@ -120,7 +120,10 @@ public class ModModelProvider extends FabricModelProvider {
             }
 
             if (family.pillar() != null) {
-                TextureMapping pillarMapping = TextureMapping.column(textureLoc, textureLoc);
+                ResourceLocation pillarSide = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bricks/" + family.pillar().getId().getPath());
+                ResourceLocation pillarTop = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bricks/" + family.pillar().getId().getPath() + "_top");
+
+                TextureMapping pillarMapping = TextureMapping.column(pillarSide, pillarTop);
                 ResourceLocation pillarModel = ModelTemplates.CUBE_COLUMN.create(family.pillar().get(), pillarMapping, gen.modelOutput);
                 gen.blockStateOutput.accept(BlockModelGenerators.createAxisAlignedPillarBlock(family.pillar().get(), pillarModel));
             }
@@ -140,6 +143,10 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
         for (var itemObj : ModItems.ALL_BRICK_ITEMS) {
+            itemModelGenerator.generateFlatItem(itemObj.get(), ModelTemplates.FLAT_ITEM);
+        }
+
+        for (var itemObj : ModItems.ALL_CHORUS_ITEMS) {
             itemModelGenerator.generateFlatItem(itemObj.get(), ModelTemplates.FLAT_ITEM);
         }
     }

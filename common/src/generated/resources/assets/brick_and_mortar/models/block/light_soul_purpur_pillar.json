@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "brick_and_mortar:block/bricks/light_soul_purpur_block",
-    "side": "brick_and_mortar:block/bricks/light_soul_purpur_block"
+    "end": "brick_and_mortar:block/bricks/light_soul_purpur_pillar_top",
+    "side": "brick_and_mortar:block/bricks/light_soul_purpur_pillar"
   }
 }

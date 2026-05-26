@@ -112,13 +112,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         addBlockRecipe(exporter, ModItems.RAW_NETHER_BRICK.get(), ModBlocks.RAW_NETHER_BRICKS.base().get());
         addBlockRecipe(exporter, ModItems.RAW_SOUL_NETHER_BRICK.get(), ModBlocks.RAW_SOUL_NETHER_BRICKS.base().get());
 
-        addBlockRecipe(exporter, ModItems.RAW_POPPED_CHORUS.get(), ModBlocks.RAW_PURPUR_BLOCK.base().get());
-        addBlockRecipe(exporter, ModItems.LIGHT_POPPED_CHORUS.get(), ModBlocks.LIGHT_PURPUR_BLOCK.base().get());
-        addBlockRecipe(exporter, ModItems.BURNT_POPPED_CHORUS.get(), ModBlocks.BURNT_PURPUR_BLOCK.base().get());
-        addBlockRecipe(exporter, ModItems.RAW_SOUL_POPPED_CHORUS.get(), ModBlocks.RAW_SOUL_PURPUR_BLOCK.base().get());
-        addBlockRecipe(exporter, ModItems.LIGHT_SOUL_POPPED_CHORUS.get(), ModBlocks.LIGHT_SOUL_PURPUR_BLOCK.base().get());
-        addBlockRecipe(exporter, ModItems.SOUL_POPPED_CHORUS.get(), ModBlocks.SOUL_PURPUR_BLOCK.base().get());
-        addBlockRecipe(exporter, ModItems.BURNT_SOUL_POPPED_CHORUS.get(), ModBlocks.BURNT_SOUL_PURPUR_BLOCK.base().get());
+        addBlockRecipe(exporter, ModItems.RAW_POPPED_CHORUS.get(), ModBlocks.RAW_PURPUR_BLOCK.base().get(), 4);
+        addBlockRecipe(exporter, ModItems.LIGHT_POPPED_CHORUS.get(), ModBlocks.LIGHT_PURPUR_BLOCK.base().get(), 4);
+        addBlockRecipe(exporter, ModItems.BURNT_POPPED_CHORUS.get(), ModBlocks.BURNT_PURPUR_BLOCK.base().get(), 4);
+        addBlockRecipe(exporter, ModItems.RAW_SOUL_POPPED_CHORUS.get(), ModBlocks.RAW_SOUL_PURPUR_BLOCK.base().get(), 4);
+        addBlockRecipe(exporter, ModItems.LIGHT_SOUL_POPPED_CHORUS.get(), ModBlocks.LIGHT_SOUL_PURPUR_BLOCK.base().get(), 4);
+        addBlockRecipe(exporter, ModItems.SOUL_POPPED_CHORUS.get(), ModBlocks.SOUL_PURPUR_BLOCK.base().get(), 4);
+        addBlockRecipe(exporter, ModItems.BURNT_SOUL_POPPED_CHORUS.get(), ModBlocks.BURNT_SOUL_PURPUR_BLOCK.base().get(), 4);
 
         for (var family : ModBlocks.FAMILIES) {
             Block base = family.base().get();
@@ -148,6 +148,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 Block pillar = family.pillar().get();
                 SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, pillar, 1)
                         .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.pillar().getId().getPath() + "_stonecutting"));
+
+                ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, pillar, 1)
+                        .pattern("S")
+                        .pattern("S")
+                        .define('S', slab)
+                        .unlockedBy("has_slab", has(slab))
+                        .save(exporter);
             }
         }
     }
@@ -188,7 +195,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     }
 
     private void addBlockRecipe(RecipeOutput exporter, Item input, Block output) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 1)
+        addBlockRecipe(exporter, input, output, 1);
+    }
+
+    private void addBlockRecipe(RecipeOutput exporter, Item input, Block output, int count) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, count)
                 .pattern("II")
                 .pattern("II")
                 .define('I', input)

@@ -29,6 +29,10 @@ public class ModLangProvider extends FabricLanguageProvider {
         for (var itemObj : ModItems.ALL_BRICK_ITEMS) {
             translationBuilder.add(itemObj.get(), formatName(itemObj.getId().getPath()));
         }
+
+        for (var itemObj : ModItems.ALL_CHORUS_ITEMS) {
+            translationBuilder.add(itemObj.get(), formatName(itemObj.getId().getPath()));
+        }
     }
 
     private String formatName(String path) {

@@ -22,7 +22,7 @@ public class KilnRecipeBuilder implements RecipeBuilder {
     private final Ingredient input;
     private final ItemStack output;
     private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
-    private int cookingTime = 200;
+    private int cookingTime = 100;
     private int requiredDoors = 0;
     private boolean requiresSoulBase = false;
     private float experience = 0.1F;
