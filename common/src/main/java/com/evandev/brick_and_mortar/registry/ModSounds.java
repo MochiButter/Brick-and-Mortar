@@ -11,7 +11,6 @@ public class ModSounds {
     public static final RegistrationProvider<SoundEvent> SOUNDS = RegistrationProvider.get(Registries.SOUND_EVENT, Constants.MOD_ID);
 
     public static final RegistryObject<SoundEvent> KILN_CRACKLE = register("block.kiln.fire_crackle");
-    public static final RegistryObject<SoundEvent> KILN_OPEN = register("block.kiln.open");
 
     private static RegistryObject<SoundEvent> register(String name) {
         return SOUNDS.register(name, () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)));

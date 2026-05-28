@@ -20,7 +20,6 @@ public class ModLangProvider extends FabricLanguageProvider {
         translationBuilder.add("container.kiln", "Kiln");
 
         translationBuilder.add("subtitles.brick_and_mortar.block.kiln.fire_crackle", "Kiln crackles");
-        translationBuilder.add("subtitles.brick_and_mortar.block.kiln.open", "Kiln opens");
 
         translationBuilder.add("config.brick_and_mortar.title", "Brick and Mortar Config");
         translationBuilder.add("config.brick_and_mortar.category.general", "General");

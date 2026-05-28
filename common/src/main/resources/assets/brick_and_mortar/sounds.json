@@ -8,14 +8,5 @@
       "brick_and_mortar:block/kiln/fire_crackle4",
       "brick_and_mortar:block/kiln/fire_crackle5"
     ]
-  },
-  "block.kiln.open": {
-    "subtitle": "subtitles.brick_and_mortar.block.kiln.open",
-    "sounds": [
-      "brick_and_mortar:block/kiln/open1",
-      "brick_and_mortar:block/kiln/open2",
-      "brick_and_mortar:block/kiln/open3",
-      "brick_and_mortar:block/kiln/open4"
-    ]
   }
 }
