@@ -6,10 +6,12 @@ import com.evandev.brick_and_mortar.recipe.KilnRecipe;
 import com.evandev.brick_and_mortar.recipe.KilnRecipeInput;
 import com.evandev.brick_and_mortar.registry.ModBlockEntities;
 import com.evandev.brick_and_mortar.registry.ModRecipes;
+import com.evandev.brick_and_mortar.registry.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
@@ -31,6 +33,7 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuPro
         @Override
         protected void onOpen(Level level, @NotNull BlockPos pos, BlockState state) {
             level.setBlock(pos, state.setValue(KilnBlock.OPEN_FRONT, true), 3);
+            level.playSound(null, pos, ModSounds.KILN_OPEN.get(), SoundSource.BLOCKS, 1.0F, level.random.nextFloat() * 0.1F + 0.9F);
         }
 
         @Override

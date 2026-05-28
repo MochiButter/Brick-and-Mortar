@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "down": "minecraft:block/bricks",
+    "down": "brick_and_mortar:block/kiln_bottom",
     "east": "brick_and_mortar:block/kiln_side_open",
     "north": "brick_and_mortar:block/kiln_front",
     "particle": "brick_and_mortar:block/kiln_front",

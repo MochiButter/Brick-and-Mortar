@@ -2,10 +2,13 @@ package com.evandev.brick_and_mortar.block;
 
 import com.evandev.brick_and_mortar.block.entity.KilnBlockEntity;
 import com.evandev.brick_and_mortar.registry.ModBlockEntities;
+import com.evandev.brick_and_mortar.registry.ModSounds;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -57,6 +60,16 @@ public class KilnBlock extends BaseEntityBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, LIT, SOUL, OPEN_FRONT, OPEN_LEFT, OPEN_BACK, OPEN_RIGHT);
+    }
+
+    @Override
+    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+        if (state.getValue(LIT)) {
+            if (random.nextDouble() < 0.1D) {
+                level.playLocalSound((double) pos.getX() + 0.5D, pos.getY(), (double) pos.getZ() + 0.5D,
+                        ModSounds.KILN_CRACKLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
+            }
+        }
     }
 
     @Nullable

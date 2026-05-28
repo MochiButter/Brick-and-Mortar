@@ -63,7 +63,7 @@ public class ModModelProvider extends FabricModelProvider {
                                     if (generatedModels.add(modelName)) {
                                         TextureMapping mapping = new TextureMapping()
                                                 .put(TextureSlot.PARTICLE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + frontTex))
-                                                .put(TextureSlot.DOWN, ResourceLocation.withDefaultNamespace("block/bricks"))
+                                                .put(TextureSlot.DOWN, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/kiln_bottom"))
                                                 .put(TextureSlot.UP, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + topTex))
                                                 .put(TextureSlot.NORTH, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + frontTex))
                                                 .put(TextureSlot.SOUTH, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + backTex))

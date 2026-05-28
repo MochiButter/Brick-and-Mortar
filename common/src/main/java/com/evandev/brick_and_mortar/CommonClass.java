@@ -8,6 +8,7 @@ public class CommonClass {
     public static void init() {
         ModConfig.load();
 
+        ModSounds.init();
         ModBlocks.init();
         ModItems.init();
         ModBlockEntities.init();
