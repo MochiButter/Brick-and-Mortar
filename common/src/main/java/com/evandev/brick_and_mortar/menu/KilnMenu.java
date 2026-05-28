@@ -3,6 +3,7 @@ package com.evandev.brick_and_mortar.menu;
 import com.evandev.brick_and_mortar.block.entity.KilnBlockEntity;
 import com.evandev.brick_and_mortar.registry.ModMenus;
 import com.evandev.brick_and_mortar.registry.ModRecipes;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -32,9 +33,42 @@ public class KilnMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(container, 0, 32, 17));
         this.addSlot(new Slot(container, 1, 32, 53));
         this.addSlot(new Slot(container, 2, 112, 39) {
+            private int removeCount = 0;
+
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
                 return false;
+            }
+
+            @Override
+            public @NotNull ItemStack remove(int amount) {
+                if (this.hasItem()) {
+                    this.removeCount += Math.min(amount, this.getItem().getCount());
+                }
+                return super.remove(amount);
+            }
+
+            @Override
+            public void onTake(@NotNull Player player, @NotNull ItemStack stack) {
+                this.checkTakeAchievements(stack);
+                super.onTake(player, stack);
+            }
+
+            @Override
+            protected void onQuickCraft(@NotNull ItemStack stack, int amount) {
+                this.removeCount += amount;
+                this.checkTakeAchievements(stack);
+            }
+
+            @Override
+            protected void checkTakeAchievements(@NotNull ItemStack stack) {
+                Player player = playerInventory.player;
+
+                stack.onCraftedBy(player.level(), player, this.removeCount);
+                if (player instanceof ServerPlayer serverPlayer && container instanceof KilnBlockEntity kiln) {
+                    kiln.awardUsedRecipesAndPopExperience(serverPlayer);
+                }
+                this.removeCount = 0;
             }
         });
 

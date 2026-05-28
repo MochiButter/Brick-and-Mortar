@@ -6,30 +6,52 @@ import com.evandev.brick_and_mortar.recipe.KilnRecipe;
 import com.evandev.brick_and_mortar.recipe.KilnRecipeInput;
 import com.evandev.brick_and_mortar.registry.ModBlockEntities;
 import com.evandev.brick_and_mortar.registry.ModRecipes;
-import com.evandev.brick_and_mortar.registry.ModSounds;
+import com.google.common.collect.Lists;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.RecipeCraftingHolder;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuProvider {
+import java.util.List;
+
+public class KilnBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, MenuProvider, RecipeCraftingHolder {
+    private static final int[] SLOTS_FOR_UP = new int[]{0};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{2, 1};
+    private static final int[] SLOTS_FOR_SIDES = new int[]{1};
+    private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
+
     private final ContainerOpenersCounter openersCounter = new ContainerOpenersCounter() {
         @Override
         protected void onOpen(Level level, @NotNull BlockPos pos, BlockState state) {
@@ -159,8 +181,12 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuPro
                     outputSlot.grow(resultStack.getCount());
                 }
                 inputStack.shrink(1);
+
+                entity.setRecipeUsed(recipeHolder);
                 changed = true;
             }
+        } else if (!canCraft && entity.litTime == 0) {
+            entity.progress = Mth.clamp(entity.progress - 2, 0, entity.maxProgress);
         } else if (!canCraft) {
             entity.progress = 0;
         }
@@ -173,6 +199,17 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuPro
         if (changed) {
             entity.setChanged();
         }
+    }
+
+    private static void createExperience(ServerLevel level, Vec3 popVec, int count, float experience) {
+        if (experience == 0.0F) return;
+
+        int i = Mth.floor((float) count * experience);
+        float f = Mth.frac((float) count * experience);
+        if (f != 0.0F && Math.random() < (double) f) {
+            ++i;
+        }
+        ExperienceOrb.award(level, popVec, i);
     }
 
     private int getBurnDuration(ItemStack stack) {
@@ -239,11 +276,6 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuPro
     }
 
     @Override
-    public void setItem(int slot, @NotNull ItemStack stack) {
-        items.set(slot, stack);
-    }
-
-    @Override
     public boolean stillValid(@NotNull Player player) {
         return Container.stillValidBlockEntity(this, player);
     }
@@ -254,23 +286,78 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuPro
     }
 
     @Override
-    protected void loadAdditional(@NotNull CompoundTag tag, net.minecraft.core.HolderLookup.@NotNull Provider registries) {
+    protected void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
         super.loadAdditional(tag, registries);
         ContainerHelper.loadAllItems(tag, this.items, registries);
         this.progress = tag.getInt("CookTime");
         this.maxProgress = tag.getInt("CookTimeTotal");
         this.litTime = tag.getInt("BurnTime");
         this.litDuration = tag.getInt("BurnDuration");
+        CompoundTag recipesTag = tag.getCompound("RecipesUsed");
+        for (String key : recipesTag.getAllKeys()) {
+            this.recipesUsed.put(ResourceLocation.parse(key), recipesTag.getInt(key));
+        }
     }
 
     @Override
-    protected void saveAdditional(@NotNull CompoundTag tag, net.minecraft.core.HolderLookup.@NotNull Provider registries) {
+    protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
         super.saveAdditional(tag, registries);
         ContainerHelper.saveAllItems(tag, this.items, registries);
         tag.putInt("CookTime", this.progress);
         tag.putInt("CookTimeTotal", this.maxProgress);
         tag.putInt("BurnTime", this.litTime);
         tag.putInt("BurnDuration", this.litDuration);
+        CompoundTag recipesTag = new CompoundTag();
+        this.recipesUsed.forEach((id, count) -> recipesTag.putInt(id.toString(), count));
+        tag.put("RecipesUsed", recipesTag);
+    }
+
+    @Override
+    public int @NotNull [] getSlotsForFace(@NotNull Direction side) {
+        if (side == Direction.DOWN) {
+            return SLOTS_FOR_DOWN;
+        } else if (side == Direction.UP) {
+            return SLOTS_FOR_UP;
+        } else {
+            return SLOTS_FOR_SIDES;
+        }
+    }
+
+    @Override
+    public boolean canPlaceItemThroughFace(int index, @NotNull ItemStack itemStack, @Nullable Direction direction) {
+        return this.canPlaceItem(index, itemStack);
+    }
+
+    @Override
+    public boolean canTakeItemThroughFace(int index, @NotNull ItemStack stack, @NotNull Direction direction) {
+        if (direction == Direction.DOWN && index == 1) {
+            return stack.is(Items.WATER_BUCKET) || stack.is(Items.BUCKET);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean canPlaceItem(int index, @NotNull ItemStack stack) {
+        if (index == 2) {
+            return false;
+        } else if (index == 1) {
+            return this.getBurnDuration(stack) > 0;
+        }
+        return true;
+    }
+
+    @Override
+    public void setItem(int slot, @NotNull ItemStack stack) {
+        ItemStack currentStack = this.items.get(slot);
+        boolean isSameItem = !stack.isEmpty() && ItemStack.isSameItemSameComponents(currentStack, stack);
+
+        this.items.set(slot, stack);
+        stack.limitSize(this.getMaxStackSize(stack));
+
+        if (slot == 0 && !isSameItem) {
+            this.progress = 0;
+            this.setChanged();
+        }
     }
 
     @Override
@@ -281,5 +368,48 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements MenuPro
     @Override
     protected void setItems(@NotNull NonNullList<ItemStack> items) {
         this.items = items;
+    }
+
+    @Nullable
+    @Override
+    public RecipeHolder<?> getRecipeUsed() {
+        return null;
+    }
+
+    @Override
+    public void setRecipeUsed(@Nullable RecipeHolder<?> recipe) {
+        if (recipe != null) {
+            this.recipesUsed.addTo(recipe.id(), 1);
+        }
+    }
+
+    @Override
+    public void awardUsedRecipes(@NotNull Player player, @NotNull List<ItemStack> items) {
+    }
+
+    public void awardUsedRecipesAndPopExperience(ServerPlayer player) {
+        List<RecipeHolder<?>> list = this.getRecipesToAwardAndPopExperience(player.serverLevel(), player.position());
+        player.awardRecipes(list);
+
+        for (RecipeHolder<?> recipeholder : list) {
+            if (recipeholder != null) {
+                player.triggerRecipeCrafted(recipeholder, this.items);
+            }
+        }
+        this.recipesUsed.clear();
+    }
+
+    public List<RecipeHolder<?>> getRecipesToAwardAndPopExperience(ServerLevel level, Vec3 popVec) {
+        List<RecipeHolder<?>> list = Lists.newArrayList();
+
+        for (Object2IntMap.Entry<ResourceLocation> entry : this.recipesUsed.object2IntEntrySet()) {
+            level.getRecipeManager().byKey(entry.getKey()).ifPresent(recipeHolder -> {
+                list.add(recipeHolder);
+                if (recipeHolder.value() instanceof KilnRecipe kilnRecipe) {
+                    createExperience(level, popVec, entry.getIntValue(), kilnRecipe.experience());
+                }
+            });
+        }
+        return list;
     }
 }
