@@ -1,6 +1,9 @@
+import groovy.json.JsonBuilder
+import groovy.json.JsonSlurper
+
 plugins {
     id 'multiloader-loader'
-    id 'fabric-loom'
+    id 'net.fabricmc.fabric-loom-remap'
 }
 
 dependencies {
@@ -47,6 +50,46 @@ fabricApi {
     configureDataGeneration {
         client = true
         outputDirectory = project(":common").file("src/generated/resources")
+    }
+}
+
+tasks.named("runDatagen") {
+    doLast {
+        println "Post-processing datagen files for NeoForge conditions..."
+
+        def dataDir = project(":common").file("src/generated/resources/data/brick_and_mortar")
+
+        if (dataDir.exists()) {
+            fileTree(dir: dataDir, include: '**/*.json').each { File file ->
+                def content = file.text
+
+                if (content.contains('"fabric:load_conditions"')) {
+                    def json = new JsonSlurper().parseText(content)
+
+                    if (json["fabric:load_conditions"] != null) {
+                        def neoforgeConds = []
+
+                        json["fabric:load_conditions"].each { fCond ->
+                            if (fCond.condition == "fabric:all_mods_loaded") {
+                                fCond.values.each { modid ->
+                                    neoforgeConds.add([
+                                            "type": "neoforge:mod_loaded",
+                                            "modid": modid
+                                    ])
+                                }
+                            }
+                        }
+
+                        if (!neoforgeConds.isEmpty()) {
+                            json["neoforge:conditions"] = neoforgeConds
+
+                            file.text = new JsonBuilder(json).toPrettyString()
+                            println " -> Injected NeoForge conditions into: ${file.name}"
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

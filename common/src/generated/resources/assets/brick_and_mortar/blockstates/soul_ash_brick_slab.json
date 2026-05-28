@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "brick_and_mortar:block/soul_ash_brick_slab"
+    },
+    "type=double": {
+      "model": "brick_and_mortar:block/soul_ash_bricks"
+    },
+    "type=top": {
+      "model": "brick_and_mortar:block/soul_ash_brick_slab_top_top"
+    }
+  }
+}

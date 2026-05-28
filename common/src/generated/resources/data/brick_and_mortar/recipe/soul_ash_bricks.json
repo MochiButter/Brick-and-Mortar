@@ -1,0 +1,31 @@
+{
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "supplementaries"
+            ]
+        }
+    ],
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "key": {
+        "I": {
+            "item": "brick_and_mortar:soul_ash_brick"
+        }
+    },
+    "pattern": [
+        "II",
+        "II"
+    ],
+    "result": {
+        "count": 1,
+        "id": "brick_and_mortar:soul_ash_bricks"
+    },
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "supplementaries"
+        }
+    ]
+}

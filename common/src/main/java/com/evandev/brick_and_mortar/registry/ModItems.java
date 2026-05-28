@@ -49,13 +49,13 @@ public class ModItems {
         }
     }
 
-    private static RegistryObject<Item> registerBrickItem(String name) {
+    public static RegistryObject<Item> registerBrickItem(String name) {
         RegistryObject<Item> item = ITEMS.register(name, () -> new Item(new Item.Properties()));
         ALL_BRICK_ITEMS.add(item);
         return item;
     }
 
-    private static RegistryObject<Item> registerChorusItem(String name) {
+    public static RegistryObject<Item> registerChorusItem(String name) {
         RegistryObject<Item> item = ITEMS.register(name, () -> new Item(new Item.Properties()));
         ALL_CHORUS_ITEMS.add(item);
         return item;

@@ -1,5 +1,6 @@
 package com.evandev.brick_and_mortar;
 
+import com.evandev.brick_and_mortar.compat.SupplementariesCompat;
 import com.evandev.brick_and_mortar.config.ModConfig;
 import com.evandev.brick_and_mortar.registry.*;
 
@@ -10,6 +11,7 @@ public class CommonClass {
 
         ModSounds.init();
         ModBlocks.init();
+        SupplementariesCompat.init();
         ModItems.init();
         ModBlockEntities.init();
         ModMenus.init();

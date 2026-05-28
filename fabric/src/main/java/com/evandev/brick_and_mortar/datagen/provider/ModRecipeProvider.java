@@ -1,12 +1,16 @@
 package com.evandev.brick_and_mortar.datagen.provider;
 
 import com.evandev.brick_and_mortar.Constants;
+import com.evandev.brick_and_mortar.compat.CompatMods;
+import com.evandev.brick_and_mortar.compat.SupplementariesCompat;
 import com.evandev.brick_and_mortar.datagen.builder.KilnRecipeBuilder;
 import com.evandev.brick_and_mortar.registry.ModBlocks;
 import com.evandev.brick_and_mortar.registry.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -24,8 +28,11 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends FabricRecipeProvider {
 
+    private final FabricDataOutput dataOutput;
+
     public ModRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
+        this.dataOutput = output;
     }
 
     @Override
@@ -157,6 +164,38 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .save(exporter);
             }
         }
+
+        buildSupplementariesCompat(exporter);
+    }
+
+    private void buildSupplementariesCompat(RecipeOutput exporter) {
+        RecipeOutput suppExporter = this.withConditions(exporter, ResourceConditions.allModsLoaded(CompatMods.SUPPLEMENTARIES));
+
+        Item suppAshBrick = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(CompatMods.SUPPLEMENTARIES, "ash_brick"));
+        Item suppAsh = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(CompatMods.SUPPLEMENTARIES, "ash"));
+
+        addFiringSequence(suppExporter, "ash_bricks", suppAsh, false,
+                SupplementariesCompat.WHITE_ASH_BRICK.get(),
+                SupplementariesCompat.GRAY_ASH_BRICK.get(),
+                suppAshBrick,
+                SupplementariesCompat.BLACK_ASH_BRICK.get()
+        );
+
+        addFiringSequence(suppExporter, "ash_bricks", suppAsh, true,
+                SupplementariesCompat.WHITE_SOUL_ASH_BRICK.get(),
+                SupplementariesCompat.GRAY_SOUL_ASH_BRICK.get(),
+                SupplementariesCompat.SOUL_ASH_BRICK.get(),
+                SupplementariesCompat.BLACK_SOUL_ASH_BRICK.get()
+        );
+
+        addBlockRecipe(suppExporter, SupplementariesCompat.WHITE_ASH_BRICK.get(), SupplementariesCompat.WHITE_ASH_BRICKS.base().get());
+        addBlockRecipe(suppExporter, SupplementariesCompat.GRAY_ASH_BRICK.get(), SupplementariesCompat.GRAY_ASH_BRICKS.base().get());
+        addBlockRecipe(suppExporter, SupplementariesCompat.BLACK_ASH_BRICK.get(), SupplementariesCompat.BLACK_ASH_BRICKS.base().get());
+
+        addBlockRecipe(suppExporter, SupplementariesCompat.SOUL_ASH_BRICK.get(), SupplementariesCompat.SOUL_ASH_BRICKS.base().get());
+        addBlockRecipe(suppExporter, SupplementariesCompat.WHITE_SOUL_ASH_BRICK.get(), SupplementariesCompat.WHITE_SOUL_ASH_BRICKS.base().get());
+        addBlockRecipe(suppExporter, SupplementariesCompat.GRAY_SOUL_ASH_BRICK.get(), SupplementariesCompat.GRAY_SOUL_ASH_BRICKS.base().get());
+        addBlockRecipe(suppExporter, SupplementariesCompat.BLACK_SOUL_ASH_BRICK.get(), SupplementariesCompat.BLACK_SOUL_ASH_BRICKS.base().get());
     }
 
     /**

@@ -62,7 +62,7 @@ public class ModBlocks {
     public static final DecorativeFamily RAW_SOUL_PURPUR_BLOCK = registerFamily("raw_soul_purpur_block");
     public static final DecorativeFamily SOUL_PURPUR_BLOCK = registerFamily("soul_purpur_block");
 
-    private static DecorativeFamily registerFamily(String name) {
+    public static DecorativeFamily registerFamily(String name) {
         RegistryObject<Block> base = BLOCKS.register(name, () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)));
         String childName = name.replace("bricks", "brick").replace("tiles", "tile").replace("_block", "");
 

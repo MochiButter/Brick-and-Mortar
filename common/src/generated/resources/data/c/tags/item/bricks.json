@@ -13,6 +13,13 @@
     "brick_and_mortar:soul_nether_brick",
     "brick_and_mortar:raw_nether_brick",
     "brick_and_mortar:raw_soul_nether_brick",
-    "brick_and_mortar:tan_brick"
+    "brick_and_mortar:tan_brick",
+    "brick_and_mortar:white_ash_brick",
+    "brick_and_mortar:gray_ash_brick",
+    "brick_and_mortar:black_ash_brick",
+    "brick_and_mortar:soul_ash_brick",
+    "brick_and_mortar:white_soul_ash_brick",
+    "brick_and_mortar:gray_soul_ash_brick",
+    "brick_and_mortar:black_soul_ash_brick"
   ]
 }
