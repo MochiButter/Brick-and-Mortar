@@ -6,13 +6,23 @@
 A simple block that cooks building blocks and clay twice as quickly as the furnace, with three adjustable hatches that
 allow you to make **four** variants of any cookable bricks!
 
-### Features
+## Features
 
 * 4 variants of brick, the more hatches open, the darker or more "burnt" it is.
 * Placing Soul Sand under the Kiln makes another shade of variants, usually bluer or greener depending on the brick.
 * Every brick has a tile variant, which has squares instead of rectangles.
 * All crafting recipes are data-driven, so you can add anything you want with a datapack, making the mod a powerful tool
   for modpacks!
+
+## Mod Compatibility
+
+### Supplementaries
+
+- Ash Brick variants and Soul Ash Bricks.
+
+### Architect's Palette (planned)
+
+- Algal Brick variants and Soul Algal Bricks.
 
 ## License
 
