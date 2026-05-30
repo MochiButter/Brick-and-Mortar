@@ -2,6 +2,13 @@ package com.evandev.brick_and_mortar.compat;
 
 import com.evandev.brick_and_mortar.Constants;
 import com.evandev.brick_and_mortar.platform.Services;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +33,23 @@ public class CompatHandler {
     public static void register(String modId, Runnable initTask) {
         if (shouldLoad(modId)) {
             COMPAT_TASKS.add(initTask);
+        }
+    }
+
+
+    public static void registerDummyItemIfMissing(String namespace, String path) {
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(namespace, path);
+        if (!BuiltInRegistries.ITEM.containsKey(id)) {
+            Registry.register(BuiltInRegistries.ITEM, id, new Item(new Item.Properties()));
+        }
+    }
+
+    public static void registerDummyBlockIfMissing(String namespace, String path) {
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(namespace, path);
+        if (!BuiltInRegistries.BLOCK.containsKey(id)) {
+            Block block = new Block(BlockBehaviour.Properties.of());
+            Registry.register(BuiltInRegistries.BLOCK, id, block);
+            Registry.register(BuiltInRegistries.ITEM, id, new BlockItem(block, new Item.Properties()));
         }
     }
 

@@ -236,6 +236,18 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         addBlockRecipe(suppExporter, SupplementariesCompat.WHITE_SOUL_ASH_BRICK.get(), SupplementariesCompat.WHITE_SOUL_ASH_BRICKS.base().get());
         addBlockRecipe(suppExporter, SupplementariesCompat.GRAY_SOUL_ASH_BRICK.get(), SupplementariesCompat.GRAY_SOUL_ASH_BRICKS.base().get());
         addBlockRecipe(suppExporter, SupplementariesCompat.BLACK_SOUL_ASH_BRICK.get(), SupplementariesCompat.BLACK_SOUL_ASH_BRICKS.base().get());
+
+        Block suppAshBricks = BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(CompatMods.SUPPLEMENTARIES, "ash_bricks"));
+        addTileRecipe(suppExporter, suppAshBricks, SupplementariesCompat.ASH_TILES.base().get());
+
+        addTileRecipe(suppExporter, SupplementariesCompat.WHITE_ASH_BRICKS.base().get(), SupplementariesCompat.WHITE_ASH_TILES.base().get());
+        addTileRecipe(suppExporter, SupplementariesCompat.GRAY_ASH_BRICKS.base().get(), SupplementariesCompat.GRAY_ASH_TILES.base().get());
+        addTileRecipe(suppExporter, SupplementariesCompat.BLACK_ASH_BRICKS.base().get(), SupplementariesCompat.BLACK_ASH_TILES.base().get());
+
+        addTileRecipe(suppExporter, SupplementariesCompat.SOUL_ASH_BRICKS.base().get(), SupplementariesCompat.SOUL_ASH_TILES.base().get());
+        addTileRecipe(suppExporter, SupplementariesCompat.WHITE_SOUL_ASH_BRICKS.base().get(), SupplementariesCompat.WHITE_SOUL_ASH_TILES.base().get());
+        addTileRecipe(suppExporter, SupplementariesCompat.GRAY_SOUL_ASH_BRICKS.base().get(), SupplementariesCompat.GRAY_SOUL_ASH_TILES.base().get());
+        addTileRecipe(suppExporter, SupplementariesCompat.BLACK_SOUL_ASH_BRICKS.base().get(), SupplementariesCompat.BLACK_SOUL_ASH_TILES.base().get());
     }
 
     private void addPurpurBrickAndChiseledRecipes(RecipeOutput exporter, Block base, ModBlocks.DecorativeFamily brickFamily, RegistryObject<Block> chiseledBlock) {

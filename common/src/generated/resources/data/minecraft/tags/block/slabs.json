@@ -207,6 +207,38 @@
     {
       "id": "brick_and_mortar:black_soul_ash_brick_slab",
       "required": false
+    },
+    {
+      "id": "brick_and_mortar:ash_tile_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:white_ash_tile_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:gray_ash_tile_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:black_ash_tile_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_ash_tile_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:white_soul_ash_tile_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:gray_soul_ash_tile_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:black_soul_ash_tile_slab",
+      "required": false
     }
   ]
 }
