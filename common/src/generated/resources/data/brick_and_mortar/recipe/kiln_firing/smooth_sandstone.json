@@ -1,0 +1,12 @@
+{
+  "type": "brick_and_mortar:kiln_firing",
+  "cookingtime": 100,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "minecraft:sandstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:smooth_sandstone"
+  }
+}

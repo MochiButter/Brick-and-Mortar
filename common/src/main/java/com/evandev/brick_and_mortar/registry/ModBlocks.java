@@ -41,7 +41,7 @@ public class ModBlocks {
     public static final DecorativeFamily GRAY_TILES = registerFamily("gray_tiles");
     public static final DecorativeFamily ORANGE_TILES = registerFamily("orange_tiles");
     public static final DecorativeFamily TAN_TILES = registerFamily("tan_tiles");
-    public static final DecorativeFamily RED_TILES = registerFamily("red_tiles");
+    public static final DecorativeFamily BRICK_TILES = registerFamily("brick_tiles");
     public static final DecorativeFamily NETHER_TILES = registerFamily("nether_tiles");
 
     public static final DecorativeFamily CHARRED_NETHER_BRICKS = registerFamily("charred_nether_bricks");

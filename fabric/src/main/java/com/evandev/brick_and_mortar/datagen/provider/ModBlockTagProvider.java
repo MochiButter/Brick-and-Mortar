@@ -17,7 +17,6 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     @Override
     protected void addTags(HolderLookup.Provider arg) {
         getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.KILN.get());
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.KILN.get());
 
         var pickaxeTag = getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE);
         var stairsTag = getOrCreateTagBuilder(BlockTags.STAIRS);

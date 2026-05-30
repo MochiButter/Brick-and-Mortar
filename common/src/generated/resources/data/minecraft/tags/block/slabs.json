@@ -57,7 +57,7 @@
       "required": false
     },
     {
-      "id": "brick_and_mortar:red_tile_slab",
+      "id": "brick_and_mortar:brick_tile_slab",
       "required": false
     },
     {

@@ -99,7 +99,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         addTileRecipe(exporter, ModBlocks.RAW_SOUL_NETHER_BRICKS.base().get(), ModBlocks.RAW_SOUL_NETHER_TILES.base().get());
         addTileRecipe(exporter, ModBlocks.SOUL_NETHER_BRICKS.base().get(), ModBlocks.SOUL_NETHER_TILES.base().get());
 
-        addTileRecipe(exporter, Blocks.BRICKS, ModBlocks.RED_TILES.base().get());
+        addTileRecipe(exporter, Blocks.BRICKS, ModBlocks.BRICK_TILES.base().get());
         addTileRecipe(exporter, Blocks.NETHER_BRICKS, ModBlocks.NETHER_TILES.base().get());
 
         addBlockRecipe(exporter, ModItems.CLINKER_BRICK.get(), ModBlocks.BLACK_BRICKS.base().get());
@@ -134,6 +134,40 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         addPurpurBrickAndChiseledRecipes(exporter, ModBlocks.RAW_SOUL_PURPUR_BLOCK.base().get(), ModBlocks.RAW_SOUL_PURPUR_BRICKS, ModBlocks.CHISELED_RAW_SOUL_PURPUR);
         addPurpurBrickAndChiseledRecipes(exporter, ModBlocks.SOUL_PURPUR_BLOCK.base().get(), ModBlocks.SOUL_PURPUR_BRICKS, ModBlocks.CHISELED_SOUL_PURPUR);
 
+        addStoneSmelting(exporter, "stone_from_cobblestone", Ingredient.of(Blocks.COBBLESTONE), Blocks.STONE, 0.1F);
+        addStoneSmelting(exporter, "smooth_stone", Ingredient.of(Blocks.STONE), Blocks.SMOOTH_STONE, 0.1F);
+        addStoneSmelting(exporter, "glass_from_sand", Ingredient.of(Blocks.SAND), Blocks.GLASS, 0.1F);
+        addStoneSmelting(exporter, "glass_from_red_sand", Ingredient.of(Blocks.RED_SAND), Blocks.GLASS, 0.1F);
+        addStoneSmelting(exporter, "smooth_sandstone", Ingredient.of(Blocks.SANDSTONE), Blocks.SMOOTH_SANDSTONE, 0.1F);
+        addStoneSmelting(exporter, "smooth_red_sandstone", Ingredient.of(Blocks.RED_SANDSTONE), Blocks.SMOOTH_RED_SANDSTONE, 0.1F);
+        addStoneSmelting(exporter, "deepslate_from_cobbled", Ingredient.of(Blocks.COBBLED_DEEPSLATE), Blocks.DEEPSLATE, 0.1F);
+        addStoneSmelting(exporter, "terracotta_from_clay_block", Ingredient.of(Blocks.CLAY), Blocks.TERRACOTTA, 0.35F);
+        addStoneSmelting(exporter, "smooth_quartz", Ingredient.of(Blocks.QUARTZ_BLOCK), Blocks.SMOOTH_QUARTZ, 0.1F);
+        addStoneSmelting(exporter, "smooth_basalt", Ingredient.of(Blocks.BASALT), Blocks.SMOOTH_BASALT, 0.1F);
+
+        addStoneSmelting(exporter, "cracked_stone_bricks", Ingredient.of(Blocks.STONE_BRICKS), Blocks.CRACKED_STONE_BRICKS, 0.1F);
+        addStoneSmelting(exporter, "cracked_nether_bricks", Ingredient.of(Blocks.NETHER_BRICKS), Blocks.CRACKED_NETHER_BRICKS, 0.1F);
+        addStoneSmelting(exporter, "cracked_deepslate_bricks", Ingredient.of(Blocks.DEEPSLATE_BRICKS), Blocks.CRACKED_DEEPSLATE_BRICKS, 0.1F);
+        addStoneSmelting(exporter, "cracked_deepslate_tiles", Ingredient.of(Blocks.DEEPSLATE_TILES), Blocks.CRACKED_DEEPSLATE_TILES, 0.1F);
+        addStoneSmelting(exporter, "cracked_polished_blackstone_bricks", Ingredient.of(Blocks.POLISHED_BLACKSTONE_BRICKS), Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS, 0.1F);
+
+        addStoneSmelting(exporter, "white_glazed_terracotta", Ingredient.of(Blocks.WHITE_TERRACOTTA), Blocks.WHITE_GLAZED_TERRACOTTA, 0.1F);
+        addStoneSmelting(exporter, "orange_glazed_terracotta", Ingredient.of(Blocks.ORANGE_TERRACOTTA), Blocks.ORANGE_GLAZED_TERRACOTTA, 0.1F);
+        addStoneSmelting(exporter, "magenta_glazed_terracotta", Ingredient.of(Blocks.MAGENTA_TERRACOTTA), Blocks.MAGENTA_GLAZED_TERRACOTTA, 0.1F);
+        addStoneSmelting(exporter, "light_blue_glazed_terracotta", Ingredient.of(Blocks.LIGHT_BLUE_TERRACOTTA), Blocks.LIGHT_BLUE_GLAZED_TERRACOTTA, 0.1F);
+        addStoneSmelting(exporter, "yellow_glazed_terracotta", Ingredient.of(Blocks.YELLOW_TERRACOTTA), Blocks.YELLOW_GLAZED_TERRACOTTA, 0.1F);
+        addStoneSmelting(exporter, "lime_glazed_terracotta", Ingredient.of(Blocks.LIME_TERRACOTTA), Blocks.LIME_GLAZED_TERRACOTTA, 0.1F);
+        addStoneSmelting(exporter, "pink_glazed_terracotta", Ingredient.of(Blocks.PINK_TERRACOTTA), Blocks.PINK_GLAZED_TERRACOTTA, 0.1F);
+        addStoneSmelting(exporter, "gray_glazed_terracotta", Ingredient.of(Blocks.GRAY_TERRACOTTA), Blocks.GRAY_GLAZED_TERRACOTTA, 0.1F);
+        addStoneSmelting(exporter, "light_gray_glazed_terracotta", Ingredient.of(Blocks.LIGHT_GRAY_TERRACOTTA), Blocks.LIGHT_GRAY_GLAZED_TERRACOTTA, 0.1F);
+        addStoneSmelting(exporter, "cyan_glazed_terracotta", Ingredient.of(Blocks.CYAN_TERRACOTTA), Blocks.CYAN_GLAZED_TERRACOTTA, 0.1F);
+        addStoneSmelting(exporter, "purple_glazed_terracotta", Ingredient.of(Blocks.PURPLE_TERRACOTTA), Blocks.PURPLE_GLAZED_TERRACOTTA, 0.1F);
+        addStoneSmelting(exporter, "blue_glazed_terracotta", Ingredient.of(Blocks.BLUE_TERRACOTTA), Blocks.BLUE_GLAZED_TERRACOTTA, 0.1F);
+        addStoneSmelting(exporter, "brown_glazed_terracotta", Ingredient.of(Blocks.BROWN_TERRACOTTA), Blocks.BROWN_GLAZED_TERRACOTTA, 0.1F);
+        addStoneSmelting(exporter, "green_glazed_terracotta", Ingredient.of(Blocks.GREEN_TERRACOTTA), Blocks.GREEN_GLAZED_TERRACOTTA, 0.1F);
+        addStoneSmelting(exporter, "red_glazed_terracotta", Ingredient.of(Blocks.RED_TERRACOTTA), Blocks.RED_GLAZED_TERRACOTTA, 0.1F);
+        addStoneSmelting(exporter, "black_glazed_terracotta", Ingredient.of(Blocks.BLACK_TERRACOTTA), Blocks.BLACK_GLAZED_TERRACOTTA, 0.1F);
+
         for (var family : ModBlocks.FAMILIES) {
             Block base = family.base().get();
             Block stairs = family.stairs().get();
@@ -148,7 +182,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.stairs().getId().getPath() + "_stonecutting"));
             SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, slab, 2)
                     .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.slab().getId().getPath() + "_stonecutting"));
-
 
             if (family.wall() != null) {
                 Block wall = family.wall().get();
@@ -257,6 +290,18 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             ResourceLocation id = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "kiln_firing/" + name + "_tier_" + doors);
             builder.save(exporter, id);
         }
+    }
+
+    /**
+     * Helper method to generate fast, 0-door Kiln smelting recipes.
+     */
+    private void addStoneSmelting(RecipeOutput exporter, String name, Ingredient input, ItemLike output, float experience) {
+        KilnRecipeBuilder.firing(input, output.asItem())
+                .cookingTime(100)
+                .experience(experience)
+                .requiredDoors(0)
+                .unlockedBy("has_input", has(output.asItem()))
+                .save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "kiln_firing/" + name));
     }
 
     private void addTileRecipe(RecipeOutput exporter, Block input, Block output) {

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/wall_inventory",
-  "textures": {
-    "wall": "brick_and_mortar:block/bricks/red_tiles"
-  }
-}
