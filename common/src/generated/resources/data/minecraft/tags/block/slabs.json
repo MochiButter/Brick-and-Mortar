@@ -61,6 +61,10 @@
       "required": false
     },
     {
+      "id": "brick_and_mortar:nether_tile_slab",
+      "required": false
+    },
+    {
       "id": "brick_and_mortar:charred_nether_brick_slab",
       "required": false
     },
@@ -117,10 +121,6 @@
       "required": false
     },
     {
-      "id": "brick_and_mortar:nether_tile_slab",
-      "required": false
-    },
-    {
       "id": "brick_and_mortar:burnt_purpur_slab",
       "required": false
     },
@@ -146,6 +146,38 @@
     },
     {
       "id": "brick_and_mortar:soul_purpur_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:purpur_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:burnt_purpur_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:burnt_soul_purpur_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_purpur_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_soul_purpur_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_purpur_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_soul_purpur_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_purpur_brick_slab",
       "required": false
     },
     {

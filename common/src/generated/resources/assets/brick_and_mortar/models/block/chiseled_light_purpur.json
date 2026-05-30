@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "brick_and_mortar:block/bricks/chiseled_light_purpur"
+  }
+}

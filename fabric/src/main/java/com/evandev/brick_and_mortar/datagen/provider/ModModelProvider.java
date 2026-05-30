@@ -128,6 +128,12 @@ public class ModModelProvider extends FabricModelProvider {
                 gen.blockStateOutput.accept(BlockModelGenerators.createAxisAlignedPillarBlock(family.pillar().get(), pillarModel));
             }
         }
+
+        for (var chiseled : ModBlocks.CHISELED_BLOCKS) {
+            ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bricks/" + chiseled.getId().getPath());
+            TextureMapping mapping = TextureMapping.cube(textureLoc);
+            gen.createTrivialBlock(chiseled.get(), mapping, ModelTemplates.CUBE_ALL);
+        }
     }
 
     private String getTexture(String base, boolean open, boolean lit, boolean soul) {

@@ -24,5 +24,9 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
             if (family.wall() != null) dropSelf(family.wall().get());
             if (family.pillar() != null) dropSelf(family.pillar().get());
         }
+
+        for (var chiseled : ModBlocks.CHISELED_BLOCKS) {
+            dropSelf(chiseled.get());
+        }
     }
 }

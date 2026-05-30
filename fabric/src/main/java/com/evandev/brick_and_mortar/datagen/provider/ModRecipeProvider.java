@@ -4,6 +4,7 @@ import com.evandev.brick_and_mortar.Constants;
 import com.evandev.brick_and_mortar.compat.CompatMods;
 import com.evandev.brick_and_mortar.compat.SupplementariesCompat;
 import com.evandev.brick_and_mortar.datagen.builder.KilnRecipeBuilder;
+import com.evandev.brick_and_mortar.platform.registry.RegistryObject;
 import com.evandev.brick_and_mortar.registry.ModBlocks;
 import com.evandev.brick_and_mortar.registry.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -28,11 +29,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends FabricRecipeProvider {
 
-    private final FabricDataOutput dataOutput;
-
     public ModRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
-        this.dataOutput = output;
     }
 
     @Override
@@ -127,6 +125,15 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         addBlockRecipe(exporter, ModItems.SOUL_POPPED_CHORUS.get(), ModBlocks.SOUL_PURPUR_BLOCK.base().get(), 4);
         addBlockRecipe(exporter, ModItems.BURNT_SOUL_POPPED_CHORUS.get(), ModBlocks.BURNT_SOUL_PURPUR_BLOCK.base().get(), 4);
 
+        addPurpurBrickAndChiseledRecipes(exporter, Blocks.PURPUR_BLOCK, ModBlocks.PURPUR_BRICKS, ModBlocks.CHISELED_PURPUR);
+        addPurpurBrickAndChiseledRecipes(exporter, ModBlocks.BURNT_PURPUR_BLOCK.base().get(), ModBlocks.BURNT_PURPUR_BRICKS, ModBlocks.CHISELED_BURNT_PURPUR);
+        addPurpurBrickAndChiseledRecipes(exporter, ModBlocks.BURNT_SOUL_PURPUR_BLOCK.base().get(), ModBlocks.BURNT_SOUL_PURPUR_BRICKS, ModBlocks.CHISELED_BURNT_SOUL_PURPUR);
+        addPurpurBrickAndChiseledRecipes(exporter, ModBlocks.LIGHT_PURPUR_BLOCK.base().get(), ModBlocks.LIGHT_PURPUR_BRICKS, ModBlocks.CHISELED_LIGHT_PURPUR);
+        addPurpurBrickAndChiseledRecipes(exporter, ModBlocks.LIGHT_SOUL_PURPUR_BLOCK.base().get(), ModBlocks.LIGHT_SOUL_PURPUR_BRICKS, ModBlocks.CHISELED_LIGHT_SOUL_PURPUR);
+        addPurpurBrickAndChiseledRecipes(exporter, ModBlocks.RAW_PURPUR_BLOCK.base().get(), ModBlocks.RAW_PURPUR_BRICKS, ModBlocks.CHISELED_RAW_PURPUR);
+        addPurpurBrickAndChiseledRecipes(exporter, ModBlocks.RAW_SOUL_PURPUR_BLOCK.base().get(), ModBlocks.RAW_SOUL_PURPUR_BRICKS, ModBlocks.CHISELED_RAW_SOUL_PURPUR);
+        addPurpurBrickAndChiseledRecipes(exporter, ModBlocks.SOUL_PURPUR_BLOCK.base().get(), ModBlocks.SOUL_PURPUR_BRICKS, ModBlocks.CHISELED_SOUL_PURPUR);
+
         for (var family : ModBlocks.FAMILIES) {
             Block base = family.base().get();
             Block stairs = family.stairs().get();
@@ -196,6 +203,34 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         addBlockRecipe(suppExporter, SupplementariesCompat.WHITE_SOUL_ASH_BRICK.get(), SupplementariesCompat.WHITE_SOUL_ASH_BRICKS.base().get());
         addBlockRecipe(suppExporter, SupplementariesCompat.GRAY_SOUL_ASH_BRICK.get(), SupplementariesCompat.GRAY_SOUL_ASH_BRICKS.base().get());
         addBlockRecipe(suppExporter, SupplementariesCompat.BLACK_SOUL_ASH_BRICK.get(), SupplementariesCompat.BLACK_SOUL_ASH_BRICKS.base().get());
+    }
+
+    private void addPurpurBrickAndChiseledRecipes(RecipeOutput exporter, Block base, ModBlocks.DecorativeFamily brickFamily, RegistryObject<Block> chiseledBlock) {
+        Block bricks = brickFamily.base().get();
+        Block brickSlab = brickFamily.slab().get();
+        Block chiseled = chiseledBlock.get();
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, bricks, 4)
+                .pattern("BB")
+                .pattern("BB")
+                .define('B', base)
+                .unlockedBy("has_base", has(base))
+                .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, chiseled, 1)
+                .pattern("S")
+                .pattern("S")
+                .define('S', brickSlab)
+                .unlockedBy("has_slab", has(brickSlab))
+                .save(exporter);
+
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, bricks, 1)
+                .unlockedBy("has_base", has(base))
+                .save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, brickFamily.base().getId().getPath() + "_from_base_stonecutting"));
+
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, chiseled, 1)
+                .unlockedBy("has_base", has(base))
+                .save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, chiseledBlock.getId().getPath() + "_from_base_stonecutting"));
     }
 
     /**

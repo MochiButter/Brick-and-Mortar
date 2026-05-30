@@ -242,6 +242,22 @@
       "required": false
     },
     {
+      "id": "brick_and_mortar:nether_tiles",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:nether_tile_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:nether_tile_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:nether_tile_wall",
+      "required": false
+    },
+    {
       "id": "brick_and_mortar:charred_nether_bricks",
       "required": false
     },
@@ -466,22 +482,6 @@
       "required": false
     },
     {
-      "id": "brick_and_mortar:nether_tiles",
-      "required": false
-    },
-    {
-      "id": "brick_and_mortar:nether_tile_stairs",
-      "required": false
-    },
-    {
-      "id": "brick_and_mortar:nether_tile_slab",
-      "required": false
-    },
-    {
-      "id": "brick_and_mortar:nether_tile_wall",
-      "required": false
-    },
-    {
       "id": "brick_and_mortar:burnt_purpur_block",
       "required": false
     },
@@ -591,6 +591,166 @@
     },
     {
       "id": "brick_and_mortar:soul_purpur_pillar",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:purpur_bricks",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:purpur_brick_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:purpur_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:burnt_purpur_bricks",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:burnt_purpur_brick_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:burnt_purpur_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:burnt_purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:burnt_soul_purpur_bricks",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:burnt_soul_purpur_brick_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:burnt_soul_purpur_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:burnt_soul_purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_purpur_bricks",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_purpur_brick_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_purpur_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_soul_purpur_bricks",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_soul_purpur_brick_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_soul_purpur_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_soul_purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_purpur_bricks",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_purpur_brick_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_purpur_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_soul_purpur_bricks",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_soul_purpur_brick_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_soul_purpur_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_soul_purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_purpur_bricks",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_purpur_brick_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_purpur_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:chiseled_purpur",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:chiseled_burnt_purpur",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:chiseled_burnt_soul_purpur",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:chiseled_light_purpur",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:chiseled_light_soul_purpur",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:chiseled_raw_purpur",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:chiseled_raw_soul_purpur",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:chiseled_soul_purpur",
       "required": false
     },
     {

@@ -17,9 +17,8 @@ variants of any "cookable" bricks!
 ## License
 
 [![Code license (MIT)](https://img.shields.io/badge/code%20license-MIT-green.svg?style=flat-square)](https://github.com/evanbones/Brick-and-Mortar/blob/1.21.1/LICENSE)
-[![Asset license (ARR)](https://img.shields.io/badge/code%20license-ARR-red.svg?style=flat-square)](https://github.com/evanbones/Brick-and-Mortar/blob/1.21.1/LICENSE)
+[![Asset license (ARR)](https://img.shields.io/badge/asset%20license-ARR-red.svg?style=flat-square)](https://github.com/evanbones/Brick-and-Mortar/blob/1.21.1/LICENSE)
 
 ---
 
 [![discord-plural](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/social/discord-plural_vector.svg)](https://discord.com/invite/JcGRdT6Pbx) [![github-plural](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/social/github-plural_vector.svg)](https://github.com/evanbones/Brick-and-Mortar)
-
