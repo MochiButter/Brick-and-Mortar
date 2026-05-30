@@ -25,14 +25,14 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         var wallsTag = getOrCreateTagBuilder(BlockTags.WALLS);
 
         for (var blockObj : ModBlocks.ALL_DECORATIVE_BLOCKS) {
-            pickaxeTag.add(blockObj.get());
+            pickaxeTag.addOptional(blockObj.getId());
         }
 
         for (var family : ModBlocks.FAMILIES) {
-            stairsTag.add(family.stairs().get());
-            slabsTag.add(family.slab().get());
+            stairsTag.addOptional(family.stairs().getId());
+            slabsTag.addOptional(family.slab().getId());
             if (family.wall() != null) {
-                wallsTag.add(family.wall().get());
+                wallsTag.addOptional(family.wall().getId());
             }
         }
     }

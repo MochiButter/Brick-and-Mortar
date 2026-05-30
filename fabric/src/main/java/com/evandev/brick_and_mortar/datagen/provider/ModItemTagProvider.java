@@ -23,7 +23,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         var bricksTag = getOrCreateTagBuilder(C_BRICKS);
 
         for (var itemObj : ModItems.ALL_BRICK_ITEMS) {
-            bricksTag.add(itemObj.get());
+            bricksTag.addOptional(itemObj.getId());
         }
     }
 }
