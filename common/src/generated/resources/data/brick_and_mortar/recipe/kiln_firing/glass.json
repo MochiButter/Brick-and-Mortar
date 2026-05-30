@@ -3,7 +3,7 @@
   "cookingtime": 100,
   "experience": 0.1,
   "ingredient": {
-    "item": "minecraft:red_sand"
+    "tag": "minecraft:smelts_to_glass"
   },
   "result": {
     "count": 1,

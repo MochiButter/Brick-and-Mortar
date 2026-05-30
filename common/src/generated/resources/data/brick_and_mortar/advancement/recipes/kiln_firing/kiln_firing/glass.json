@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "brick_and_mortar:kiln_firing/glass_from_red_sand"
+        "recipe": "brick_and_mortar:kiln_firing/glass"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "brick_and_mortar:kiln_firing/glass_from_red_sand"
+      "brick_and_mortar:kiln_firing/glass"
     ]
   }
 }

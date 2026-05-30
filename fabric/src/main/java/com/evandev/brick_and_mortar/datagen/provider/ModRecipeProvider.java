@@ -17,6 +17,7 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -136,8 +137,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
         addStoneSmelting(exporter, "stone_from_cobblestone", Ingredient.of(Blocks.COBBLESTONE), Blocks.STONE, 0.1F);
         addStoneSmelting(exporter, "smooth_stone", Ingredient.of(Blocks.STONE), Blocks.SMOOTH_STONE, 0.1F);
-        addStoneSmelting(exporter, "glass_from_sand", Ingredient.of(Blocks.SAND), Blocks.GLASS, 0.1F);
-        addStoneSmelting(exporter, "glass_from_red_sand", Ingredient.of(Blocks.RED_SAND), Blocks.GLASS, 0.1F);
+        addStoneSmelting(exporter, "glass", Ingredient.of(ItemTags.SMELTS_TO_GLASS), Blocks.GLASS, 0.1F);
         addStoneSmelting(exporter, "smooth_sandstone", Ingredient.of(Blocks.SANDSTONE), Blocks.SMOOTH_SANDSTONE, 0.1F);
         addStoneSmelting(exporter, "smooth_red_sandstone", Ingredient.of(Blocks.RED_SANDSTONE), Blocks.SMOOTH_RED_SANDSTONE, 0.1F);
         addStoneSmelting(exporter, "deepslate_from_cobbled", Ingredient.of(Blocks.COBBLED_DEEPSLATE), Blocks.DEEPSLATE, 0.1F);
