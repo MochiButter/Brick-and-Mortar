@@ -83,6 +83,34 @@
     {
       "id": "brick_and_mortar:black_soul_ash_brick",
       "required": false
+    },
+    {
+      "id": "brick_and_mortar:bright_resin_brick",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:bright_soul_resin_brick",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:melted_resin_brick",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:melted_soul_resin_brick",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:smoked_resin_brick",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:smoked_soul_resin_brick",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_resin_brick",
+      "required": false
     }
   ]
 }

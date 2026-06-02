@@ -18,6 +18,7 @@ public class CompatHandler {
 
     static {
         register(CompatMods.SUPPLEMENTARIES, SupplementariesCompat::init);
+        register(CompatMods.VANILLA_BACKPORT, VanillaBackportCompat::init);
 
         // register(CompatMods.ARCHITECTS_PALETTE, ArchitectsPaletteCompat::init);
     }

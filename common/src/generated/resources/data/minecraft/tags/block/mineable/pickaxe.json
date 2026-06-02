@@ -992,6 +992,118 @@
     {
       "id": "brick_and_mortar:black_soul_ash_tile_wall",
       "required": false
+    },
+    {
+      "id": "brick_and_mortar:bright_resin_bricks",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:bright_resin_brick_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:bright_resin_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:bright_resin_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:bright_soul_resin_bricks",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:bright_soul_resin_brick_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:bright_soul_resin_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:bright_soul_resin_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:melted_resin_bricks",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:melted_resin_brick_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:melted_resin_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:melted_resin_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:melted_soul_resin_bricks",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:melted_soul_resin_brick_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:melted_soul_resin_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:melted_soul_resin_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:smoked_resin_bricks",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:smoked_resin_brick_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:smoked_resin_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:smoked_resin_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:smoked_soul_resin_bricks",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:smoked_soul_resin_brick_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:smoked_soul_resin_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:smoked_soul_resin_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_resin_bricks",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_resin_brick_stairs",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_resin_brick_slab",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_resin_brick_wall",
+      "required": false
     }
   ]
 }

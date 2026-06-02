@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "brick_and_mortar:item/bright_resin_brick"
+  }
+}

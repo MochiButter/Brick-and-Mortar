@@ -3,6 +3,7 @@ package com.evandev.brick_and_mortar.datagen.provider;
 import com.evandev.brick_and_mortar.Constants;
 import com.evandev.brick_and_mortar.compat.CompatMods;
 import com.evandev.brick_and_mortar.compat.SupplementariesCompat;
+import com.evandev.brick_and_mortar.compat.VanillaBackportCompat;
 import com.evandev.brick_and_mortar.datagen.builder.KilnRecipeBuilder;
 import com.evandev.brick_and_mortar.platform.registry.RegistryObject;
 import com.evandev.brick_and_mortar.registry.ModBlocks;
@@ -206,6 +207,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         }
 
         buildSupplementariesCompat(exporter);
+        buildVanillaBackportCompat(exporter);
     }
 
     private void buildSupplementariesCompat(RecipeOutput exporter) {
@@ -248,6 +250,36 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         addTileRecipe(suppExporter, SupplementariesCompat.WHITE_SOUL_ASH_BRICKS.base().get(), SupplementariesCompat.WHITE_SOUL_ASH_TILES.base().get());
         addTileRecipe(suppExporter, SupplementariesCompat.GRAY_SOUL_ASH_BRICKS.base().get(), SupplementariesCompat.GRAY_SOUL_ASH_TILES.base().get());
         addTileRecipe(suppExporter, SupplementariesCompat.BLACK_SOUL_ASH_BRICKS.base().get(), SupplementariesCompat.BLACK_SOUL_ASH_TILES.base().get());
+    }
+
+    private void buildVanillaBackportCompat(RecipeOutput exporter) {
+        RecipeOutput vbExporter = this.withConditions(exporter, ResourceConditions.allModsLoaded(CompatMods.VANILLA_BACKPORT));
+
+        Item resinClump = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("minecraft", "resin_clump"));
+        Item resinBrick = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("minecraft", "resin_brick"));
+
+        addFiringSequence(vbExporter, "resin_bricks", resinClump, false,
+                VanillaBackportCompat.MELTED_RESIN_BRICK.get(),
+                VanillaBackportCompat.BRIGHT_RESIN_BRICK.get(),
+                resinBrick,
+                VanillaBackportCompat.SMOKED_RESIN_BRICK.get()
+        );
+
+        addFiringSequence(vbExporter, "resin_bricks", resinClump, true,
+                VanillaBackportCompat.MELTED_SOUL_RESIN_BRICK.get(),
+                VanillaBackportCompat.BRIGHT_SOUL_RESIN_BRICK.get(),
+                VanillaBackportCompat.SOUL_RESIN_BRICK.get(),
+                VanillaBackportCompat.SMOKED_SOUL_RESIN_BRICK.get()
+        );
+
+        addBlockRecipe(vbExporter, VanillaBackportCompat.MELTED_RESIN_BRICK.get(), VanillaBackportCompat.MELTED_RESIN_BRICKS.base().get());
+        addBlockRecipe(vbExporter, VanillaBackportCompat.BRIGHT_RESIN_BRICK.get(), VanillaBackportCompat.BRIGHT_RESIN_BRICKS.base().get());
+        addBlockRecipe(vbExporter, VanillaBackportCompat.SMOKED_RESIN_BRICK.get(), VanillaBackportCompat.SMOKED_RESIN_BRICKS.base().get());
+
+        addBlockRecipe(vbExporter, VanillaBackportCompat.MELTED_SOUL_RESIN_BRICK.get(), VanillaBackportCompat.MELTED_SOUL_RESIN_BRICKS.base().get());
+        addBlockRecipe(vbExporter, VanillaBackportCompat.BRIGHT_SOUL_RESIN_BRICK.get(), VanillaBackportCompat.BRIGHT_SOUL_RESIN_BRICKS.base().get());
+        addBlockRecipe(vbExporter, VanillaBackportCompat.SOUL_RESIN_BRICK.get(), VanillaBackportCompat.SOUL_RESIN_BRICKS.base().get());
+        addBlockRecipe(vbExporter, VanillaBackportCompat.SMOKED_SOUL_RESIN_BRICK.get(), VanillaBackportCompat.SMOKED_SOUL_RESIN_BRICKS.base().get());
     }
 
     private void addPurpurBrickAndChiseledRecipes(RecipeOutput exporter, Block base, ModBlocks.DecorativeFamily brickFamily, RegistryObject<Block> chiseledBlock) {
