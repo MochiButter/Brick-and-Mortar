@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -66,6 +67,11 @@ public interface IPlatformHelper {
     <T extends BlockEntity> BlockEntityType<T> createBlockEntityType(BlockEntityFactory<T> factory, Block... blocks);
 
     <T extends AbstractContainerMenu> MenuType<T> createMenuType(MenuFactory<T> factory);
+
+    /**
+     * Gets the burn time of an item stack based on the current platform's fuel registry.
+     */
+    int getBurnTime(ItemStack stack);
 
     @FunctionalInterface
     interface BlockEntityFactory<T extends BlockEntity> {

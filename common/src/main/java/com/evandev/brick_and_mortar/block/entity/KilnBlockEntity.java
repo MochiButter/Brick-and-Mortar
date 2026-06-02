@@ -2,6 +2,7 @@ package com.evandev.brick_and_mortar.block.entity;
 
 import com.evandev.brick_and_mortar.block.KilnBlock;
 import com.evandev.brick_and_mortar.menu.KilnMenu;
+import com.evandev.brick_and_mortar.platform.Services;
 import com.evandev.brick_and_mortar.recipe.KilnRecipe;
 import com.evandev.brick_and_mortar.recipe.KilnRecipeInput;
 import com.evandev.brick_and_mortar.registry.ModBlockEntities;
@@ -214,7 +215,7 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements Worldly
 
     private int getBurnDuration(ItemStack stack) {
         if (stack.isEmpty()) return 0;
-        return AbstractFurnaceBlockEntity.getFuel().getOrDefault(stack.getItem(), 0);
+        return Services.PLATFORM.getBurnTime(stack);
     }
 
     public void toggleDoor(int doorId) {

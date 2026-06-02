@@ -4,12 +4,14 @@ import com.evandev.brick_and_mortar.platform.registry.RegistrationProvider;
 import com.evandev.brick_and_mortar.platform.services.IPlatformHelper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -54,6 +56,12 @@ public class FabricPlatformHelper implements IPlatformHelper {
 
     @Override
     public <T extends AbstractContainerMenu> MenuType<T> createMenuType(MenuFactory<T> factory) {
-        return new MenuType<>((id, inv) -> factory.create(id, inv), FeatureFlags.DEFAULT_FLAGS);
+        return new MenuType<>(factory::create, FeatureFlags.DEFAULT_FLAGS);
+    }
+
+    @Override
+    public int getBurnTime(ItemStack stack) {
+        Integer time = FuelRegistry.INSTANCE.get(stack.getItem());
+        return time == null ? 0 : time;
     }
 }

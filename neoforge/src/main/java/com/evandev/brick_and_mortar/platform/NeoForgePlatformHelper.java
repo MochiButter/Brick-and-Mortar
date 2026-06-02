@@ -6,6 +6,8 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -57,5 +59,10 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
     @Override
     public <T extends AbstractContainerMenu> MenuType<T> createMenuType(MenuFactory<T> factory) {
         return IMenuTypeExtension.create((id, inv, data) -> factory.create(id, inv));
+    }
+
+    @Override
+    public int getBurnTime(ItemStack stack) {
+        return stack.getBurnTime(RecipeType.SMELTING);
     }
 }

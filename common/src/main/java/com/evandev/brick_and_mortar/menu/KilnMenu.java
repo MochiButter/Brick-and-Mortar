@@ -1,6 +1,7 @@
 package com.evandev.brick_and_mortar.menu;
 
 import com.evandev.brick_and_mortar.block.entity.KilnBlockEntity;
+import com.evandev.brick_and_mortar.platform.Services;
 import com.evandev.brick_and_mortar.registry.ModMenus;
 import com.evandev.brick_and_mortar.registry.ModRecipes;
 import net.minecraft.server.level.ServerPlayer;
@@ -14,7 +15,6 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import org.jetbrains.annotations.NotNull;
 
 public class KilnMenu extends AbstractContainerMenu {
@@ -158,7 +158,7 @@ public class KilnMenu extends AbstractContainerMenu {
                     return ItemStack.EMPTY;
                 }
             } else {
-                boolean isFuel = AbstractFurnaceBlockEntity.getFuel().containsKey(slotStack.getItem());
+                boolean isFuel = Services.PLATFORM.getBurnTime(slotStack) > 0;
                 boolean moved = false;
 
                 if (isFuel) {
