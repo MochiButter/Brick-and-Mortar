@@ -319,8 +319,12 @@
   "item.brick_and_mortar.white_ash_brick": "White Ash Brick",
   "item.brick_and_mortar.white_soul_ash_brick": "White Soul Ash Brick",
   "subtitles.brick_and_mortar.block.kiln.fire_crackle": "Kiln crackles",
+  "tag.item.brick_and_mortar.ash_masonry": "Ash Masonry",
   "tag.item.brick_and_mortar.nether_masonry": "Nether Masonry",
   "tag.item.brick_and_mortar.purpur_masonry": "Purpur Masonry",
+  "tag.item.brick_and_mortar.resin_masonry": "Resin Masonry",
+  "tag.item.brick_and_mortar.soul_ash_masonry": "Soul Ash Masonry",
   "tag.item.brick_and_mortar.soul_nether_masonry": "Soul Nether Masonry",
-  "tag.item.brick_and_mortar.soul_purpur_masonry": "Soul Purpur Masonry"
+  "tag.item.brick_and_mortar.soul_purpur_masonry": "Soul Purpur Masonry",
+  "tag.item.brick_and_mortar.soul_resin_masonry": "Soul Resin Masonry"
 }
