@@ -21,6 +21,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
@@ -37,7 +38,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.state.BlockState;
@@ -137,8 +137,24 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements Worldly
                 (state.getValue(KilnBlock.OPEN_BACK) ? 1 : 0) +
                 (state.getValue(KilnBlock.OPEN_RIGHT) ? 1 : 0);
 
-        Block baseBlock = level.getBlockState(pos.below()).getBlock();
+        BlockState baseBlockState = level.getBlockState(pos.below());
+        if (!baseBlockState.is(BlockTags.SOUL_FIRE_BASE_BLOCKS) && baseBlockState.hasBlockEntity()) {
+            BlockState below2 = level.getBlockState(pos.below(2));
+            if (below2.is(BlockTags.SOUL_FIRE_BASE_BLOCKS)) {
+                baseBlockState = below2;
+            }
+        }
+        Block baseBlock = baseBlockState.getBlock();
+        boolean isSoul = baseBlockState.is(BlockTags.SOUL_FIRE_BASE_BLOCKS);
+
+        if (state.getValue(KilnBlock.SOUL) != isSoul) {
+            state = state.setValue(KilnBlock.SOUL, isSoul);
+            level.setBlock(pos, state, 3);
+            changed = true;
+        }
+
         KilnRecipeInput recipeInput = new KilnRecipeInput(inputStack, baseBlock, openDoors);
+
         var recipeHolder = inputStack.isEmpty() ? null : level.getRecipeManager().getRecipeFor(ModRecipes.KILN_TYPE.get(), recipeInput, level).orElse(null);
         KilnRecipe recipe = recipeHolder != null ? recipeHolder.value() : null;
 

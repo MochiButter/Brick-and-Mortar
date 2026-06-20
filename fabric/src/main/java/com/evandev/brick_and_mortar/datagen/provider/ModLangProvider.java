@@ -29,6 +29,11 @@ public class ModLangProvider extends FabricLanguageProvider {
         translationBuilder.add("emi.brick_and_mortar.doors_required", "Requires %s open door(s)");
         translationBuilder.add("emi.brick_and_mortar.doors_closed", "Requires doors to be closed");
 
+        translationBuilder.add("tag.item.brick_and_mortar.nether_masonry", "Nether Masonry");
+        translationBuilder.add("tag.item.brick_and_mortar.purpur_masonry", "Purpur Masonry");
+        translationBuilder.add("tag.item.brick_and_mortar.soul_nether_masonry", "Soul Nether Masonry");
+        translationBuilder.add("tag.item.brick_and_mortar.soul_purpur_masonry", "Soul Purpur Masonry");
+
         for (var blockObj : ModBlocks.ALL_DECORATIVE_BLOCKS) {
             translationBuilder.add(blockObj.get(), formatName(blockObj.getId().getPath()));
         }

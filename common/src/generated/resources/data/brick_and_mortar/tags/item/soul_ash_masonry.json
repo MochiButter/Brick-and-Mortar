@@ -1,0 +1,162 @@
+{
+    "values": [
+        {
+            "id": "brick_and_mortar:soul_ash_brick",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:white_soul_ash_brick",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:gray_soul_ash_brick",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:black_soul_ash_brick",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:soul_ash_bricks",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:soul_ash_brick_stairs",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:soul_ash_brick_slab",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:soul_ash_brick_wall",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:white_soul_ash_bricks",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:white_soul_ash_brick_stairs",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:white_soul_ash_brick_slab",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:white_soul_ash_brick_wall",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:gray_soul_ash_bricks",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:gray_soul_ash_brick_stairs",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:gray_soul_ash_brick_slab",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:gray_soul_ash_brick_wall",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:black_soul_ash_bricks",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:black_soul_ash_brick_stairs",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:black_soul_ash_brick_slab",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:black_soul_ash_brick_wall",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:soul_ash_tiles",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:soul_ash_tile_stairs",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:soul_ash_tile_slab",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:soul_ash_tile_wall",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:white_soul_ash_tiles",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:white_soul_ash_tile_stairs",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:white_soul_ash_tile_slab",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:white_soul_ash_tile_wall",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:gray_soul_ash_tiles",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:gray_soul_ash_tile_stairs",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:gray_soul_ash_tile_slab",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:gray_soul_ash_tile_wall",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:black_soul_ash_tiles",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:black_soul_ash_tile_stairs",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:black_soul_ash_tile_slab",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:black_soul_ash_tile_wall",
+            "required": false
+        }
+    ],
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "supplementaries"
+        }
+    ],
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "supplementaries"
+            ]
+        }
+    ]
+}

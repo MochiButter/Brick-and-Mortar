@@ -60,7 +60,8 @@ tasks.named("runDatagen") {
         def dataDir = project(":common").file("src/generated/resources/data/brick_and_mortar")
 
         def compatMap = [
-                'ash': 'supplementaries' // TODO: expand this as needed
+                'ash': 'supplementaries',
+                'resin': 'vanillabackport'
         ]
 
         if (dataDir.exists()) {
@@ -68,24 +69,25 @@ tasks.named("runDatagen") {
                 def content = file.text
                 def json = new JsonSlurper().parseText(content)
                 def modified = false
-
                 def fileName = file.name
+
                 compatMap.each { keyword, modid ->
                     if (fileName.contains(keyword)) {
-                        json["neoforge:conditions"] = [[
-                                                               "type": "neoforge:mod_loaded",
-                                                               "modid": modid
-                                                       ]]
-                        json["fabric:load_conditions"] = [[
-                                                                  "condition": "fabric:all_mods_loaded",
-                                                                  "values": [modid]
-                                                          ]]
-                        modified = true
+                        if (json["fabric:load_conditions"] == null) {
+                            json["fabric:load_conditions"] = [["condition": "fabric:all_mods_loaded", "values": []]]
+                        }
+
+                        def allMods = json["fabric:load_conditions"].find { it.condition == "fabric:all_mods_loaded" }
+                        if (allMods != null && !allMods.values.contains(modid)) {
+                            allMods.values.add(modid)
+                            modified = true
+                        }
                     }
                 }
 
-                if (json["fabric:load_conditions"] != null && !modified) {
+                if (json["fabric:load_conditions"] != null) {
                     def neoforgeConds = []
+
                     json["fabric:load_conditions"].each { fCond ->
                         if (fCond.condition == "fabric:all_mods_loaded") {
                             fCond.values.each { modid ->
@@ -97,7 +99,7 @@ tasks.named("runDatagen") {
                         }
                     }
 
-                    if (!neoforgeConds.isEmpty()) {
+                    if (!neoforgeConds.isEmpty() && json["neoforge:conditions"] != neoforgeConds) {
                         json["neoforge:conditions"] = neoforgeConds
                         modified = true
                     }

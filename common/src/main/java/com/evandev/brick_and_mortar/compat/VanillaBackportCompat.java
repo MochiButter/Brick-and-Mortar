@@ -28,6 +28,9 @@ public class VanillaBackportCompat {
             CompatHandler.registerDummyItemIfMissing("minecraft", "resin_clump");
             CompatHandler.registerDummyItemIfMissing("minecraft", "resin_brick");
             CompatHandler.registerDummyBlockIfMissing("minecraft", "resin_bricks");
+            CompatHandler.registerDummyBlockIfMissing("minecraft", "resin_brick_stairs");
+            CompatHandler.registerDummyBlockIfMissing("minecraft", "resin_brick_slab");
+            CompatHandler.registerDummyBlockIfMissing("minecraft", "resin_brick_wall");
         }
     }
 }

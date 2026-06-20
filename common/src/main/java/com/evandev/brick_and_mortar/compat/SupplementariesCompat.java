@@ -40,6 +40,9 @@ public class SupplementariesCompat {
             CompatHandler.registerDummyItemIfMissing(CompatMods.SUPPLEMENTARIES, "ash");
             CompatHandler.registerDummyItemIfMissing(CompatMods.SUPPLEMENTARIES, "ash_brick");
             CompatHandler.registerDummyBlockIfMissing(CompatMods.SUPPLEMENTARIES, "ash_bricks");
+            CompatHandler.registerDummyBlockIfMissing(CompatMods.SUPPLEMENTARIES, "ash_bricks_stairs");
+            CompatHandler.registerDummyBlockIfMissing(CompatMods.SUPPLEMENTARIES, "ash_bricks_slab");
+            CompatHandler.registerDummyBlockIfMissing(CompatMods.SUPPLEMENTARIES, "ash_bricks_wall");
         }
     }
 }

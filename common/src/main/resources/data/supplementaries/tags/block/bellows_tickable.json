@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "brick_and_mortar:kiln",
+      "required": false
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "supplementaries"
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "supplementaries"
+      ]
+    }
+  ]
+}

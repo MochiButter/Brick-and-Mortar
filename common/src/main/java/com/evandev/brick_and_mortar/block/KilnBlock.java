@@ -12,6 +12,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -52,6 +53,28 @@ public class KilnBlock extends BaseEntityBlock {
                 .setValue(OPEN_RIGHT, false));
     }
 
+
+    public static boolean isSoulBase(LevelAccessor level, BlockPos pos) {
+        BlockState stateBelow = level.getBlockState(pos.below());
+        if (stateBelow.is(BlockTags.SOUL_FIRE_BASE_BLOCKS)) {
+            return true;
+        }
+        if (stateBelow.hasBlockEntity()) {
+            return level.getBlockState(pos.below(2)).is(BlockTags.SOUL_FIRE_BASE_BLOCKS);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean hasAnalogOutputSignal(@NotNull BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getAnalogOutputSignal(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
+        return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(pos));
+    }
+
     @Override
     protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
@@ -75,7 +98,7 @@ public class KilnBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        boolean isSoul = context.getLevel().getBlockState(context.getClickedPos().below()).is(BlockTags.SOUL_FIRE_BASE_BLOCKS);
+        boolean isSoul = isSoulBase(context.getLevel(), context.getClickedPos());
         return this.defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection().getOpposite())
                 .setValue(SOUL, isSoul);
@@ -95,7 +118,7 @@ public class KilnBlock extends BaseEntityBlock {
     @Override
     public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos currentPos, @NotNull BlockPos neighborPos) {
         if (direction == Direction.DOWN) {
-            boolean isSoul = neighborState.is(BlockTags.SOUL_FIRE_BASE_BLOCKS);
+            boolean isSoul = isSoulBase(level, currentPos);
 
             if (state.getValue(SOUL) != isSoul) {
                 return state.setValue(SOUL, isSoul);
