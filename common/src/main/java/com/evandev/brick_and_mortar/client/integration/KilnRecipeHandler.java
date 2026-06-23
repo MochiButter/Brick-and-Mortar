@@ -42,7 +42,7 @@ public class KilnRecipeHandler implements StandardRecipeHandler<KilnMenu> {
             Minecraft mc = Minecraft.getInstance();
 
             if (mc.gameMode != null) {
-                int requiredDoors = kilnRecipe.requiredDoorsOpen();
+                int requiredDoors = kilnRecipe.getRequiredDoorsOpen();
 
                 boolean targetLeft = requiredDoors >= 1;
                 boolean targetRight = requiredDoors >= 2;

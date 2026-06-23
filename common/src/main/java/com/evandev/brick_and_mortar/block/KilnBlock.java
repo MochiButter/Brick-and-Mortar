@@ -3,13 +3,13 @@ package com.evandev.brick_and_mortar.block;
 import com.evandev.brick_and_mortar.block.entity.KilnBlockEntity;
 import com.evandev.brick_and_mortar.registry.ModBlockEntities;
 import com.evandev.brick_and_mortar.registry.ModSounds;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -39,7 +39,6 @@ public class KilnBlock extends BaseEntityBlock {
     public static final BooleanProperty OPEN_LEFT = BooleanProperty.create("open_left");
     public static final BooleanProperty OPEN_BACK = BooleanProperty.create("open_back");
     public static final BooleanProperty OPEN_RIGHT = BooleanProperty.create("open_right");
-    public static final MapCodec<KilnBlock> CODEC = simpleCodec(KilnBlock::new);
 
     public KilnBlock(Properties properties) {
         super(properties);
@@ -76,11 +75,6 @@ public class KilnBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
-    }
-
-    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, LIT, SOUL, OPEN_FRONT, OPEN_LEFT, OPEN_BACK, OPEN_RIGHT);
     }
@@ -105,7 +99,7 @@ public class KilnBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
+    public @NotNull InteractionResult use(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, InteractionHand hand, @NotNull BlockHitResult hitResult) {
         if (level.isClientSide) return InteractionResult.SUCCESS;
 
         BlockEntity blockEntity = level.getBlockEntity(pos);

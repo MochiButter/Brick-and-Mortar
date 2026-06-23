@@ -11,12 +11,11 @@ import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 @EmiEntrypoint
 public class BMEmiPlugin implements EmiPlugin {
-    public static final ResourceLocation KILN_CATEGORY_ID = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "kiln_firing");
+    public static final ResourceLocation KILN_CATEGORY_ID = new ResourceLocation(Constants.MOD_ID, "kiln_firing");
     public static final EmiStack KILN_WORKSTATION = EmiStack.of(ModBlocks.KILN.get());
 
     public static final EmiRecipeCategory KILN_CATEGORY = new EmiRecipeCategory(
@@ -33,7 +32,7 @@ public class BMEmiPlugin implements EmiPlugin {
         registry.addRecipeHandler(ModMenus.KILN_MENU.get(), new KilnRecipeHandler());
 
         RecipeManager recipeManager = registry.getRecipeManager();
-        for (RecipeHolder<KilnRecipe> recipe : recipeManager.getAllRecipesFor(ModRecipes.KILN_TYPE.get())) {
+        for (KilnRecipe recipe : recipeManager.getAllRecipesFor(ModRecipes.KILN_TYPE.get())) {
             registry.addRecipe(new KilnEmiRecipe(recipe));
         }
     }

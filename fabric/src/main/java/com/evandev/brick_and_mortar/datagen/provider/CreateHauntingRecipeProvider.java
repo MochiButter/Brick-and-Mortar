@@ -27,7 +27,7 @@ public class CreateHauntingRecipeProvider implements DataProvider {
     private final PackOutput.PathProvider pathProvider;
 
     public CreateHauntingRecipeProvider(FabricDataOutput output) {
-        this.pathProvider = output.createPathProvider(PackOutput.Target.DATA_PACK, "recipe/haunting");
+        this.pathProvider = output.createPathProvider(PackOutput.Target.DATA_PACK, "recipes/haunting");
     }
 
     @Override
@@ -46,12 +46,12 @@ public class CreateHauntingRecipeProvider implements DataProvider {
 
         addHaunting(futures, cache, SupplementariesCompat.WHITE_ASH_BRICK.get(), SupplementariesCompat.WHITE_SOUL_ASH_BRICK.get(), CompatMods.SUPPLEMENTARIES);
         addHaunting(futures, cache, SupplementariesCompat.GRAY_ASH_BRICK.get(), SupplementariesCompat.GRAY_SOUL_ASH_BRICK.get(), CompatMods.SUPPLEMENTARIES);
-        addHaunting(futures, cache, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(CompatMods.SUPPLEMENTARIES, "ash_brick")), SupplementariesCompat.SOUL_ASH_BRICK.get(), CompatMods.SUPPLEMENTARIES);
+        addHaunting(futures, cache, BuiltInRegistries.ITEM.get(new ResourceLocation(CompatMods.SUPPLEMENTARIES, "ash_brick")), SupplementariesCompat.SOUL_ASH_BRICK.get(), CompatMods.SUPPLEMENTARIES);
         addHaunting(futures, cache, SupplementariesCompat.BLACK_ASH_BRICK.get(), SupplementariesCompat.BLACK_SOUL_ASH_BRICK.get(), CompatMods.SUPPLEMENTARIES);
 
         addHaunting(futures, cache, VanillaBackportCompat.MELTED_RESIN_BRICK.get(), VanillaBackportCompat.MELTED_SOUL_RESIN_BRICK.get(), CompatMods.VANILLA_BACKPORT);
         addHaunting(futures, cache, VanillaBackportCompat.BRIGHT_RESIN_BRICK.get(), VanillaBackportCompat.BRIGHT_SOUL_RESIN_BRICK.get(), CompatMods.VANILLA_BACKPORT);
-        addHaunting(futures, cache, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("minecraft", "resin_brick")), VanillaBackportCompat.SOUL_RESIN_BRICK.get(), CompatMods.VANILLA_BACKPORT);
+        addHaunting(futures, cache, BuiltInRegistries.ITEM.get(new ResourceLocation("minecraft", "resin_brick")), VanillaBackportCompat.SOUL_RESIN_BRICK.get(), CompatMods.VANILLA_BACKPORT);
         addHaunting(futures, cache, VanillaBackportCompat.SMOKED_RESIN_BRICK.get(), VanillaBackportCompat.SMOKED_SOUL_RESIN_BRICK.get(), CompatMods.VANILLA_BACKPORT);
 
         addFamilyHaunting(futures, cache, ModBlocks.RAW_NETHER_BRICKS, ModBlocks.RAW_SOUL_NETHER_BRICKS);
@@ -89,10 +89,10 @@ public class CreateHauntingRecipeProvider implements DataProvider {
         addFamilyHaunting(futures, cache, SupplementariesCompat.GRAY_ASH_BRICKS, SupplementariesCompat.GRAY_SOUL_ASH_BRICKS, CompatMods.SUPPLEMENTARIES);
         addFamilyHaunting(futures, cache, SupplementariesCompat.BLACK_ASH_BRICKS, SupplementariesCompat.BLACK_SOUL_ASH_BRICKS, CompatMods.SUPPLEMENTARIES);
 
-        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(CompatMods.SUPPLEMENTARIES, "ash_bricks")), SupplementariesCompat.SOUL_ASH_BRICKS.base().get(), CompatMods.SUPPLEMENTARIES);
-        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(CompatMods.SUPPLEMENTARIES, "ash_bricks_stairs")), SupplementariesCompat.SOUL_ASH_BRICKS.stairs().get(), CompatMods.SUPPLEMENTARIES);
-        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(CompatMods.SUPPLEMENTARIES, "ash_bricks_slab")), SupplementariesCompat.SOUL_ASH_BRICKS.slab().get(), CompatMods.SUPPLEMENTARIES);
-        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(CompatMods.SUPPLEMENTARIES, "ash_bricks_wall")), SupplementariesCompat.SOUL_ASH_BRICKS.wall().get(), CompatMods.SUPPLEMENTARIES);
+        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(new ResourceLocation(CompatMods.SUPPLEMENTARIES, "ash_bricks")), SupplementariesCompat.SOUL_ASH_BRICKS.base().get(), CompatMods.SUPPLEMENTARIES);
+        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(new ResourceLocation(CompatMods.SUPPLEMENTARIES, "ash_bricks_stairs")), SupplementariesCompat.SOUL_ASH_BRICKS.stairs().get(), CompatMods.SUPPLEMENTARIES);
+        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(new ResourceLocation(CompatMods.SUPPLEMENTARIES, "ash_bricks_slab")), SupplementariesCompat.SOUL_ASH_BRICKS.slab().get(), CompatMods.SUPPLEMENTARIES);
+        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(new ResourceLocation(CompatMods.SUPPLEMENTARIES, "ash_bricks_wall")), SupplementariesCompat.SOUL_ASH_BRICKS.wall().get(), CompatMods.SUPPLEMENTARIES);
 
         addFamilyHaunting(futures, cache, SupplementariesCompat.WHITE_ASH_TILES, SupplementariesCompat.WHITE_SOUL_ASH_TILES, CompatMods.SUPPLEMENTARIES);
         addFamilyHaunting(futures, cache, SupplementariesCompat.GRAY_ASH_TILES, SupplementariesCompat.GRAY_SOUL_ASH_TILES, CompatMods.SUPPLEMENTARIES);
@@ -103,10 +103,10 @@ public class CreateHauntingRecipeProvider implements DataProvider {
         addFamilyHaunting(futures, cache, VanillaBackportCompat.BRIGHT_RESIN_BRICKS, VanillaBackportCompat.BRIGHT_SOUL_RESIN_BRICKS, CompatMods.VANILLA_BACKPORT);
         addFamilyHaunting(futures, cache, VanillaBackportCompat.SMOKED_RESIN_BRICKS, VanillaBackportCompat.SMOKED_SOUL_RESIN_BRICKS, CompatMods.VANILLA_BACKPORT);
 
-        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath("minecraft", "resin_bricks")), VanillaBackportCompat.SOUL_RESIN_BRICKS.base().get(), CompatMods.VANILLA_BACKPORT);
-        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath("minecraft", "resin_brick_stairs")), VanillaBackportCompat.SOUL_RESIN_BRICKS.stairs().get(), CompatMods.VANILLA_BACKPORT);
-        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath("minecraft", "resin_brick_slab")), VanillaBackportCompat.SOUL_RESIN_BRICKS.slab().get(), CompatMods.VANILLA_BACKPORT);
-        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath("minecraft", "resin_brick_wall")), VanillaBackportCompat.SOUL_RESIN_BRICKS.wall().get(), CompatMods.VANILLA_BACKPORT);
+        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(new ResourceLocation("minecraft", "resin_bricks")), VanillaBackportCompat.SOUL_RESIN_BRICKS.base().get(), CompatMods.VANILLA_BACKPORT);
+        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(new ResourceLocation("minecraft", "resin_brick_stairs")), VanillaBackportCompat.SOUL_RESIN_BRICKS.stairs().get(), CompatMods.VANILLA_BACKPORT);
+        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(new ResourceLocation("minecraft", "resin_brick_slab")), VanillaBackportCompat.SOUL_RESIN_BRICKS.slab().get(), CompatMods.VANILLA_BACKPORT);
+        addHaunting(futures, cache, BuiltInRegistries.BLOCK.get(new ResourceLocation("minecraft", "resin_brick_wall")), VanillaBackportCompat.SOUL_RESIN_BRICKS.wall().get(), CompatMods.VANILLA_BACKPORT);
 
         return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
     }
@@ -159,7 +159,7 @@ public class CreateHauntingRecipeProvider implements DataProvider {
         json.add("fabric:load_conditions", conditions);
 
         String path = BuiltInRegistries.ITEM.getKey(output.asItem()).getPath() + "_haunting";
-        ResourceLocation loc = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, path);
+        ResourceLocation loc = new ResourceLocation(Constants.MOD_ID, path);
         futures.add(DataProvider.saveStable(cache, json, this.pathProvider.json(loc)));
     }
 

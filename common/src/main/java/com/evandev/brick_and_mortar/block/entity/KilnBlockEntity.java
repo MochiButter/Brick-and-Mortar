@@ -12,7 +12,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -32,10 +31,9 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.RecipeCraftingHolder;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
@@ -47,7 +45,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class KilnBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, MenuProvider, RecipeCraftingHolder {
+public class KilnBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, MenuProvider {
     private static final int[] SLOTS_FOR_UP = new int[]{0};
     private static final int[] SLOTS_FOR_DOWN = new int[]{2, 1};
     private static final int[] SLOTS_FOR_SIDES = new int[]{1};
@@ -155,14 +153,13 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements Worldly
 
         KilnRecipeInput recipeInput = new KilnRecipeInput(inputStack, baseBlock, openDoors);
 
-        var recipeHolder = inputStack.isEmpty() ? null : level.getRecipeManager().getRecipeFor(ModRecipes.KILN_TYPE.get(), recipeInput, level).orElse(null);
-        KilnRecipe recipe = recipeHolder != null ? recipeHolder.value() : null;
+        KilnRecipe recipe = inputStack.isEmpty() ? null : level.getRecipeManager().getRecipeFor(ModRecipes.KILN_TYPE.get(), recipeInput, level).orElse(null);
 
         boolean canCraft = false;
         if (recipe != null) {
             ItemStack resultStack = recipe.getResultItem(level.registryAccess());
             ItemStack outputSlot = entity.items.get(2);
-            if (outputSlot.isEmpty() || (ItemStack.isSameItemSameComponents(outputSlot, resultStack) && outputSlot.getCount() + resultStack.getCount() <= outputSlot.getMaxStackSize())) {
+            if (outputSlot.isEmpty() || (ItemStack.isSameItem(outputSlot, resultStack) && outputSlot.getCount() + resultStack.getCount() <= outputSlot.getMaxStackSize())) {
                 canCraft = true;
             }
         }
@@ -185,7 +182,7 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements Worldly
         }
 
         if (entity.litTime > 0 && canCraft) {
-            entity.maxProgress = recipe.cookingTime();
+            entity.maxProgress = recipe.getCookingTime();
             entity.progress++;
             if (entity.progress >= entity.maxProgress) {
                 entity.progress = 0;
@@ -199,7 +196,7 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements Worldly
                 }
                 inputStack.shrink(1);
 
-                entity.setRecipeUsed(recipeHolder);
+                entity.setRecipeUsed(recipe);
                 changed = true;
             }
         } else if (!canCraft && entity.litTime == 0) {
@@ -303,23 +300,23 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements Worldly
     }
 
     @Override
-    protected void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
-        super.loadAdditional(tag, registries);
-        ContainerHelper.loadAllItems(tag, this.items, registries);
+    public void load(@NotNull CompoundTag tag) {
+        super.load(tag);
+        ContainerHelper.loadAllItems(tag, this.items);
         this.progress = tag.getInt("CookTime");
         this.maxProgress = tag.getInt("CookTimeTotal");
         this.litTime = tag.getInt("BurnTime");
         this.litDuration = tag.getInt("BurnDuration");
         CompoundTag recipesTag = tag.getCompound("RecipesUsed");
         for (String key : recipesTag.getAllKeys()) {
-            this.recipesUsed.put(ResourceLocation.parse(key), recipesTag.getInt(key));
+            this.recipesUsed.put(new ResourceLocation(key), recipesTag.getInt(key));
         }
     }
 
     @Override
-    protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
-        super.saveAdditional(tag, registries);
-        ContainerHelper.saveAllItems(tag, this.items, registries);
+    protected void saveAdditional(@NotNull CompoundTag tag) {
+        super.saveAdditional(tag);
+        ContainerHelper.saveAllItems(tag, this.items);
         tag.putInt("CookTime", this.progress);
         tag.putInt("CookTimeTotal", this.maxProgress);
         tag.putInt("BurnTime", this.litTime);
@@ -366,10 +363,12 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements Worldly
     @Override
     public void setItem(int slot, @NotNull ItemStack stack) {
         ItemStack currentStack = this.items.get(slot);
-        boolean isSameItem = !stack.isEmpty() && ItemStack.isSameItemSameComponents(currentStack, stack);
+        boolean isSameItem = !stack.isEmpty() && ItemStack.isSameItem(currentStack, stack);
 
         this.items.set(slot, stack);
-        stack.limitSize(this.getMaxStackSize(stack));
+        if (stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
+        }
 
         if (slot == 0 && !isSameItem) {
             this.progress = 0;
@@ -377,53 +376,32 @@ public class KilnBlockEntity extends BaseContainerBlockEntity implements Worldly
         }
     }
 
-    @Override
-    protected @NotNull NonNullList<ItemStack> getItems() {
-        return this.items;
-    }
-
-    @Override
-    protected void setItems(@NotNull NonNullList<ItemStack> items) {
-        this.items = items;
-    }
-
-    @Nullable
-    @Override
-    public RecipeHolder<?> getRecipeUsed() {
-        return null;
-    }
-
-    @Override
-    public void setRecipeUsed(@Nullable RecipeHolder<?> recipe) {
+    public void setRecipeUsed(@Nullable KilnRecipe recipe) {
         if (recipe != null) {
-            this.recipesUsed.addTo(recipe.id(), 1);
+            this.recipesUsed.addTo(recipe.getId(), 1);
         }
     }
 
-    @Override
-    public void awardUsedRecipes(@NotNull Player player, @NotNull List<ItemStack> items) {
-    }
-
     public void awardUsedRecipesAndPopExperience(ServerPlayer player) {
-        List<RecipeHolder<?>> list = this.getRecipesToAwardAndPopExperience(player.serverLevel(), player.position());
+        List<Recipe<?>> list = this.getRecipesToAwardAndPopExperience(player.serverLevel(), player.position());
         player.awardRecipes(list);
 
-        for (RecipeHolder<?> recipeholder : list) {
-            if (recipeholder != null) {
-                player.triggerRecipeCrafted(recipeholder, this.items);
+        for (Recipe<?> recipe : list) {
+            if (recipe != null) {
+                player.triggerRecipeCrafted(recipe, this.items);
             }
         }
         this.recipesUsed.clear();
     }
 
-    public List<RecipeHolder<?>> getRecipesToAwardAndPopExperience(ServerLevel level, Vec3 popVec) {
-        List<RecipeHolder<?>> list = Lists.newArrayList();
+    public List<Recipe<?>> getRecipesToAwardAndPopExperience(ServerLevel level, Vec3 popVec) {
+        List<Recipe<?>> list = Lists.newArrayList();
 
         for (Object2IntMap.Entry<ResourceLocation> entry : this.recipesUsed.object2IntEntrySet()) {
-            level.getRecipeManager().byKey(entry.getKey()).ifPresent(recipeHolder -> {
-                list.add(recipeHolder);
-                if (recipeHolder.value() instanceof KilnRecipe kilnRecipe) {
-                    createExperience(level, popVec, entry.getIntValue(), kilnRecipe.experience());
+            level.getRecipeManager().byKey(entry.getKey()).ifPresent(recipe -> {
+                list.add(recipe);
+                if (recipe instanceof KilnRecipe kilnRecipe) {
+                    createExperience(level, popVec, entry.getIntValue(), kilnRecipe.getExperience());
                 }
             });
         }

@@ -11,7 +11,6 @@ import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.RecipeHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ public class KilnEmiRecipe implements EmiRecipe {
                 String textureName = soul == 1 ? baseName + "_soul" : baseName;
 
                 STATUS_ICONS[soul][doors] = new EmiTexture(
-                        ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID,
+                        new ResourceLocation(Constants.MOD_ID,
                                 "textures/gui/sprites/emi/" + textureName + ".png"),
                         0, 0, 16, 16,
                         16, 16, 16, 16
@@ -46,11 +45,11 @@ public class KilnEmiRecipe implements EmiRecipe {
     private final EmiStack output;
     private final KilnRecipe recipe;
 
-    public KilnEmiRecipe(RecipeHolder<KilnRecipe> recipeHolder) {
-        this.id = recipeHolder.id();
-        this.recipe = recipeHolder.value();
-        this.input = EmiIngredient.of(recipe.input());
-        this.output = EmiStack.of(recipe.output());
+    public KilnEmiRecipe(KilnRecipe recipe) {
+        this.id = recipe.getId();
+        this.recipe = recipe;
+        this.input = EmiIngredient.of(recipe.getIngredients().get(0));
+        this.output = EmiStack.of(recipe.getOutput());
     }
 
     @Override
@@ -94,23 +93,23 @@ public class KilnEmiRecipe implements EmiRecipe {
 
         widgets.addSlot(this.input, 0, 22);
 
-        widgets.addFillingArrow(24, 23, 50 * this.recipe.cookingTime()).tooltip((mx, my) ->
+        widgets.addFillingArrow(24, 23, 50 * this.recipe.getCookingTime()).tooltip((mx, my) ->
                 List.of(ClientTooltipComponent.create(
-                        EmiPort.ordered(EmiPort.translatable("emi.cooking.time", this.recipe.cookingTime() / 20f))
+                        EmiPort.ordered(EmiPort.translatable("emi.cooking.time", this.recipe.getCookingTime() / 20f))
                 )));
 
-        widgets.addText(EmiPort.ordered(EmiPort.translatable("emi.cooking.experience", this.recipe.experience())), 26, 46, -1, true);
+        widgets.addText(EmiPort.ordered(EmiPort.translatable("emi.cooking.experience", this.recipe.getExperience())), 26, 46, -1, true);
 
-        int doors = Math.max(0, Math.min(3, this.recipe.requiredDoorsOpen()));
-        boolean soul = this.recipe.requiresSoulBase();
+        int doors = Math.max(0, Math.min(3, this.recipe.getRequiredDoorsOpen()));
+        boolean soul = this.recipe.getRequiresSoulBase();
         EmiTexture statusIcon = STATUS_ICONS[soul ? 1 : 0][doors];
 
         widgets.addTexture(statusIcon, 61, 0).tooltip((mx, my) -> {
             List<ClientTooltipComponent> tooltip = new ArrayList<>();
 
-            if (this.recipe.requiredDoorsOpen() > 0) {
+            if (this.recipe.getRequiredDoorsOpen() > 0) {
                 tooltip.add(ClientTooltipComponent.create(
-                        EmiPort.ordered(EmiPort.translatable("emi.brick_and_mortar.doors_required", this.recipe.requiredDoorsOpen()))
+                        EmiPort.ordered(EmiPort.translatable("emi.brick_and_mortar.doors_required", this.recipe.getRequiredDoorsOpen()))
                 ));
             } else {
                 tooltip.add(ClientTooltipComponent.create(
@@ -118,7 +117,7 @@ public class KilnEmiRecipe implements EmiRecipe {
                 ));
             }
 
-            if (this.recipe.requiresSoulBase()) {
+            if (this.recipe.getRequiresSoulBase()) {
                 tooltip.add(ClientTooltipComponent.create(
                         EmiPort.ordered(EmiPort.translatable("emi.brick_and_mortar.requires_soul"))
                 ));

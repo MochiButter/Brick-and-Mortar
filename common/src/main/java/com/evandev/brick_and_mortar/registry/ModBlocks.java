@@ -87,19 +87,19 @@ public class ModBlocks {
     public static final RegistryObject<Block> CHISELED_SOUL_PURPUR = registerChiseled("chiseled_soul_purpur");
 
     public static DecorativeFamily registerFamily(String name) {
-        RegistryObject<Block> base = BLOCKS.register(name, () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)));
+        RegistryObject<Block> base = BLOCKS.register(name, () -> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS)));
         String childName = name.replace("bricks", "brick").replace("tiles", "tile").replace("_block", "");
 
-        RegistryObject<Block> stairs = BLOCKS.register(childName + "_stairs", () -> new ModStairBlock(Blocks.BRICKS.defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)));
-        RegistryObject<Block> slab = BLOCKS.register(childName + "_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)));
+        RegistryObject<Block> stairs = BLOCKS.register(childName + "_stairs", () -> new ModStairBlock(Blocks.BRICKS.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.BRICKS)));
+        RegistryObject<Block> slab = BLOCKS.register(childName + "_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.BRICKS)));
 
         RegistryObject<Block> wall = null;
         RegistryObject<Block> pillar = null;
 
         if (!name.contains("purpur") || name.contains("bricks") || name.contains("tiles")) {
-            wall = BLOCKS.register(childName + "_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)));
+            wall = BLOCKS.register(childName + "_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.BRICKS)));
         } else {
-            pillar = BLOCKS.register(childName + "_pillar", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PURPUR_PILLAR)));
+            pillar = BLOCKS.register(childName + "_pillar", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.PURPUR_PILLAR)));
         }
 
         DecorativeFamily family = new DecorativeFamily(base, stairs, slab, wall, pillar);
@@ -116,7 +116,7 @@ public class ModBlocks {
     }
 
     public static RegistryObject<Block> registerChiseled(String name) {
-        RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)));
+        RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS)));
         CHISELED_BLOCKS.add(block);
         ALL_DECORATIVE_BLOCKS.add(block);
         return block;

@@ -10,11 +10,11 @@ import com.evandev.brick_and_mortar.registry.ModBlocks;
 import com.evandev.brick_and_mortar.registry.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
+import net.fabricmc.fabric.api.resource.conditions.v1.DefaultResourceConditions;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -28,15 +28,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
 public class ModRecipeProvider extends FabricRecipeProvider {
 
     public ModRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-        super(output, registriesFuture);
+        super(output);
     }
 
     @Override
-    public void buildRecipes(RecipeOutput exporter) {
+    public void buildRecipes(Consumer<FinishedRecipe> exporter) {
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.KILN.get())
                 .pattern("BBB")
                 .pattern("BFB")
@@ -180,14 +181,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .pattern("BBB").define('B', base).unlockedBy("has_base", has(base)).save(exporter);
 
             SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, stairs, 1)
-                    .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.stairs().getId().getPath() + "_stonecutting"));
+                    .unlockedBy("has_base", has(base)).save(exporter, new ResourceLocation(Constants.MOD_ID, family.stairs().getId().getPath() + "_stonecutting"));
             SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, slab, 2)
-                    .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.slab().getId().getPath() + "_stonecutting"));
+                    .unlockedBy("has_base", has(base)).save(exporter, new ResourceLocation(Constants.MOD_ID, family.slab().getId().getPath() + "_stonecutting"));
 
             if (family.wall() != null) {
                 Block wall = family.wall().get();
                 SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, wall, 1)
-                        .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.wall().getId().getPath() + "_stonecutting"));
+                        .unlockedBy("has_base", has(base)).save(exporter, new ResourceLocation(Constants.MOD_ID, family.wall().getId().getPath() + "_stonecutting"));
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, wall, 6)
                         .pattern("BBB").pattern("BBB").define('B', base).unlockedBy("has_base", has(base)).save(exporter);
             }
@@ -195,7 +196,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             if (family.pillar() != null) {
                 Block pillar = family.pillar().get();
                 SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, pillar, 1)
-                        .unlockedBy("has_base", has(base)).save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, family.pillar().getId().getPath() + "_stonecutting"));
+                        .unlockedBy("has_base", has(base)).save(exporter, new ResourceLocation(Constants.MOD_ID, family.pillar().getId().getPath() + "_stonecutting"));
 
                 ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, pillar, 1)
                         .pattern("S")
@@ -210,11 +211,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         buildVanillaBackportCompat(exporter);
     }
 
-    private void buildSupplementariesCompat(RecipeOutput exporter) {
-        RecipeOutput suppExporter = this.withConditions(exporter, ResourceConditions.allModsLoaded(CompatMods.SUPPLEMENTARIES));
+    private void buildSupplementariesCompat(Consumer<FinishedRecipe> exporter) {
+        Consumer<FinishedRecipe> suppExporter = this.withConditions(exporter, DefaultResourceConditions.allModsLoaded(CompatMods.SUPPLEMENTARIES));
 
-        Item suppAshBrick = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(CompatMods.SUPPLEMENTARIES, "ash_brick"));
-        Item suppAsh = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(CompatMods.SUPPLEMENTARIES, "ash"));
+        Item suppAshBrick = BuiltInRegistries.ITEM.get(new ResourceLocation(CompatMods.SUPPLEMENTARIES, "ash_brick"));
+        Item suppAsh = BuiltInRegistries.ITEM.get(new ResourceLocation(CompatMods.SUPPLEMENTARIES, "ash"));
 
         addFiringSequence(suppExporter, "ash_bricks", suppAsh, false,
                 SupplementariesCompat.WHITE_ASH_BRICK.get(),
@@ -239,7 +240,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         addBlockRecipe(suppExporter, SupplementariesCompat.GRAY_SOUL_ASH_BRICK.get(), SupplementariesCompat.GRAY_SOUL_ASH_BRICKS.base().get());
         addBlockRecipe(suppExporter, SupplementariesCompat.BLACK_SOUL_ASH_BRICK.get(), SupplementariesCompat.BLACK_SOUL_ASH_BRICKS.base().get());
 
-        Block suppAshBricks = BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(CompatMods.SUPPLEMENTARIES, "ash_bricks"));
+        Block suppAshBricks = BuiltInRegistries.BLOCK.get(new ResourceLocation(CompatMods.SUPPLEMENTARIES, "ash_bricks"));
         addTileRecipe(suppExporter, suppAshBricks, SupplementariesCompat.ASH_TILES.base().get());
 
         addTileRecipe(suppExporter, SupplementariesCompat.WHITE_ASH_BRICKS.base().get(), SupplementariesCompat.WHITE_ASH_TILES.base().get());
@@ -252,11 +253,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         addTileRecipe(suppExporter, SupplementariesCompat.BLACK_SOUL_ASH_BRICKS.base().get(), SupplementariesCompat.BLACK_SOUL_ASH_TILES.base().get());
     }
 
-    private void buildVanillaBackportCompat(RecipeOutput exporter) {
-        RecipeOutput vbExporter = this.withConditions(exporter, ResourceConditions.allModsLoaded(CompatMods.VANILLA_BACKPORT));
+    private void buildVanillaBackportCompat(Consumer<FinishedRecipe> exporter) {
+        Consumer<FinishedRecipe> vbExporter = this.withConditions(exporter, DefaultResourceConditions.allModsLoaded(CompatMods.VANILLA_BACKPORT));
 
-        Item resinClump = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("minecraft", "resin_clump"));
-        Item resinBrick = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("minecraft", "resin_brick"));
+        Item resinClump = BuiltInRegistries.ITEM.get(new ResourceLocation("minecraft", "resin_clump"));
+        Item resinBrick = BuiltInRegistries.ITEM.get(new ResourceLocation("minecraft", "resin_brick"));
 
         addFiringSequence(vbExporter, "resin_bricks", resinClump, false,
                 VanillaBackportCompat.MELTED_RESIN_BRICK.get(),
@@ -282,7 +283,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         addBlockRecipe(vbExporter, VanillaBackportCompat.SMOKED_SOUL_RESIN_BRICK.get(), VanillaBackportCompat.SMOKED_SOUL_RESIN_BRICKS.base().get());
     }
 
-    private void addPurpurBrickAndChiseledRecipes(RecipeOutput exporter, Block base, ModBlocks.DecorativeFamily brickFamily, RegistryObject<Block> chiseledBlock) {
+    private void addPurpurBrickAndChiseledRecipes(Consumer<FinishedRecipe> exporter, Block base, ModBlocks.DecorativeFamily brickFamily, RegistryObject<Block> chiseledBlock) {
         Block bricks = brickFamily.base().get();
         Block brickSlab = brickFamily.slab().get();
         Block chiseled = chiseledBlock.get();
@@ -303,17 +304,17 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, bricks, 1)
                 .unlockedBy("has_base", has(base))
-                .save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, brickFamily.base().getId().getPath() + "_from_base_stonecutting"));
+                .save(exporter, new ResourceLocation(Constants.MOD_ID, brickFamily.base().getId().getPath() + "_from_base_stonecutting"));
 
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), RecipeCategory.BUILDING_BLOCKS, chiseled, 1)
                 .unlockedBy("has_base", has(base))
-                .save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, chiseledBlock.getId().getPath() + "_from_base_stonecutting"));
+                .save(exporter, new ResourceLocation(Constants.MOD_ID, chiseledBlock.getId().getPath() + "_from_base_stonecutting"));
     }
 
     /**
      * Helper method to generate a full progression tier of Kiln recipes
      */
-    private void addFiringSequence(RecipeOutput exporter, String sequenceName, ItemLike input, boolean requiresSoulBase, ItemLike... tiers) {
+    private void addFiringSequence(Consumer<FinishedRecipe> exporter, String sequenceName, ItemLike input, boolean requiresSoulBase, ItemLike... tiers) {
         for (int doors = 0; doors < tiers.length; doors++) {
             ItemLike output = tiers[doors];
 
@@ -321,7 +322,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
             if (!requiresSoulBase && input.asItem() == output.asItem()) continue;
 
-            var builder = KilnRecipeBuilder.firing(Ingredient.of(input), new ItemStack(output))
+            KilnRecipeBuilder builder = KilnRecipeBuilder.firing(Ingredient.of(input), new ItemStack(output))
                     .requiredDoors(doors)
                     .unlockedBy("has_input", has(input));
 
@@ -331,7 +332,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 name += "_soul";
             }
 
-            ResourceLocation id = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "kiln_firing/" + name + "_tier_" + doors);
+            ResourceLocation id = new ResourceLocation(Constants.MOD_ID, "kiln_firing/" + name + "_tier_" + doors);
             builder.save(exporter, id);
         }
     }
@@ -339,16 +340,16 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     /**
      * Helper method to generate fast, 0-door Kiln smelting recipes.
      */
-    private void addStoneSmelting(RecipeOutput exporter, String name, Ingredient input, ItemLike output, float experience) {
+    private void addStoneSmelting(Consumer<FinishedRecipe> exporter, String name, Ingredient input, ItemLike output, float experience) {
         KilnRecipeBuilder.firing(input, output.asItem())
                 .cookingTime(100)
                 .experience(experience)
                 .requiredDoors(0)
                 .unlockedBy("has_input", has(output.asItem()))
-                .save(exporter, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "kiln_firing/" + name));
+                .save(exporter, new ResourceLocation(Constants.MOD_ID, "kiln_firing/" + name));
     }
 
-    private void addTileRecipe(RecipeOutput exporter, Block input, Block output) {
+    private void addTileRecipe(Consumer<FinishedRecipe> exporter, Block input, Block output) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 4)
                 .pattern("BB")
                 .pattern("BB")
@@ -357,11 +358,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .save(exporter);
     }
 
-    private void addBlockRecipe(RecipeOutput exporter, Item input, Block output) {
+    private void addBlockRecipe(Consumer<FinishedRecipe> exporter, Item input, Block output) {
         addBlockRecipe(exporter, input, output, 1);
     }
 
-    private void addBlockRecipe(RecipeOutput exporter, Item input, Block output, int count) {
+    private void addBlockRecipe(Consumer<FinishedRecipe> exporter, Item input, Block output, int count) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, count)
                 .pattern("II")
                 .pattern("II")

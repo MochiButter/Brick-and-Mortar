@@ -1,29 +1,43 @@
 package com.evandev.brick_and_mortar.recipe;
 
 import com.evandev.brick_and_mortar.registry.ModRecipes;
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
+import com.google.gson.JsonObject;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-public record KilnRecipe(Ingredient input, ItemStack output, float experience, int cookingTime,
-                         int requiredDoorsOpen, boolean requiresSoulBase) implements Recipe<KilnRecipeInput> {
+public class KilnRecipe implements Recipe<KilnRecipeInput> {
+    private final ResourceLocation id;
+    private final Ingredient input;
+    private final ItemStack output;
+    private final float experience;
+    private final int cookingTime;
+    private final int requiredDoorsOpen;
+    private final boolean requiresSoulBase;
+
+    public KilnRecipe(ResourceLocation id, Ingredient input, ItemStack output, float experience, int cookingTime,
+                      int requiredDoorsOpen, boolean requiresSoulBase){
+        this.id = id;
+        this.input = input;
+        this.output = output;
+        this.experience = experience;
+        this.cookingTime = cookingTime;
+        this.requiredDoorsOpen = requiredDoorsOpen;
+        this.requiresSoulBase = requiresSoulBase;
+    }
 
     @Override
-    public boolean matches(KilnRecipeInput recipeInput, @NotNull Level level) {
-        if (!input.test(recipeInput.item())) return false;
+    public boolean matches(KilnRecipeInput recipeInput, Level level) {
+        if (level.isClientSide) return false;
 
+        if (!input.test(recipeInput.getItem(0))) return false;
         boolean inputIsSoul = recipeInput.baseBlock().defaultBlockState().is(BlockTags.SOUL_FIRE_BASE_BLOCKS);
 
         if (requiresSoulBase != inputIsSoul) return false;
@@ -32,7 +46,7 @@ public record KilnRecipe(Ingredient input, ItemStack output, float experience, i
     }
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull KilnRecipeInput recipeInput, HolderLookup.@NotNull Provider lookupProvider) {
+    public ItemStack assemble(@NotNull KilnRecipeInput recipeInput, RegistryAccess registryAccess) {
         return output.copy();
     }
 
@@ -42,7 +56,19 @@ public record KilnRecipe(Ingredient input, ItemStack output, float experience, i
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider lookupProvider) {
+    public ResourceLocation getId() {
+        return id;
+    }
+
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        NonNullList<Ingredient> ingredients = NonNullList.create();
+        ingredients.add(this.input);
+        return ingredients;
+    }
+
+    @Override
+    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
         return output;
     }
 
@@ -56,34 +82,60 @@ public record KilnRecipe(Ingredient input, ItemStack output, float experience, i
         return ModRecipes.KILN_TYPE.get();
     }
 
+    public ItemStack getOutput() {
+        return output;
+    }
+
+    public int getCookingTime() {
+        return cookingTime;
+    }
+
+    public float getExperience() {
+        return experience;
+    }
+
+    public int getRequiredDoorsOpen() {
+        return requiredDoorsOpen;
+    }
+
+    public boolean getRequiresSoulBase() {
+        return requiresSoulBase;
+    }
+
     public static class Serializer implements RecipeSerializer<KilnRecipe> {
-        public static final MapCodec<KilnRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-                Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(KilnRecipe::input),
-                ItemStack.CODEC.fieldOf("result").forGetter(KilnRecipe::output),
-                Codec.FLOAT.optionalFieldOf("experience", 0.0F).forGetter(KilnRecipe::experience),
-                Codec.INT.optionalFieldOf("cookingtime", 200).forGetter(KilnRecipe::cookingTime),
-                Codec.INT.optionalFieldOf("required_doors", 0).forGetter(KilnRecipe::requiredDoorsOpen),
-                Codec.BOOL.optionalFieldOf("requires_soul_base", false).forGetter(KilnRecipe::requiresSoulBase)
-        ).apply(inst, KilnRecipe::new));
-
-        public static final StreamCodec<RegistryFriendlyByteBuf, KilnRecipe> STREAM_CODEC = StreamCodec.composite(
-                Ingredient.CONTENTS_STREAM_CODEC, KilnRecipe::input,
-                ItemStack.STREAM_CODEC, KilnRecipe::output,
-                ByteBufCodecs.FLOAT, KilnRecipe::experience,
-                ByteBufCodecs.INT, KilnRecipe::cookingTime,
-                ByteBufCodecs.INT, KilnRecipe::requiredDoorsOpen,
-                ByteBufCodecs.BOOL, KilnRecipe::requiresSoulBase,
-                KilnRecipe::new
-        );
-
         @Override
-        public @NotNull MapCodec<KilnRecipe> codec() {
-            return CODEC;
+        public KilnRecipe fromJson(ResourceLocation recipeID, JsonObject jsonObject) {
+            int cookingTime = GsonHelper.getAsInt(jsonObject, "cookingtime");
+            float experience = GsonHelper.getAsFloat(jsonObject, "experience");
+            JsonObject ingredients = GsonHelper.getAsJsonObject(jsonObject, "ingredient");
+            Ingredient input = Ingredient.fromJson(ingredients, false);
+            int requiredDoors = GsonHelper.getAsInt(jsonObject, "required_doors");
+            boolean requiresSoulBase = jsonObject.has("requires_soul") &&
+                    GsonHelper.getAsBoolean(jsonObject, "requires_soul");
+            JsonObject result = GsonHelper.getAsJsonObject(jsonObject, "result");
+            ItemStack output = ShapedRecipe.itemStackFromJson(result);
+            return new KilnRecipe(recipeID, input, output, experience, cookingTime, requiredDoors, requiresSoulBase);
         }
 
         @Override
-        public @NotNull StreamCodec<RegistryFriendlyByteBuf, KilnRecipe> streamCodec() {
-            return STREAM_CODEC;
+        public KilnRecipe fromNetwork(ResourceLocation recipeID, FriendlyByteBuf buf) {
+            Ingredient input = Ingredient.fromNetwork(buf);
+            ItemStack output = buf.readItem();
+            float experience = buf.readFloat();
+            int cookingTime = buf.readInt();
+            int requiredDoorsOpen = buf.readInt();
+            boolean requiresSoulBase = buf.readBoolean();
+            return new KilnRecipe(recipeID, input, output, experience, cookingTime, requiredDoorsOpen, requiresSoulBase);
+        }
+
+        @Override
+        public void toNetwork(FriendlyByteBuf buf, KilnRecipe recipe) {
+            recipe.input.toNetwork(buf);
+            buf.writeItem(recipe.output);
+            buf.writeFloat(recipe.experience);
+            buf.writeInt(recipe.cookingTime);
+            buf.writeInt(recipe.requiredDoorsOpen);
+            buf.writeBoolean(recipe.requiresSoulBase);
         }
     }
 }

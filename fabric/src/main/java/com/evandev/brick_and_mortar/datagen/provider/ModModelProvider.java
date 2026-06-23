@@ -58,17 +58,17 @@ public class ModModelProvider extends FabricModelProvider {
                                         if (soul) modelName += "_soul";
                                     }
 
-                                    ResourceLocation modelResLoc = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + modelName);
+                                    ResourceLocation modelResLoc = new ResourceLocation(Constants.MOD_ID, "block/" + modelName);
 
                                     if (generatedModels.add(modelName)) {
                                         TextureMapping mapping = new TextureMapping()
-                                                .put(TextureSlot.PARTICLE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + frontTex))
-                                                .put(TextureSlot.DOWN, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/kiln_bottom"))
-                                                .put(TextureSlot.UP, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + topTex))
-                                                .put(TextureSlot.NORTH, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + frontTex))
-                                                .put(TextureSlot.SOUTH, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + backTex))
-                                                .put(TextureSlot.EAST, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + leftTex))
-                                                .put(TextureSlot.WEST, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + rightTex));
+                                                .put(TextureSlot.PARTICLE, new ResourceLocation(Constants.MOD_ID, "block/" + frontTex))
+                                                .put(TextureSlot.DOWN, new ResourceLocation(Constants.MOD_ID, "block/kiln_bottom"))
+                                                .put(TextureSlot.UP, new ResourceLocation(Constants.MOD_ID, "block/" + topTex))
+                                                .put(TextureSlot.NORTH, new ResourceLocation(Constants.MOD_ID, "block/" + frontTex))
+                                                .put(TextureSlot.SOUTH, new ResourceLocation(Constants.MOD_ID, "block/" + backTex))
+                                                .put(TextureSlot.EAST, new ResourceLocation(Constants.MOD_ID, "block/" + leftTex))
+                                                .put(TextureSlot.WEST, new ResourceLocation(Constants.MOD_ID, "block/" + rightTex));
                                         ModelTemplates.CUBE.create(modelResLoc, mapping, gen.modelOutput);
                                     }
 
@@ -94,10 +94,10 @@ public class ModModelProvider extends FabricModelProvider {
         }
 
         gen.blockStateOutput.accept(multipart);
-        gen.delegateItemModel(ModBlocks.KILN.get(), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/kiln"));
+        gen.delegateItemModel(ModBlocks.KILN.get(), new ResourceLocation(Constants.MOD_ID, "block/kiln"));
 
         for (var family : ModBlocks.FAMILIES) {
-            ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bricks/" + family.base().getId().getPath());
+            ResourceLocation textureLoc = new ResourceLocation(Constants.MOD_ID, "block/bricks/" + family.base().getId().getPath());
             TextureMapping mapping = TextureMapping.cube(textureLoc);
 
             gen.createTrivialBlock(family.base().get(), mapping, ModelTemplates.CUBE_ALL);
@@ -120,8 +120,8 @@ public class ModModelProvider extends FabricModelProvider {
             }
 
             if (family.pillar() != null) {
-                ResourceLocation pillarSide = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bricks/" + family.pillar().getId().getPath());
-                ResourceLocation pillarTop = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bricks/" + family.pillar().getId().getPath() + "_top");
+                ResourceLocation pillarSide = new ResourceLocation(Constants.MOD_ID, "block/bricks/" + family.pillar().getId().getPath());
+                ResourceLocation pillarTop = new ResourceLocation(Constants.MOD_ID, "block/bricks/" + family.pillar().getId().getPath() + "_top");
 
                 TextureMapping pillarMapping = TextureMapping.column(pillarSide, pillarTop);
                 ResourceLocation pillarModel = ModelTemplates.CUBE_COLUMN.create(family.pillar().get(), pillarMapping, gen.modelOutput);
@@ -130,7 +130,7 @@ public class ModModelProvider extends FabricModelProvider {
         }
 
         for (var chiseled : ModBlocks.CHISELED_BLOCKS) {
-            ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bricks/" + chiseled.getId().getPath());
+            ResourceLocation textureLoc = new ResourceLocation(Constants.MOD_ID, "block/bricks/" + chiseled.getId().getPath());
             TextureMapping mapping = TextureMapping.cube(textureLoc);
             gen.createTrivialBlock(chiseled.get(), mapping, ModelTemplates.CUBE_ALL);
         }

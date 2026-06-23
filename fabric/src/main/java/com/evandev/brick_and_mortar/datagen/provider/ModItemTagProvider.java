@@ -17,16 +17,16 @@ import net.minecraft.world.item.Item;
 import java.util.concurrent.CompletableFuture;
 
 public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
-    public static final TagKey<Item> C_BRICKS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "bricks"));
+    public static final TagKey<Item> C_BRICKS = TagKey.create(Registries.ITEM, new ResourceLocation("c", "bricks"));
 
-    public static final TagKey<Item> ASH_MASONRY = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "ash_masonry"));
-    public static final TagKey<Item> SOUL_ASH_MASONRY = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "soul_ash_masonry"));
-    public static final TagKey<Item> NETHER_MASONRY = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "nether_masonry"));
-    public static final TagKey<Item> SOUL_NETHER_MASONRY = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "soul_nether_masonry"));
-    public static final TagKey<Item> PURPUR_MASONRY = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "purpur_masonry"));
-    public static final TagKey<Item> SOUL_PURPUR_MASONRY = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "soul_purpur_masonry"));
-    public static final TagKey<Item> RESIN_MASONRY = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "resin_masonry"));
-    public static final TagKey<Item> SOUL_RESIN_MASONRY = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "soul_resin_masonry"));
+    public static final TagKey<Item> ASH_MASONRY = TagKey.create(Registries.ITEM, new ResourceLocation(Constants.MOD_ID, "ash_masonry"));
+    public static final TagKey<Item> SOUL_ASH_MASONRY = TagKey.create(Registries.ITEM, new ResourceLocation(Constants.MOD_ID, "soul_ash_masonry"));
+    public static final TagKey<Item> NETHER_MASONRY = TagKey.create(Registries.ITEM, new ResourceLocation(Constants.MOD_ID, "nether_masonry"));
+    public static final TagKey<Item> SOUL_NETHER_MASONRY = TagKey.create(Registries.ITEM, new ResourceLocation(Constants.MOD_ID, "soul_nether_masonry"));
+    public static final TagKey<Item> PURPUR_MASONRY = TagKey.create(Registries.ITEM, new ResourceLocation(Constants.MOD_ID, "purpur_masonry"));
+    public static final TagKey<Item> SOUL_PURPUR_MASONRY = TagKey.create(Registries.ITEM, new ResourceLocation(Constants.MOD_ID, "soul_purpur_masonry"));
+    public static final TagKey<Item> RESIN_MASONRY = TagKey.create(Registries.ITEM, new ResourceLocation(Constants.MOD_ID, "resin_masonry"));
+    public static final TagKey<Item> SOUL_RESIN_MASONRY = TagKey.create(Registries.ITEM, new ResourceLocation(Constants.MOD_ID, "soul_resin_masonry"));
 
     public ModItemTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);

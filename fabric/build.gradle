@@ -3,7 +3,7 @@ import groovy.json.JsonSlurper
 
 plugins {
     id 'multiloader-loader'
-    id 'net.fabricmc.fabric-loom-remap'
+    id 'fabric-loom'
 }
 
 dependencies {
@@ -22,6 +22,8 @@ dependencies {
 
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
+    implementation project(":common")
 }
 
 loom {
@@ -33,15 +35,15 @@ loom {
     runs {
         client {
             client()
-            setConfigName('Fabric Client')
+            setConfigName("Fabric Client")
             ideConfigGenerated(true)
-            runDir('runs/client')
+            runDir("run")
         }
         server {
             server()
-            setConfigName('Fabric Server')
+            setConfigName("Fabric Server")
             ideConfigGenerated(true)
-            runDir('runs/server')
+            runDir("run")
         }
     }
 }
@@ -86,21 +88,21 @@ tasks.named("runDatagen") {
                 }
 
                 if (json["fabric:load_conditions"] != null) {
-                    def neoforgeConds = []
+                    def forgeConds = []
 
                     json["fabric:load_conditions"].each { fCond ->
                         if (fCond.condition == "fabric:all_mods_loaded") {
                             fCond.values.each { modid ->
-                                neoforgeConds.add([
-                                        "type": "neoforge:mod_loaded",
+                                forgeConds.add([
+                                        "type": "forge:mod_loaded",
                                         "modid": modid
                                 ])
                             }
                         }
                     }
 
-                    if (!neoforgeConds.isEmpty() && json["neoforge:conditions"] != neoforgeConds) {
-                        json["neoforge:conditions"] = neoforgeConds
+                    if (!forgeConds.isEmpty() && json["forge:conditions"] != forgeConds) {
+                        json["forge:conditions"] = forgeConds
                         modified = true
                     }
                 }

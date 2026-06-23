@@ -7,42 +7,43 @@ import com.evandev.brick_and_mortar.registry.ModRecipes;
 import net.minecraft.Util;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
-import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.function.Supplier;
 
 public class KilnScreen extends AbstractContainerScreen<KilnMenu> {
-    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "textures/gui/container/kiln.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(Constants.MOD_ID, "textures/gui/container/kiln.png");
 
-    private static final WidgetSprites CLOSED_SPRITES = new WidgetSprites(
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/door_closed"),
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/door_closed_highlighted"));
-    private static final WidgetSprites OPEN_SPRITES = new WidgetSprites(
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/door_open"),
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/door_open_highlighted"));
-    private static final WidgetSprites OPEN_SOUL_SPRITES = new WidgetSprites(
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/door_open_soul"),
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/door_open_soul_highlighted"));
+    private static final String PATH_PREFIX = "textures/gui/sprites/container/kiln/";
+    private static final ImmutablePair<ResourceLocation, ResourceLocation> CLOSED_SPRITES = new ImmutablePair<>(
+            new ResourceLocation(Constants.MOD_ID, PATH_PREFIX + "door_closed.png"),
+            new ResourceLocation(Constants.MOD_ID, PATH_PREFIX + "door_closed_highlighted.png"));
+    private static final ImmutablePair<ResourceLocation, ResourceLocation> OPEN_SPRITES = new ImmutablePair<>(
+            new ResourceLocation(Constants.MOD_ID, PATH_PREFIX + "door_open.png"),
+            new ResourceLocation(Constants.MOD_ID, PATH_PREFIX + "door_open_highlighted.png"));
+    private static final ImmutablePair<ResourceLocation, ResourceLocation> OPEN_SOUL_SPRITES = new ImmutablePair<>(
+            new ResourceLocation(Constants.MOD_ID, PATH_PREFIX + "door_open_soul.png"),
+            new ResourceLocation(Constants.MOD_ID, PATH_PREFIX + "door_open_soul_highlighted.png"));
     private static final ResourceLocation BURN_PROGRESS_SPRITE =
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/burn_progress");
+            new ResourceLocation(Constants.MOD_ID, PATH_PREFIX + "burn_progress.png");
     private static final ResourceLocation LIT_PROGRESS_SPRITE =
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/lit_progress");
+            new ResourceLocation(Constants.MOD_ID, PATH_PREFIX + "lit_progress.png");
 
-    private static final ResourceLocation PREVIEW_LOWERED = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/preview_lowered");
-    private static final ResourceLocation PREVIEW_LOWERED_HIGHLIGHTED = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/preview_lowered_highlighted");
-    private static final ResourceLocation PREVIEW = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/preview");
-    private static final ResourceLocation PREVIEW_HIGHLIGHTED = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/preview_highlighted");
-    private static final ResourceLocation PREVIEW_SOUL = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/preview_soul");
-    private static final ResourceLocation PREVIEW_SOUL_HIGHLIGHTED = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/preview_soul_highlighted");
-    private static final ResourceLocation EMPTY_PREVIEW_ITEM = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/kiln/empty_preview_item");
+    private static final ResourceLocation PREVIEW_LOWERED = new ResourceLocation(Constants.MOD_ID, PATH_PREFIX + "preview_lowered.png");
+    private static final ResourceLocation PREVIEW_LOWERED_HIGHLIGHTED = new ResourceLocation(Constants.MOD_ID, PATH_PREFIX + "preview_lowered_highlighted.png");
+    private static final ResourceLocation PREVIEW = new ResourceLocation(Constants.MOD_ID, PATH_PREFIX + "preview.png");
+    private static final ResourceLocation PREVIEW_HIGHLIGHTED = new ResourceLocation(Constants.MOD_ID, PATH_PREFIX + "preview_highlighted.png");
+    private static final ResourceLocation PREVIEW_SOUL = new ResourceLocation(Constants.MOD_ID, PATH_PREFIX + "preview_soul.png");
+    private static final ResourceLocation PREVIEW_SOUL_HIGHLIGHTED = new ResourceLocation(Constants.MOD_ID, PATH_PREFIX + "preview_soul_highlighted.png");
+    private static final ResourceLocation EMPTY_PREVIEW_ITEM = new ResourceLocation(Constants.MOD_ID, PATH_PREFIX + "empty_preview_item.png");
 
     private static final int PREVIEW_WIDTH = 92;
     private static final int PREVIEW_EXPANDED_HEIGHT = 45;
@@ -78,16 +79,17 @@ public class KilnScreen extends AbstractContainerScreen<KilnMenu> {
     }
 
     private void addDoorWidget(int buttonId, int x, int y, Supplier<Boolean> isOpen) {
-        this.addRenderableWidget(new ImageButton(x, y, 14, 14, CLOSED_SPRITES, (button) -> {
+        this.addRenderableWidget(new ImageButton(x, y, 14, 14, 0, 0, CLOSED_SPRITES.left, (button) -> {
             this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId, buttonId);
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-                WidgetSprites currentSprites = CLOSED_SPRITES;
+                ImmutablePair<ResourceLocation, ResourceLocation> currentSprites = CLOSED_SPRITES;
                 if (isOpen.get()) {
                     currentSprites = menu.isSoul() ? OPEN_SOUL_SPRITES : OPEN_SPRITES;
                 }
-                guiGraphics.blitSprite(currentSprites.get(this.isActive(), this.isHoveredOrFocused()), this.getX(), this.getY(), this.getWidth(), this.getHeight());
+                ResourceLocation hoverSprite = this.isHoveredOrFocused() ? currentSprites.right : currentSprites.left;
+                guiGraphics.blit(hoverSprite, this.getX(), this.getY(), 0, 0, 0, this.getWidth(), this.getHeight(), 14, 14);
             }
         });
     }
@@ -102,17 +104,16 @@ public class KilnScreen extends AbstractContainerScreen<KilnMenu> {
         ItemStack currentInput = this.menu.getSlot(0).getItem();
         boolean currentSoul = this.menu.isSoul();
 
-        if (!ItemStack.isSameItemSameComponents(currentInput, this.lastInput) || currentSoul != this.lastSoul) {
+        if (!ItemStack.isSameItem(currentInput, this.lastInput) || currentSoul != this.lastSoul) {
             this.lastInput = currentInput.copy();
             this.lastSoul = currentSoul;
             Arrays.fill(this.previewOutputs, ItemStack.EMPTY);
 
             if (!currentInput.isEmpty() && this.minecraft != null && this.minecraft.level != null) {
                 var recipes = this.minecraft.level.getRecipeManager().getAllRecipesFor(ModRecipes.KILN_TYPE.get());
-                for (var holder : recipes) {
-                    KilnRecipe recipe = holder.value();
-                    if (recipe.input().test(currentInput) && recipe.requiresSoulBase() == currentSoul) {
-                        int doors = recipe.requiredDoorsOpen();
+                for (KilnRecipe recipe : recipes) {
+                    if (recipe.getIngredients().get(0).test(currentInput) && recipe.getRequiresSoulBase() == currentSoul) {
+                        int doors = recipe.getRequiredDoorsOpen();
                         if (doors >= 0 && doors < 4) {
                             this.previewOutputs[doors] = recipe.getResultItem(this.minecraft.level.registryAccess());
                         }
@@ -150,6 +151,7 @@ public class KilnScreen extends AbstractContainerScreen<KilnMenu> {
             this.expandProgress = Math.max(0.0f, this.expandProgress - dt);
         }
 
+        renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, partialTick);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
 
@@ -184,12 +186,14 @@ public class KilnScreen extends AbstractContainerScreen<KilnMenu> {
 
         if (this.menu.isLit()) {
             int l = this.menu.getLitProgressScaled();
-            guiGraphics.blitSprite(LIT_PROGRESS_SPRITE, 14, 14, 0, 14 - l, x + 32, y + 36 + 14 - l, 14, l);
+            guiGraphics.blit(LIT_PROGRESS_SPRITE, x + 32, y + 36 + 14 - l, 0, 0, 14 - l,
+                    14, l, 14, 14);
         }
 
         int progress = this.menu.getProgressionScaled();
         if (progress > 0) {
-            guiGraphics.blitSprite(BURN_PROGRESS_SPRITE, 24, 16, 0, 0, x + 55, y + 34, progress, 16);
+            guiGraphics.blit(BURN_PROGRESS_SPRITE, x + 55, y + 34, 0, 0, 0,
+                    progress, 16, 24, 16);
         }
     }
 
@@ -201,7 +205,7 @@ public class KilnScreen extends AbstractContainerScreen<KilnMenu> {
 
         if (this.expandProgress == 0.0f) {
             ResourceLocation texture = isHovered ? PREVIEW_LOWERED_HIGHLIGHTED : PREVIEW_LOWERED;
-            guiGraphics.blitSprite(texture, widgetX, widgetY, PREVIEW_WIDTH, PREVIEW_LOWERED_HEIGHT);
+            guiGraphics.blit(texture, widgetX, widgetY, 0, 0, PREVIEW_WIDTH, PREVIEW_LOWERED_HEIGHT, PREVIEW_WIDTH, PREVIEW_LOWERED_HEIGHT);
         } else {
             ResourceLocation texture;
             if (this.menu.isSoul()) {
@@ -212,7 +216,7 @@ public class KilnScreen extends AbstractContainerScreen<KilnMenu> {
 
             guiGraphics.enableScissor(widgetX, 0, widgetX + PREVIEW_WIDTH, relY);
 
-            guiGraphics.blitSprite(texture, widgetX, widgetY, PREVIEW_WIDTH, PREVIEW_EXPANDED_HEIGHT);
+            guiGraphics.blit(texture, widgetX, widgetY, 0, 0, PREVIEW_WIDTH, PREVIEW_EXPANDED_HEIGHT, PREVIEW_WIDTH, PREVIEW_EXPANDED_HEIGHT);
 
             for (int i = 0; i < 4; i++) {
                 int itemX = widgetX + PREVIEW_ITEM_START_X + i * PREVIEW_ITEM_SPACING;
@@ -223,7 +227,7 @@ public class KilnScreen extends AbstractContainerScreen<KilnMenu> {
                     guiGraphics.renderFakeItem(stack, itemX, itemY);
                     guiGraphics.renderItemDecorations(this.font, stack, itemX, itemY);
                 } else {
-                    guiGraphics.blitSprite(EMPTY_PREVIEW_ITEM, itemX + 2, itemY + 2, 12, 12);
+                    guiGraphics.blit(EMPTY_PREVIEW_ITEM, itemX + 2, itemY + 2, 0, 0, 12, 12, 12, 12);
                 }
             }
 

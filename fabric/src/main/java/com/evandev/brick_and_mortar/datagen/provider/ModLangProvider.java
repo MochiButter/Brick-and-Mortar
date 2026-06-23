@@ -11,11 +11,11 @@ import java.util.concurrent.CompletableFuture;
 public class ModLangProvider extends FabricLanguageProvider {
 
     public ModLangProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
-        super(dataOutput, registryLookup);
+        super(dataOutput);
     }
 
     @Override
-    public void generateTranslations(HolderLookup.Provider registryLookup, TranslationBuilder translationBuilder) {
+    public void generateTranslations(TranslationBuilder translationBuilder) {
         translationBuilder.add(ModBlocks.KILN.get(), "Kiln");
         translationBuilder.add("container.kiln", "Kiln");
 

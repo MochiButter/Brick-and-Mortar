@@ -5,20 +5,19 @@ import com.evandev.brick_and_mortar.platform.registry.RegistryObject;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
 
 import java.util.*;
 import java.util.function.Supplier;
 
-public class NeoForgeRegistrationProvider<T> implements RegistrationProvider<T> {
-
+public class ForgeRegistrationProvider<T> implements RegistrationProvider<T> {
     private static final Set<DeferredRegister<?>> REGISTRIES = new HashSet<>();
 
     private final DeferredRegister<T> deferredRegister;
     private final Set<RegistryObject<T>> entries = new LinkedHashSet<>();
 
-    public NeoForgeRegistrationProvider(ResourceKey<? extends Registry<T>> registry, String modId) {
+    public ForgeRegistrationProvider(ResourceKey<? extends Registry<T>> registry, String modId) {
         this.deferredRegister = DeferredRegister.create(registry, modId);
         REGISTRIES.add(this.deferredRegister);
     }

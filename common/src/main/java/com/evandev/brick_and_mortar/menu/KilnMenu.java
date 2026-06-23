@@ -194,7 +194,7 @@ public class KilnMenu extends AbstractContainerMenu {
 
     private boolean hasRecipe(ItemStack stack, Level level) {
         return level.getRecipeManager().getAllRecipesFor(ModRecipes.KILN_TYPE.get()).stream()
-                .anyMatch(recipeHolder -> recipeHolder.value().input().test(stack));
+                .anyMatch(recipe -> recipe.getIngredients().get(0).test(stack));
     }
 
     @Override

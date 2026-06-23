@@ -27,7 +27,7 @@ public class FabricRegistrationProvider<T> implements RegistrationProvider<T> {
     @Override
     @SuppressWarnings("unchecked")
     public <I extends T> RegistryObject<I> register(String name, Supplier<? extends I> supplier) {
-        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(modId, name);
+        ResourceLocation id = new ResourceLocation(modId, name);
         I registered = Registry.register(registry, id, supplier.get());
 
         RegistryObject<I> registryObject = new RegistryObject<>() {

@@ -1,5 +1,6 @@
 package com.evandev.brick_and_mortar.platform;
 
+import com.evandev.brick_and_mortar.Constants;
 import com.evandev.brick_and_mortar.platform.registry.RegistrationProvider;
 import com.evandev.brick_and_mortar.platform.services.IPlatformHelper;
 import net.minecraft.core.Registry;
@@ -11,19 +12,20 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.FMLLoader;
-import net.neoforged.fml.loading.FMLPaths;
-import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.extensions.IForgeMenuType;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.nio.file.Path;
 
-public class NeoForgePlatformHelper implements IPlatformHelper {
+public class ForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public String getPlatformName() {
-        return "NeoForge";
+        return "Forge";
     }
 
     @Override
@@ -48,7 +50,7 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public <T> RegistrationProvider<T> createRegistrationProvider(ResourceKey<? extends Registry<T>> registry, String modId) {
-        return new NeoForgeRegistrationProvider<>(registry, modId);
+        return new ForgeRegistrationProvider<>(registry, modId);
     }
 
     @Override
@@ -58,11 +60,11 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public <T extends AbstractContainerMenu> MenuType<T> createMenuType(MenuFactory<T> factory) {
-        return IMenuTypeExtension.create((id, inv, data) -> factory.create(id, inv));
+        return IForgeMenuType.create((id, inv, data) -> factory.create(id, inv));
     }
 
     @Override
     public int getBurnTime(ItemStack stack) {
-        return stack.getBurnTime(RecipeType.SMELTING);
+        return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING);
     }
 }

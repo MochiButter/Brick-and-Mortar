@@ -39,14 +39,14 @@ public class CompatHandler {
 
 
     public static void registerDummyItemIfMissing(String namespace, String path) {
-        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(namespace, path);
+        ResourceLocation id = new ResourceLocation(namespace, path);
         if (!BuiltInRegistries.ITEM.containsKey(id)) {
             Registry.register(BuiltInRegistries.ITEM, id, new Item(new Item.Properties()));
         }
     }
 
     public static void registerDummyBlockIfMissing(String namespace, String path) {
-        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(namespace, path);
+        ResourceLocation id = new ResourceLocation(namespace, path);
         if (!BuiltInRegistries.BLOCK.containsKey(id)) {
             Block block = new Block(BlockBehaviour.Properties.of());
             Registry.register(BuiltInRegistries.BLOCK, id, block);
