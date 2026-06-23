@@ -1,0 +1,27 @@
+{
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "create"
+            ]
+        }
+    ],
+    "type": "create:haunting",
+    "ingredients": [
+        {
+            "item": "brick_and_mortar:charred_nether_bricks"
+        }
+    ],
+    "results": [
+        {
+            "id": "brick_and_mortar:charred_soul_nether_bricks"
+        }
+    ],
+    "forge:conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "create"
+        }
+    ]
+}

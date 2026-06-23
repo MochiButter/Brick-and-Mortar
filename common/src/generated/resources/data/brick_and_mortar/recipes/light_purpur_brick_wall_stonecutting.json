@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "brick_and_mortar:light_purpur_bricks"
+  },
+  "result": "brick_and_mortar:light_purpur_brick_wall"
+}

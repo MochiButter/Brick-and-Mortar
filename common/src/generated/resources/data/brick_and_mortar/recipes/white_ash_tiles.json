@@ -1,0 +1,32 @@
+{
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "supplementaries"
+            ]
+        }
+    ],
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "key": {
+        "B": {
+            "item": "brick_and_mortar:white_ash_bricks"
+        }
+    },
+    "pattern": [
+        "BB",
+        "BB"
+    ],
+    "result": {
+        "count": 4,
+        "item": "brick_and_mortar:white_ash_tiles"
+    },
+    "show_notification": true,
+    "forge:conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "supplementaries"
+        }
+    ]
+}

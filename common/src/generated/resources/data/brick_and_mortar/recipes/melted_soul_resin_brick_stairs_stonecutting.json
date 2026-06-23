@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:stonecutting",
+    "count": 1,
+    "ingredient": {
+        "item": "brick_and_mortar:melted_soul_resin_bricks"
+    },
+    "result": "brick_and_mortar:melted_soul_resin_brick_stairs",
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "vanillabackport"
+            ]
+        }
+    ],
+    "forge:conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "vanillabackport"
+        }
+    ]
+}

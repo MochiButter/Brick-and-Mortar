@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "S": {
+      "item": "brick_and_mortar:raw_purpur_slab"
+    }
+  },
+  "pattern": [
+    "S",
+    "S"
+  ],
+  "result": {
+    "item": "brick_and_mortar:raw_purpur_pillar"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "brick_and_mortar:tan_tiles"
+  },
+  "result": "brick_and_mortar:tan_tile_wall"
+}

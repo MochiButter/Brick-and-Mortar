@@ -1,0 +1,49 @@
+{
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "vanillabackport"
+            ]
+        }
+    ],
+    "parent": "minecraft:recipes/root",
+    "criteria": {
+        "has_input": {
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:resin_clump"
+                        ]
+                    }
+                ]
+            },
+            "trigger": "minecraft:inventory_changed"
+        },
+        "has_the_recipe": {
+            "conditions": {
+                "recipe": "brick_and_mortar:kiln_firing/resin_bricks_soul_tier_1"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+        }
+    },
+    "requirements": [
+        [
+            "has_input",
+            "has_the_recipe"
+        ]
+    ],
+    "rewards": {
+        "recipes": [
+            "brick_and_mortar:kiln_firing/resin_bricks_soul_tier_1"
+        ]
+    },
+    "sends_telemetry_event": false,
+    "forge:conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "vanillabackport"
+        }
+    ]
+}

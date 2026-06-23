@@ -1,0 +1,31 @@
+{
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "vanillabackport"
+            ]
+        }
+    ],
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "key": {
+        "I": {
+            "item": "brick_and_mortar:bright_resin_brick"
+        }
+    },
+    "pattern": [
+        "II",
+        "II"
+    ],
+    "result": {
+        "item": "brick_and_mortar:bright_resin_bricks"
+    },
+    "show_notification": true,
+    "forge:conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "vanillabackport"
+        }
+    ]
+}

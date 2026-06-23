@@ -1,0 +1,32 @@
+{
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "create",
+                "supplementaries"
+            ]
+        }
+    ],
+    "type": "create:haunting",
+    "ingredients": [
+        {
+            "item": "supplementaries:ash_bricks_slab"
+        }
+    ],
+    "results": [
+        {
+            "id": "brick_and_mortar:soul_ash_brick_slab"
+        }
+    ],
+    "forge:conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "create"
+        },
+        {
+            "type": "forge:mod_loaded",
+            "modid": "supplementaries"
+        }
+    ]
+}

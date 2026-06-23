@@ -1,0 +1,28 @@
+{
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "vanillabackport"
+            ]
+        }
+    ],
+    "type": "brick_and_mortar:kiln_firing",
+    "category": "misc",
+    "cookingtime": 100,
+    "experience": 0.3,
+    "ingredient": {
+        "item": "minecraft:resin_clump"
+    },
+    "required_doors": 0,
+    "result": {
+        "count": 1,
+        "item": "brick_and_mortar:melted_resin_brick"
+    },
+    "forge:conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "vanillabackport"
+        }
+    ]
+}

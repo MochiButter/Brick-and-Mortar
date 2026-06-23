@@ -1,0 +1,34 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "bonus_rolls": 0.0,
+            "conditions": [
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ],
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "brick_and_mortar:smoked_soul_resin_bricks"
+                }
+            ],
+            "rolls": 1.0
+        }
+    ],
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "vanillabackport"
+            ]
+        }
+    ],
+    "forge:conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "vanillabackport"
+        }
+    ]
+}

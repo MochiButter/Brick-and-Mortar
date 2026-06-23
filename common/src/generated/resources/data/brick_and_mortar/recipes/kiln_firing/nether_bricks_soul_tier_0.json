@@ -1,0 +1,15 @@
+{
+  "type": "brick_and_mortar:kiln_firing",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.3,
+  "ingredient": {
+    "item": "minecraft:netherrack"
+  },
+  "required_doors": 0,
+  "requires_soul": true,
+  "result": {
+    "count": 1,
+    "item": "brick_and_mortar:raw_soul_nether_brick"
+  }
+}

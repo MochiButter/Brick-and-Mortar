@@ -1,0 +1,14 @@
+{
+  "type": "brick_and_mortar:kiln_firing",
+  "category": "blocks",
+  "cookingtime": 100,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "minecraft:cobblestone"
+  },
+  "required_doors": 0,
+  "result": {
+    "count": 1,
+    "item": "minecraft:stone"
+  }
+}

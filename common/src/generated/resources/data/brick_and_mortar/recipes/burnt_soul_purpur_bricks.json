@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": {
+      "item": "brick_and_mortar:burnt_soul_purpur_block"
+    }
+  },
+  "pattern": [
+    "BB",
+    "BB"
+  ],
+  "result": {
+    "count": 4,
+    "item": "brick_and_mortar:burnt_soul_purpur_bricks"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,14 @@
+{
+  "type": "brick_and_mortar:kiln_firing",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.3,
+  "ingredient": {
+    "item": "minecraft:clay_ball"
+  },
+  "required_doors": 2,
+  "result": {
+    "count": 1,
+    "item": "minecraft:brick"
+  }
+}

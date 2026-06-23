@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:stonecutting",
+    "count": 1,
+    "ingredient": {
+        "item": "brick_and_mortar:gray_ash_tiles"
+    },
+    "result": "brick_and_mortar:gray_ash_tile_wall",
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "supplementaries"
+            ]
+        }
+    ],
+    "forge:conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "supplementaries"
+        }
+    ]
+}

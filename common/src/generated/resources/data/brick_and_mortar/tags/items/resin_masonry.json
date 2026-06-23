@@ -1,0 +1,79 @@
+{
+    "replace": false,
+    "values": [
+        {
+            "id": "brick_and_mortar:melted_resin_brick",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:bright_resin_brick",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:smoked_resin_brick",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:melted_resin_bricks",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:melted_resin_brick_stairs",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:melted_resin_brick_slab",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:melted_resin_brick_wall",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:bright_resin_bricks",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:bright_resin_brick_stairs",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:bright_resin_brick_slab",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:bright_resin_brick_wall",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:smoked_resin_bricks",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:smoked_resin_brick_stairs",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:smoked_resin_brick_slab",
+            "required": false
+        },
+        {
+            "id": "brick_and_mortar:smoked_resin_brick_wall",
+            "required": false
+        }
+    ],
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "vanillabackport"
+            ]
+        }
+    ],
+    "forge:conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "vanillabackport"
+        }
+    ]
+}

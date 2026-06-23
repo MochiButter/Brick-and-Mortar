@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_brick_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "brick_and_mortar:raw_popped_chorus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "brick_and_mortar:raw_purpur_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_brick_item",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "brick_and_mortar:raw_purpur_block"
+    ]
+  },
+  "sends_telemetry_event": false
+}

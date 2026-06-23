@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": {
+      "item": "brick_and_mortar:charred_nether_tiles"
+    }
+  },
+  "pattern": [
+    "BBB"
+  ],
+  "result": {
+    "count": 6,
+    "item": "brick_and_mortar:charred_nether_tile_slab"
+  },
+  "show_notification": true
+}

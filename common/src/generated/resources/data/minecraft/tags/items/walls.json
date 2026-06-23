@@ -1,0 +1,245 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "brick_and_mortar:black_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:blue_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:brown_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:cream_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:gray_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:orange_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:tan_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:black_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:blue_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:brown_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:cream_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:gray_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:orange_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:tan_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:brick_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:nether_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:charred_nether_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:charred_soul_nether_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_nether_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_soul_nether_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_nether_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_soul_nether_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_nether_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:charred_nether_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:charred_soul_nether_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_nether_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_soul_nether_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_nether_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_soul_nether_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_nether_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:burnt_purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:burnt_soul_purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:light_soul_purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:raw_soul_purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_purpur_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:white_ash_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:gray_ash_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:black_ash_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_ash_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:white_soul_ash_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:gray_soul_ash_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:black_soul_ash_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:ash_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:white_ash_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:gray_ash_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:black_ash_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_ash_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:white_soul_ash_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:gray_soul_ash_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:black_soul_ash_tile_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:bright_resin_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:bright_soul_resin_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:melted_resin_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:melted_soul_resin_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:smoked_resin_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:smoked_soul_resin_brick_wall",
+      "required": false
+    },
+    {
+      "id": "brick_and_mortar:soul_resin_brick_wall",
+      "required": false
+    }
+  ]
+}

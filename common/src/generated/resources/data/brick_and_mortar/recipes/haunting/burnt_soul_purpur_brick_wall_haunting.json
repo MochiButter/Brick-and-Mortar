@@ -1,0 +1,27 @@
+{
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "create"
+            ]
+        }
+    ],
+    "type": "create:haunting",
+    "ingredients": [
+        {
+            "item": "brick_and_mortar:burnt_purpur_brick_wall"
+        }
+    ],
+    "results": [
+        {
+            "id": "brick_and_mortar:burnt_soul_purpur_brick_wall"
+        }
+    ],
+    "forge:conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "create"
+        }
+    ]
+}

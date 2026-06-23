@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "key": {
+        "B": {
+            "item": "brick_and_mortar:black_ash_tiles"
+        }
+    },
+    "pattern": [
+        "B  ",
+        "BB ",
+        "BBB"
+    ],
+    "result": {
+        "count": 4,
+        "item": "brick_and_mortar:black_ash_tile_stairs"
+    },
+    "show_notification": true,
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "supplementaries"
+            ]
+        }
+    ],
+    "forge:conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "supplementaries"
+        }
+    ]
+}

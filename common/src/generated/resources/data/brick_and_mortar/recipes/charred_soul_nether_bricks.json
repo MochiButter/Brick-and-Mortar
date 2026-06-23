@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "I": {
+      "item": "brick_and_mortar:charred_soul_nether_brick"
+    }
+  },
+  "pattern": [
+    "II",
+    "II"
+  ],
+  "result": {
+    "item": "brick_and_mortar:charred_soul_nether_bricks"
+  },
+  "show_notification": true
+}

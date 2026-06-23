@@ -1,0 +1,29 @@
+{
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "supplementaries"
+            ]
+        }
+    ],
+    "type": "brick_and_mortar:kiln_firing",
+    "category": "misc",
+    "cookingtime": 100,
+    "experience": 0.3,
+    "ingredient": {
+        "item": "supplementaries:ash"
+    },
+    "required_doors": 0,
+    "requires_soul": true,
+    "result": {
+        "count": 1,
+        "item": "brick_and_mortar:white_soul_ash_brick"
+    },
+    "forge:conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "supplementaries"
+        }
+    ]
+}

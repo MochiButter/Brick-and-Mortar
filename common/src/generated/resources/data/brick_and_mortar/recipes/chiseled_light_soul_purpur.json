@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "S": {
+      "item": "brick_and_mortar:light_soul_purpur_brick_slab"
+    }
+  },
+  "pattern": [
+    "S",
+    "S"
+  ],
+  "result": {
+    "item": "brick_and_mortar:chiseled_light_soul_purpur"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "brick_and_mortar:raw_soul_purpur_block"
+  },
+  "result": "brick_and_mortar:chiseled_raw_soul_purpur"
+}

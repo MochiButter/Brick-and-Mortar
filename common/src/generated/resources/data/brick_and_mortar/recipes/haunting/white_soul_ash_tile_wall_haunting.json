@@ -1,0 +1,32 @@
+{
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "create",
+                "supplementaries"
+            ]
+        }
+    ],
+    "type": "create:haunting",
+    "ingredients": [
+        {
+            "item": "brick_and_mortar:white_ash_tile_wall"
+        }
+    ],
+    "results": [
+        {
+            "id": "brick_and_mortar:white_soul_ash_tile_wall"
+        }
+    ],
+    "forge:conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "create"
+        },
+        {
+            "type": "forge:mod_loaded",
+            "modid": "supplementaries"
+        }
+    ]
+}
