@@ -23,7 +23,7 @@ public class KilnRecipe implements Recipe<KilnRecipeInput> {
     private final boolean requiresSoulBase;
 
     public KilnRecipe(ResourceLocation id, Ingredient input, ItemStack output, float experience, int cookingTime,
-                      int requiredDoorsOpen, boolean requiresSoulBase){
+                      int requiredDoorsOpen, boolean requiresSoulBase) {
         this.id = id;
         this.input = input;
         this.output = output;
@@ -34,7 +34,7 @@ public class KilnRecipe implements Recipe<KilnRecipeInput> {
     }
 
     @Override
-    public boolean matches(KilnRecipeInput recipeInput, Level level) {
+    public boolean matches(@NotNull KilnRecipeInput recipeInput, Level level) {
         if (level.isClientSide) return false;
 
         if (!input.test(recipeInput.getItem(0))) return false;
@@ -46,7 +46,7 @@ public class KilnRecipe implements Recipe<KilnRecipeInput> {
     }
 
     @Override
-    public ItemStack assemble(@NotNull KilnRecipeInput recipeInput, RegistryAccess registryAccess) {
+    public @NotNull ItemStack assemble(@NotNull KilnRecipeInput recipeInput, @NotNull RegistryAccess registryAccess) {
         return output.copy();
     }
 
@@ -56,19 +56,19 @@ public class KilnRecipe implements Recipe<KilnRecipeInput> {
     }
 
     @Override
-    public ResourceLocation getId() {
+    public @NotNull ResourceLocation getId() {
         return id;
     }
 
     @Override
-    public NonNullList<Ingredient> getIngredients() {
+    public @NotNull NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> ingredients = NonNullList.create();
         ingredients.add(this.input);
         return ingredients;
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
+    public @NotNull ItemStack getResultItem(@NotNull RegistryAccess registryAccess) {
         return output;
     }
 
@@ -102,9 +102,19 @@ public class KilnRecipe implements Recipe<KilnRecipeInput> {
         return requiresSoulBase;
     }
 
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
+
+    @Override
+    public boolean showNotification() {
+        return false;
+    }
+
     public static class Serializer implements RecipeSerializer<KilnRecipe> {
         @Override
-        public KilnRecipe fromJson(ResourceLocation recipeID, JsonObject jsonObject) {
+        public @NotNull KilnRecipe fromJson(@NotNull ResourceLocation recipeID, @NotNull JsonObject jsonObject) {
             int cookingTime = GsonHelper.getAsInt(jsonObject, "cookingtime");
             float experience = GsonHelper.getAsFloat(jsonObject, "experience");
             JsonObject ingredients = GsonHelper.getAsJsonObject(jsonObject, "ingredient");
@@ -118,7 +128,7 @@ public class KilnRecipe implements Recipe<KilnRecipeInput> {
         }
 
         @Override
-        public KilnRecipe fromNetwork(ResourceLocation recipeID, FriendlyByteBuf buf) {
+        public @NotNull KilnRecipe fromNetwork(@NotNull ResourceLocation recipeID, @NotNull FriendlyByteBuf buf) {
             Ingredient input = Ingredient.fromNetwork(buf);
             ItemStack output = buf.readItem();
             float experience = buf.readFloat();
@@ -129,7 +139,7 @@ public class KilnRecipe implements Recipe<KilnRecipeInput> {
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf buf, KilnRecipe recipe) {
+        public void toNetwork(@NotNull FriendlyByteBuf buf, KilnRecipe recipe) {
             recipe.input.toNetwork(buf);
             buf.writeItem(recipe.output);
             buf.writeFloat(recipe.experience);

@@ -23,6 +23,7 @@ legacyForge {
         minecraftVersion = parchment_minecraft
         mappingsVersion = parchment_version
     }
+
     runs {
         client {
             client()
@@ -44,6 +45,10 @@ sourceSets.main.resources {
 }
 
 dependencies {
+    compileOnly "io.github.llamalad7:mixinextras-common:${mixinextras_version}"
+    implementation(jarJar("io.github.llamalad7:mixinextras-forge:${mixinextras_version}"))
+    annotationProcessor "io.github.llamalad7:mixinextras-common:${mixinextras_version}"
+
     // EMI
     modImplementation "dev.emi:emi-forge:${emi_version}"
 
