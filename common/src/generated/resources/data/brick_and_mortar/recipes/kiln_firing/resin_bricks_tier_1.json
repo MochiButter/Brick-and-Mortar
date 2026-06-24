@@ -19,7 +19,7 @@
         "count": 1,
         "item": "brick_and_mortar:bright_resin_brick"
     },
-    "forge:conditions": [
+    "conditions": [
         {
             "type": "forge:mod_loaded",
             "modid": "vanillabackport"

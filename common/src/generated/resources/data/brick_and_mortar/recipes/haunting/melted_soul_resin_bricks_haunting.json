@@ -19,7 +19,7 @@
             "id": "brick_and_mortar:melted_soul_resin_bricks"
         }
     ],
-    "forge:conditions": [
+    "conditions": [
         {
             "type": "forge:mod_loaded",
             "modid": "create"

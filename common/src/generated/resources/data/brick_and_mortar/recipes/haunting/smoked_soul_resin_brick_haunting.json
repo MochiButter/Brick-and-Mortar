@@ -19,7 +19,7 @@
             "id": "brick_and_mortar:smoked_soul_resin_brick"
         }
     ],
-    "forge:conditions": [
+    "conditions": [
         {
             "type": "forge:mod_loaded",
             "modid": "create"

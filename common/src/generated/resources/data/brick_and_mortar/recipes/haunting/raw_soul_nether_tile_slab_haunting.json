@@ -18,7 +18,7 @@
             "id": "brick_and_mortar:raw_soul_nether_tile_slab"
         }
     ],
-    "forge:conditions": [
+    "conditions": [
         {
             "type": "forge:mod_loaded",
             "modid": "create"

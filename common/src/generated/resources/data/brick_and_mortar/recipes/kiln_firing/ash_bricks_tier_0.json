@@ -19,7 +19,7 @@
         "count": 1,
         "item": "brick_and_mortar:white_ash_brick"
     },
-    "forge:conditions": [
+    "conditions": [
         {
             "type": "forge:mod_loaded",
             "modid": "supplementaries"

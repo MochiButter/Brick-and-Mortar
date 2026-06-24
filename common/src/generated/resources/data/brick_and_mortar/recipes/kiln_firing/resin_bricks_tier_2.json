@@ -19,7 +19,7 @@
         "count": 1,
         "item": "minecraft:resin_brick"
     },
-    "forge:conditions": [
+    "conditions": [
         {
             "type": "forge:mod_loaded",
             "modid": "vanillabackport"

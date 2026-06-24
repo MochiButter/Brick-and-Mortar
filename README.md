@@ -2,6 +2,7 @@
 
 <a href='https://fabricmc.net'><img alt="fabric" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_vector.svg"></a>
 <a href='https://neoforged.net/'><img alt="neoforge" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/neoforge_vector.svg"></a>
+<a href='https://files.minecraftforge.net/net/minecraftforge/forge/'><img alt="forge" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/forge_vector.svg"></a>
 
 A simple block that cooks building blocks and clay twice as quickly as the furnace, with three adjustable hatches that
 allow you to make **four** variants of any cookable bricks!

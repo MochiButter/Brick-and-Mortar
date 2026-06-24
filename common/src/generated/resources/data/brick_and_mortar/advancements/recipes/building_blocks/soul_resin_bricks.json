@@ -40,7 +40,7 @@
         ]
     },
     "sends_telemetry_event": false,
-    "forge:conditions": [
+    "conditions": [
         {
             "type": "forge:mod_loaded",
             "modid": "vanillabackport"

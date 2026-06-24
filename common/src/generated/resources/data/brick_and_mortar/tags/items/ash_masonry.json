@@ -134,7 +134,7 @@
             ]
         }
     ],
-    "forge:conditions": [
+    "conditions": [
         {
             "type": "forge:mod_loaded",
             "modid": "supplementaries"

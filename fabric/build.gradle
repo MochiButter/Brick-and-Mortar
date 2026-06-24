@@ -101,8 +101,8 @@ tasks.named("runDatagen") {
                         }
                     }
 
-                    if (!forgeConds.isEmpty() && json["forge:conditions"] != forgeConds) {
-                        json["forge:conditions"] = forgeConds
+                    if (!forgeConds.isEmpty() && json["conditions"] != forgeConds) {
+                        json["conditions"] = forgeConds
                         modified = true
                     }
                 }

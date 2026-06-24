@@ -19,7 +19,7 @@
             "id": "brick_and_mortar:white_soul_ash_bricks"
         }
     ],
-    "forge:conditions": [
+    "conditions": [
         {
             "type": "forge:mod_loaded",
             "modid": "create"

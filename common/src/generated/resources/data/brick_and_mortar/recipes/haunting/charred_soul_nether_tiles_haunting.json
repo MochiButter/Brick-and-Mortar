@@ -18,7 +18,7 @@
             "id": "brick_and_mortar:charred_soul_nether_tiles"
         }
     ],
-    "forge:conditions": [
+    "conditions": [
         {
             "type": "forge:mod_loaded",
             "modid": "create"

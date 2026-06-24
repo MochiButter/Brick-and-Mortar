@@ -19,7 +19,7 @@
             "id": "brick_and_mortar:black_soul_ash_tiles"
         }
     ],
-    "forge:conditions": [
+    "conditions": [
         {
             "type": "forge:mod_loaded",
             "modid": "create"

@@ -18,7 +18,7 @@
             "id": "brick_and_mortar:chiseled_burnt_soul_purpur"
         }
     ],
-    "forge:conditions": [
+    "conditions": [
         {
             "type": "forge:mod_loaded",
             "modid": "create"

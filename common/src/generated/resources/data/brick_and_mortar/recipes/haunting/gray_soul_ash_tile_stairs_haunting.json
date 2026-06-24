@@ -19,7 +19,7 @@
             "id": "brick_and_mortar:gray_soul_ash_tile_stairs"
         }
     ],
-    "forge:conditions": [
+    "conditions": [
         {
             "type": "forge:mod_loaded",
             "modid": "create"

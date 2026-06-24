@@ -19,7 +19,7 @@
         "count": 1,
         "item": "supplementaries:ash_brick"
     },
-    "forge:conditions": [
+    "conditions": [
         {
             "type": "forge:mod_loaded",
             "modid": "supplementaries"

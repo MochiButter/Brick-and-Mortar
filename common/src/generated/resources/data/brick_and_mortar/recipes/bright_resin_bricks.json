@@ -22,7 +22,7 @@
         "item": "brick_and_mortar:bright_resin_bricks"
     },
     "show_notification": true,
-    "forge:conditions": [
+    "conditions": [
         {
             "type": "forge:mod_loaded",
             "modid": "vanillabackport"
