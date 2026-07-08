@@ -72,6 +72,7 @@ tasks.named("runDatagen") {
                 def json = new JsonSlurper().parseText(content)
                 def modified = false
                 def fileName = file.name
+                def lootTable = file.path.contains("loot_tables")
 
                 compatMap.each { keyword, modid ->
                     if (fileName.contains(keyword)) {
@@ -87,7 +88,7 @@ tasks.named("runDatagen") {
                     }
                 }
 
-                if (json["fabric:load_conditions"] != null) {
+                if (!lootTable && json["fabric:load_conditions"] != null) {
                     def forgeConds = []
 
                     json["fabric:load_conditions"].each { fCond ->

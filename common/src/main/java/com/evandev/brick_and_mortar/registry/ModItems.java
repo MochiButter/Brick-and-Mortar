@@ -9,7 +9,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 public class ModItems {
     public static final RegistrationProvider<Item> ITEMS = RegistrationProvider.get(Registries.ITEM, Constants.MOD_ID);
@@ -19,6 +21,8 @@ public class ModItems {
 
     public static final List<RegistryObject<Item>> ALL_BRICK_ITEMS = new ArrayList<>();
     public static final List<RegistryObject<Item>> ALL_CHORUS_ITEMS = new ArrayList<>();
+
+    public static final Map<String, List<RegistryObject<Item>>> COMPAT_BRICK_ITEMS = new Hashtable<>();
 
     public static final RegistryObject<Item> BLUE_BRICK = registerBrickItem("blue_brick");
     public static final RegistryObject<Item> BROWN_BRICK = registerBrickItem("brown_brick");
@@ -52,6 +56,13 @@ public class ModItems {
     public static RegistryObject<Item> registerBrickItem(String name) {
         RegistryObject<Item> item = ITEMS.register(name, () -> new Item(new Item.Properties()));
         ALL_BRICK_ITEMS.add(item);
+        return item;
+    }
+
+    public static RegistryObject<Item> registerBrickItem(String name, String compatMod) {
+        RegistryObject<Item> item = registerBrickItem(name);
+        List<RegistryObject<Item>> list = COMPAT_BRICK_ITEMS.computeIfAbsent(compatMod, k -> new ArrayList<>());
+        list.add(item);
         return item;
     }
 

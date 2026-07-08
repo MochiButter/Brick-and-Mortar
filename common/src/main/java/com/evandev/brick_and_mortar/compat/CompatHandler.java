@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CompatHandler {
     private static final List<Runnable> COMPAT_TASKS = new ArrayList<>();
@@ -28,7 +29,7 @@ public class CompatHandler {
     }
 
     public static boolean shouldLoad(String modId) {
-        return isDatagen() || Services.PLATFORM.isModLoaded(modId);
+        return isDatagen() || Services.PLATFORM.isModLoaded(modId) || Objects.equals(Services.PLATFORM.getPlatformName(), "Forge");
     }
 
     public static void register(String modId, Runnable initTask) {

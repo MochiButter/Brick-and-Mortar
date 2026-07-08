@@ -10,8 +10,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ModBlocks {
     public static final RegistrationProvider<Block> BLOCKS = RegistrationProvider.get(Registries.BLOCK, Constants.MOD_ID);
@@ -25,6 +24,8 @@ public class ModBlocks {
     public static final List<RegistryObject<Block>> ALL_DECORATIVE_BLOCKS = new ArrayList<>();
     public static final List<DecorativeFamily> FAMILIES = new ArrayList<>();
     public static final List<RegistryObject<Block>> CHISELED_BLOCKS = new ArrayList<>();
+
+    public static final Map<String, List<RegistryObject<Block>>> COMPAT_BLOCKS = new Hashtable<>();
 
     public static final DecorativeFamily BLACK_BRICKS = registerFamily("black_bricks");
     public static final DecorativeFamily BLUE_BRICKS = registerFamily("blue_bricks");
@@ -112,6 +113,17 @@ public class ModBlocks {
         if (wall != null) ALL_DECORATIVE_BLOCKS.add(wall);
         if (pillar != null) ALL_DECORATIVE_BLOCKS.add(pillar);
 
+        return family;
+    }
+
+    public static DecorativeFamily registerFamily(String name, String compatMod) {
+        DecorativeFamily family = registerFamily(name);
+        List<RegistryObject<Block>> modBlocksList = COMPAT_BLOCKS.computeIfAbsent(compatMod, k -> new ArrayList<>());
+        modBlocksList.add(family.base);
+        modBlocksList.add(family.stairs);
+        modBlocksList.add(family.slab);
+        if (family.wall != null) modBlocksList.add(family.wall);
+        if (family.pillar != null) modBlocksList.add(family.pillar);
         return family;
     }
 
